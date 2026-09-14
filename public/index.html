@@ -1,0 +1,1846 @@
+<!doctype html><html><head><!-- frame-runtime --><script>window.__FRAME_PREAMBLE={"v":1,"capabilities":{"artifact":"artifact.C12lZ9DL.js","assets":"assets.8Gk803W0.js","comments":"comments.vw5vQdGA.js","db":"db.h-3sndFg.js","downloads":"downloads.C3GSvEDP.js","embed":"embed.CxGAyc-v.js","endpoints":"endpoints.CfzSv5nM.js","mcp":"mcp.Bvma3qD7.js","network":"network.B5UA9Su4.js","permissions":"permissions.BNySkLV5.js","room":"room.VSdFwTE9.js","sample":"sample.BW2Uysoh.js","self":"artifact.C12lZ9DL.js","user":"user.BpKav-Rf.js"},"transforms":"_transforms.DSB5x63f.js","comments":"_comments.lsIZQbAK.js","translate":"_translate.5HCW4BJh.js"}</script><script>(function(){"use strict";var te=["light","dark","system"],re=/^[A-Za-z0-9_-]{1,64}$/,$=/^[a-zA-Z_:][a-zA-Z0-9_:.-]{0,127}$/,ne=new Set(["class","hidden","value","checked","style","title","alt","placeholder","lang","dir","role","tabindex","disabled","readonly","contenteditable","open","colspan","rowspan"]);function oe(e){const t=e.toLowerCase();return t.startsWith("data-")||t.startsWith("aria-")||ne.has(t)}var Be="http://www.w3.org/1999/xhtml",se="http://www.w3.org/2000/svg",ae=new Set(["script","style","iframe","noscript","noframes","noembed","xmp","plaintext","template","title","textarea","object","embed"]),ie=new Set(["script","style"]);function ce(e){const t=e.localName.toLowerCase();return e.namespaceURI==="http://www.w3.org/1999/xhtml"?!ae.has(t):e.namespaceURI===se?!ie.has(t):!1}function M(e,t){return e===t||(e===160||e===32)&&(t===160||t===32)}function le(e,t){const r=e.length,n=t.length;let s=0;for(;s<r&&s<n&&M(e.charCodeAt(s),t.charCodeAt(s));)s++;let o=0;for(;o<r-s&&o<n-s&&M(e.charCodeAt(r-1-o),t.charCodeAt(n-1-o));)o++;return{p:s,s:o}}function ue(e,t){const r=e.firstChild;if(e.childNodes.length!==1||r===null||r.nodeType!==Node.TEXT_NODE){e.textContent=t;return}const n=r.data,s=n.length,o=t.length,{p:i,s:c}=le(n,t);i===s&&c===0&&s===o||r.replaceData(i,s-i-c,t.slice(i,o-c));const h=r.data,p=e.ownerDocument.getSelection?.()??null,w=p!==null&&p.rangeCount>0&&(p.anchorNode===r||p.focusNode===r)?{anchor:p.anchorNode,anchorOffset:p.anchorOffset,focus:p.focusNode,focusOffset:p.focusOffset}:null;let m=-1,g=-1;for(let f=0;f<h.length&&f<t.length;f++){const v=h.charCodeAt(f),b=t.charCodeAt(f);v!==b&&M(v,b)&&(m<0&&(m=f),g=f)}const a=m>=0;if(a&&r.replaceData(m,g-m+1,t.slice(m,g+1)),a&&w!==null&&w.anchor!==null&&w.focus!==null)try{p.setBaseAndExtent(w.anchor,w.anchorOffset,w.focus,w.focusOffset)}catch{}}var fe=new Set(["html","head","body","frameset"]);function de(e){return e.namespaceURI==="http://www.w3.org/1999/xhtml"&&fe.has(e.localName)}function pe(e){if(e===null||typeof e!="object")return!1;const t=e;if(typeof t.target!="string"||!re.test(t.target)||t.text!==void 0&&typeof t.text!="string")return!1;if(t.attrsSet!==void 0){if(t.attrsSet===null||typeof t.attrsSet!="object")return!1;for(const[r,n]of Object.entries(t.attrsSet))if(!$.test(r)||typeof n!="string")return!1}if(t.attrsRemoved!==void 0){if(!Array.isArray(t.attrsRemoved))return!1;for(const r of t.attrsRemoved)if(typeof r!="string"||!$.test(r))return!1}return!0}function me(e,t){if(e===null||typeof e!="object")return!1;const{seq:r,elements:n}=e;if(typeof r!="number"||!Number.isSafeInteger(r)||!Array.isArray(n)||n.length===0||n.length>64)return!1;for(let s=0;s<n.length;s++)if(!t(n[s]))return!1;return!0}function he(e){return e===null||typeof e!="object"?!1:me(e.__frame_patch,pe)}function _e(e){if(e===null||typeof e!="object")return!1;const t=e.__frame_init;return t!==null&&typeof t=="object"}function ve(e){return e!==null&&typeof e=="object"&&e.__frame_size_poke===!0}function ye(e){if(e===null||typeof e!="object")return!1;const t=e.__frame_theme;if(t===null||typeof t!="object")return!1;const r=t.theme;return typeof r=="string"&&te.includes(r)}var A=/^[\w.-]+\.js$/;function we(e,t,r){return r?"inert":typeof t=="string"&&A.test(t)?e?[t]:"inert":e?"inert":"framed"}function ge(){return{post(e,t){parent.postMessage(e,t)},on(e){const t=r=>{r.source===parent&&e(r.data,r.origin,r.isTrusted)};return addEventListener("message",t),()=>removeEventListener("message",t)}}}function be(){return{post:()=>{},on:()=>()=>{}}}var j="__frame_scroll",Ee=150,Ae=310,Se=160,Te=3e4;function ke(){let e=0,t=!1,r=!1,n=!1,s=0,o=null;const i=l=>{try{sessionStorage.setItem(j,JSON.stringify({y:l}))}catch{}},c=()=>{if(clearTimeout(e),o===null)return;const l=o;o=null,i(l)},h=()=>{if(t){t=!1;return}r=!0,o=scrollY,clearTimeout(e),e=setTimeout(c,Ee)};try{addEventListener("scroll",h,{passive:!0}),addEventListener("pagehide",c)}catch{}const p=()=>{let l;try{l=sessionStorage.getItem(j)}catch{return null}if(l===null)return null;let _;try{_=JSON.parse(l)}catch{_=null}const d=_?.y;if(!(typeof d=="number"&&Number.isFinite(d)&&d>=0)){try{sessionStorage.removeItem(j)}catch{}return null}return d};let w=!1;const m=l=>{try{const _=scrollY;scrollTo({top:l,left:0,behavior:"instant"}),s=l,n=!0,clearTimeout(e),o=null,i(l);const d=scrollY;d!==_&&(t=!0),d!==l&&!w&&(w=!0,addEventListener("load",()=>{try{if(scrollY===d){const T=p();m(T!==null?T:s)}}catch{}},{once:!0}))}catch{}},g=()=>{try{return!!location.hash}catch{return!0}};let a=!1;const f=()=>{try{if(a||innerWidth>Ae||innerHeight>Se)return;a=!0;const l=Date.now(),_=()=>{try{removeEventListener("resize",_)}catch{}if(Date.now()-l>Te||r||g())return;const d=p();m(d!==null?d:s)};addEventListener("resize",_)}catch{}};let v=!1,b=!1;return{restore(){if(v||(v=!0,g()))return;const l=p();l!==null&&(m(l),f())},promoted(){if(b||(b=!0,g()))return;const l=p();l!==null?(m(l),f()):n&&m(s)}}}function Re(e,t,r,n){let s=null;try{s=window.trustedTypes?.createPolicy("frame-runtime",{createScriptURL:h=>h})??null}catch{}const o=window.Worker,i=o?.prototype,c=Object.freeze({Worker:o,workerOn:i?.addEventListener,workerPost:i?.postMessage,workerTerminate:i?.terminate,fetch:window.fetch.bind(window),preventDefault:Event.prototype.preventDefault,policy:s,origins:t});r(e).then(h=>h?.bootTopLevel?h.bootTopLevel(c,n):n.settle()).catch(()=>n.settle())}var De="modulepreload",Ie=function(e){return"/"+e},Ue={},Le=function(t,r,n){let s=Promise.resolve();function o(i){const c=new Event("vite:preloadError",{cancelable:!0});if(c.payload=i,window.dispatchEvent(c),!c.defaultPrevented)throw i}return s.then(i=>{for(const c of i||[])c.status==="rejected"&&o(c.reason);return t().catch(o)})},Oe=window===top,q=Object.getOwnPropertyDescriptor(window,"claude"),k=we(Oe,window.__FRAME_PREAMBLE?.topLevel,q?.writable===!1),N=typeof k=="object"&&k[0],y=N?be():ge();(function(){const e=Object.defineProperty,t=globalThis,r=["RTCPeerConnection","webkitRTCPeerConnection","RTCDataChannel","RTCIceCandidate","RTCSessionDescription","RTCRtpSender","RTCRtpReceiver"];let n=0;for(let s=0;s<r.length;s++){const o=r[s];try{e(t,o,{value:void 0,writable:!1,configurable:!1})}catch{try{delete t[o]}catch{}try{e(t,o,{value:void 0,writable:!1,configurable:!0})}catch{}}typeof t[o]=="function"&&n++}if(n&&k==="framed")try{y.post({__frame_rtc_lockdown_failed:n},"*")}catch{}})();var Pe=1e4,Y=Object.freeze([...window.__FRAME_PREAMBLE?.origins??["https://claude.ai","https://preview.claude.ai"]]);function X(e){for(const t of Y)if(t.endsWith(":*"))try{const r=new URL(e);if(`${r.protocol}//${r.hostname}:*`===t)return!0}catch{}else if(e===t)return!0;return!1}var R=Object.freeze({...window.__FRAME_PREAMBLE?.capabilities}),B=window.__FRAME_PREAMBLE?.transforms,D=window.__FRAME_PREAMBLE?.comments,I=window.__FRAME_PREAMBLE?.translate;function S(e){return Le(()=>import("/_runtime/"+e),void 0)}function G(e,t){return{contract:e.contract,changes:new Set(e.changes??[]),flags:new Set(e.flags??[]),capabilities:e.capabilities??{},capBudgets:e.capBudgets??{},transforms:new Map,shellOrigin:t,mount:x,hooks:O,pipe:()=>({wrap:(r,n)=>(...s)=>{try{return n(...s)}catch(o){return Promise.reject(o)}}})}}var L=null,E=null;function V(e,t,r){try{Object.defineProperty(e,t,{value:r,writable:!1,configurable:!1,enumerable:!0})}catch{try{Object.defineProperty(e,t,{value:r,writable:!1,configurable:!0,enumerable:!0})}catch{}}}var U=!1,O={editBefore:null,edit:null};function Ce(e,t,r=!1){const n=[];let s;if(r)try{O.editBefore?.(e)}catch{}for(const o of e.elements){const i=document.querySelector(`[data-id="${o.target}"]`);if(!i){s=o.target;break}if([...Object.keys(o.attrsSet??{}),...o.attrsRemoved??[]].some(c=>!oe(c))){s=o.target;break}if(o.text!==void 0&&(!ce(i)||de(i))){s=o.target;break}for(const[c,h]of Object.entries(o.attrsSet??{}))if(!J(i,c)){try{i.setAttribute(c,h)}catch{}Z(i,c,h)}for(const c of o.attrsRemoved??[])J(i,c)||(i.removeAttribute(c),Z(i,c,null));typeof o.text=="string"&&ue(i,o.text),n.push(o.target)}if(r)try{O.edit?.(e.seq,n,s)}catch{}if(s!==void 0){y.post({__frame_patch_miss:{seq:e.seq}},t);return}try{document.dispatchEvent(new CustomEvent("claude:edit",{detail:{seq:e.seq,targets:n}}))}catch{}}function Z(e,t,r){if(!(e instanceof HTMLInputElement))return;const n=t.toLowerCase();n==="checked"?e.checked=r!==null:n==="value"&&e.type!=="file"&&(e.value=r??"")}function J(e,t){const r=t.toLowerCase(),n=e;return r==="data-id"||(r==="value"||r==="checked")&&(n.__artifactSecret===!0||/^(password|hidden|file)$/.test(n.type??"")||/(^|\s)(cc-|one-time-code|current-password|new-password)/i.test(`${e.getAttribute("autocomplete")??""} ${n.autocomplete??""}`))}function Q(e){const t=document.documentElement;e==="light"||e==="dark"?(t.dataset.theme=e,t.style.colorScheme=e,U=!0):U&&(delete t.dataset.theme,t.style.colorScheme="",U=!1)}var P=new Map;function Me(){let e;const t={u:new Promise(r=>{e=r}),r:r=>{t.done=!0,e(r)},done:!1,nulled:!1};return t}function F(){for(const e of P.values())e.done||(e.nulled=!0,e.r(null))}var je=Object.freeze(Object.assign(Object.create(null),{call:Function.prototype.call,apply:Function.prototype.apply,bind:Function.prototype.bind})),x=(e,t)=>{const r=P.get(e);if(!r||r.done){r?.nulled&&E&&y.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:e}},E);return}const n=typeof t=="function"?Object.setPrototypeOf(t,je):Object.assign(Object.create(null),t);typeof n.then=="function"&&delete n.then,r.r(Object.freeze(n))};function ee(){const e=q?.value??{};V(window,"claude",e);for(const t of Object.keys(R)){if(e[t]!==void 0){V(e,t,e[t]);continue}P.set(t,Me())}if(e.use===void 0){const t=r=>{if(typeof r!="string"||!Object.hasOwn(R,r))return Promise.resolve(null);const n=P.get(r);return n?n.u:Promise.resolve(e[r]??null)};try{Object.defineProperty(e,"use",{value:t,writable:!0,configurable:!0,enumerable:!1})}catch{}}}if(k==="framed"){const e=B&&A.test(B)?S(B).catch(()=>{}):Promise.resolve(void 0),t=a=>{if(a.type==="auxclick"&&a.button!==1)return;const f=a.target,v=f&&f.closest?f.closest("a[href],area[href]"):null;if(!v)return;const b=v.getAttribute("href");if(!b)return;let l;try{l=new URL(b,document.baseURI)}catch{return}if((l.protocol==="http:"||l.protocol==="https:")&&l.origin!==location.origin){a.preventDefault();const _=(v.getAttribute("target")??"").toLowerCase(),d=a.type==="auxclick"||a.metaKey||a.ctrlKey||a.shiftKey||a.altKey||!["","_self","_top","_parent"].includes(_);y.post({__frame_nav:!0,url:l.href,newTab:d},"*")}};addEventListener("click",t,!0),addEventListener("auxclick",t,!0);const r={},n=a=>{a.isTrusted&&(r.pointer=!0)},s=a=>{a.isTrusted&&(r.click=!0)};addEventListener("pointermove",n,{capture:!0,passive:!0}),addEventListener("click",s,{capture:!0,passive:!0}),e.then(a=>{a?.wireNav&&(a.wireNav(),removeEventListener("click",t,!0),removeEventListener("auxclick",t,!0),removeEventListener("pointermove",n,!0),removeEventListener("click",s,!0),a.wireEngagement?.(r))});let o=null;try{o=ke()}catch{}ee();let i=null,c=null,h=0;const p=y.on((a,f)=>{X(f)&&_e(a)&&(i=a.__frame_init,E=f,p(),clearTimeout(h),c?.())});y.post({__frame_connect:!0},"*");const w=new Promise(a=>{c=a,h=setTimeout(()=>{p(),a()},Pe)}),m=document.readyState==="loading"?new Promise(a=>document.addEventListener("DOMContentLoaded",()=>a(),{once:!0})):Promise.resolve();m.then(()=>{try{o?.restore()}catch{}});const g={cb:null};y.on((a,f)=>{if(X(f)&&ve(a)){try{o?.promoted()}catch{}g.cb?.()}}),w.then(async()=>{if(!i||!E){F();return}Q(i.theme);const a=E;let f=!1,v=!1;y.on((u,z,C)=>{if(z!==a)return;ye(u)&&Q(u.__frame_theme.theme),he(u)&&Ce(u.__frame_patch,a,C);const H=u?.__fc_mode;H&&typeof H=="object"&&!f&&D&&A.test(D)&&(f=!0,S(D).then(K=>K.install?.(a,H.on===!0)).catch(()=>{}));const W=u?.__ft_cmd;W&&typeof W=="object"&&!v&&I&&A.test(I)&&(v=!0,S(I).then(K=>K.install?.(a,W)).catch(()=>{}))});const b=Object.keys(i.capabilities??{}).filter(u=>Object.hasOwn(R,u)).map(u=>[u,R[u]]).filter(u=>typeof u[1]=="string"&&A.test(u[1])),l=await Promise.allSettled(b.map(([,u])=>S(u))),_=await e,d=E;if(_?.buildBoot||y.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:"_transforms"}},d),_?.buildBoot)try{L=_.buildBoot(i,_.TRANSFORMS??{},{shellOrigin:d,mount:x,hooks:O},u=>y.post({__frame_cap_telemetry:u},d))}catch{y.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:"_transforms"}},d),L=G(i,d)}else L=G(i,d);const T=u=>y.post({__frame_cap_telemetry:{kind:"cap-load-error",cap:u}},d),Ne=L;l.forEach((u,z)=>{const C=b[z][0];if(u.status!=="fulfilled"){T(C);return}try{u.value?.install?.(Ne)}catch{T(C)}}),F(),await m,y.post({__frame_ready:!0},E),e.then(u=>u?.installSizeReporter?.(d,g))})}else N&&(ee(),Re(N,Y,S,{settle:F,mount:x}))})();</script><!-- /frame-runtime --><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}</style></head><body>
+<title>PrioSift</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="PrioSift">
+<style>
+/* PrioSift – gemensam formgivning */
+:root{
+  --surface:#ffffff; --surface-2:#eef3f6; --line:#dae4ea;
+  --ink:#122029; --ink-2:#4a606f; --ink-3:#7d94a2;
+  --brand:#0e7c86; --brand-dark:#0a5f67; --brand-soft:#e2f2f3;
+  --night:#0e1a24; --night-2:#14313d;
+  --lvl1:#c0392b; --lvl2:#e07b1f; --lvl3:#2f7dc4; --lvl4:#2b8a5a;
+  --shadow:0 2px 10px rgba(18,32,41,.07), 0 12px 32px rgba(18,32,41,.06);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--surface-2);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent;font-variant-numeric:tabular-nums}
+button,input,textarea,select{font:inherit;color:inherit}
+h1,h2,h3,h4{margin:0 0 .4em;line-height:1.15;letter-spacing:-.02em;text-wrap:balance}
+p{line-height:1.55}
+a{color:var(--brand-dark)}
+.muted{color:var(--ink-2)}
+.hidden{display:none!important}
+:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ===== publik sajt + inloggning ===== */
+.site{min-height:100vh;min-height:100dvh;display:grid;grid-template-columns:1.1fr .9fr;color:#fff;background:var(--night)}
+@media(max-width:940px){.site{grid-template-columns:1fr}}
+.site-hero{position:relative;padding:56px 56px 48px;display:flex;flex-direction:column;justify-content:space-between;
+  background-image:linear-gradient(180deg,rgba(8,18,26,.72),rgba(8,18,26,.93)),var(--hero-image,none);
+  background-size:cover;background-position:center;background-color:#0b1620}
+.site-hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(90% 60% at 20% 10%,rgba(14,124,134,.28),transparent 70%)}
+.site-hero > *{position:relative;z-index:1}
+.brandline{display:flex;align-items:center;gap:14px}
+.brandline img{width:52px;height:52px;border-radius:13px}
+.brandline b{font-size:26px;letter-spacing:-.03em}
+.site-hero h1{font-size:clamp(30px,3.6vw,46px);margin:38px 0 14px;max-width:16ch;letter-spacing:-.035em}
+.site-hero p.lead{font-size:18px;color:#b9cbd5;max-width:46ch;margin:0}
+.hero-points{display:flex;flex-direction:column;gap:14px;margin-top:32px}
+.hero-points span{border:1px solid rgba(255,255,255,.22);border-radius:14px;padding:15px 22px;font-size:16px;color:#e8f4f6;background:rgba(255,255,255,.06);font-weight:500;line-height:1.4;display:flex;align-items:center;gap:12px}
+.hero-points span svg{flex-shrink:0;opacity:.85}
+.site-hero footer{color:#5f7a89;font-size:13px;margin-top:44px;line-height:1.6}
+.site-login{background:var(--surface);color:var(--ink);display:flex;align-items:flex-start;justify-content:center;padding:40px 28px;overflow-y:auto}
+.login-contact{font-size:14px;color:var(--ink-2);margin-bottom:22px;font-weight:500;line-height:1.5}
+.doctor-cards{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}
+.doctor-card{flex:1;min-width:90px;background:var(--surface-2);border-radius:14px;padding:16px 12px;text-align:center;border:1px solid var(--line)}
+.doctor-avatar{width:62px;height:62px;border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;background:var(--brand-soft)}
+.doctor-name{font-size:13px;font-weight:650;color:var(--ink);margin:0 0 3px}
+.doctor-title{font-size:11.5px;color:var(--ink-2);line-height:1.35}
+/* ── Cosmic preview view ── */
+.cosmic-preview-wrap{max-width:820px;margin:0 auto;padding:24px}
+.cosmic-preview-wrap h2{font-size:22px;margin-bottom:6px}
+.narrative-box{background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:20px 24px;white-space:pre-wrap;font-family:ui-monospace,"SF Mono",monospace;font-size:13.5px;line-height:1.7;color:var(--ink)}
+.fhir-box{background:#0e1a24;color:#c5e3d0;border-radius:14px;padding:20px 24px;white-space:pre-wrap;font-family:ui-monospace,"SF Mono",monospace;font-size:12.5px;line-height:1.6;overflow-x:auto;margin-top:16px}
+/* ── Presentation view ── */
+.pres-wrap{max-width:860px;margin:0 auto;padding:24px}
+.pres-slide{background:var(--surface);border-radius:20px;border:1px solid var(--line);padding:48px 52px;min-height:380px;display:flex;flex-direction:column;justify-content:center;box-shadow:var(--shadow);position:relative}
+.pres-eyebrow{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand);margin-bottom:14px}
+.pres-title{font-size:clamp(26px,3.2vw,38px);color:var(--ink);margin:0 0 18px;max-width:18ch}
+.pres-body{font-size:17px;color:var(--ink-2);line-height:1.6;max-width:56ch}
+.pres-nav{display:flex;align-items:center;gap:16px;margin-top:28px}
+.pres-dot{width:8px;height:8px;border-radius:50%;background:var(--line);cursor:pointer;transition:background .2s}
+.pres-dot.active{background:var(--brand)}
+.pres-counter{font-size:13px;color:var(--ink-3);margin-left:auto}
+.login-card{width:100%;max-width:360px}
+.login-card h2{font-size:24px}
+.login-card label{display:block;font-weight:650;font-size:14.5px;margin:16px 0 6px}
+.login-card input{width:100%;border:2px solid var(--line);border-radius:12px;padding:13px 14px;font-size:16.5px;background:#fff}
+.login-card input:focus{outline:none;border-color:var(--brand)}
+.login-error{color:var(--lvl1);font-weight:650;min-height:22px;font-size:14.5px;margin-top:10px}
+
+/* ===== knappar & paneler ===== */
+.btn{appearance:none;border:1px solid transparent;border-radius:12px;padding:13px 20px;font-size:16.5px;
+  font-weight:650;cursor:pointer;background:var(--brand);color:#fff;transition:filter .12s,transform .12s}
+.btn:hover{filter:brightness(1.07)} .btn:active{transform:translateY(1px)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn.ghost{background:#fff;color:var(--ink);border-color:var(--line)}
+.btn.danger{background:var(--lvl1)}
+.btn.small{padding:8px 13px;font-size:14px;border-radius:10px}
+.btn.wide{width:100%}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:var(--shadow)}
+.panel h3{font-size:13px;text-transform:uppercase;letter-spacing:.09em;color:var(--ink-2);margin-bottom:14px}
+.field{width:100%;border:2px solid var(--line);border-radius:12px;padding:12px 14px;font-size:16px;background:#fff}
+.field:focus{outline:none;border-color:var(--brand)}
+.field-label{display:block;font-weight:650;margin:0 0 7px;font-size:15px}
+.field-row{margin-bottom:16px}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.grow{flex:1}
+
+/* ===== appskal ===== */
+.topbar{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.94);
+  backdrop-filter:saturate(1.4) blur(8px);border-bottom:1px solid var(--line)}
+.topbar-inner{max-width:1320px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;gap:12px}
+.topbar img.mark{width:32px;height:32px;border-radius:9px}
+.topbar .title{font-weight:700;font-size:17px;letter-spacing:-.02em}
+.topbar .who{font-size:13.5px;color:var(--ink-2)}
+.spacer{flex:1}
+select.deptpick{border:1px solid var(--line);border-radius:10px;padding:7px 10px;background:#fff;font-size:14px}
+.shell{max-width:1320px;margin:0 auto;padding:22px 18px 90px}
+.shell.narrow{max-width:960px}
+
+/* ===== hemvy med ikoner ===== */
+.home{min-height:calc(100vh - 54px);display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:34px;padding:52px 24px;background:radial-gradient(120% 90% at 50% 0%,var(--night-2) 0%,var(--night) 62%,#08121a 100%);color:#fff}
+.home .wordmark{display:flex;align-items:center;gap:16px}
+.home .wordmark img{width:62px;height:62px;border-radius:15px}
+.home h1{font-size:clamp(30px,5vw,42px);margin:0;letter-spacing:-.035em}
+.home .tagline{color:#9db4c0;margin:.25em 0 0;font-size:15.5px}
+.apps{display:flex;gap:26px;flex-wrap:wrap;justify-content:center;max-width:1000px}
+.app-tile{display:flex;flex-direction:column;align-items:center;gap:12px;width:176px;padding:10px;border:0;
+  background:none;cursor:pointer;border-radius:22px;color:#fff;transition:transform .15s}
+.app-tile:active{transform:scale(.95)}
+.app-tile .icon{width:112px;height:112px;border-radius:25px;box-shadow:0 14px 34px rgba(0,0,0,.45)}
+.app-tile .name{font-size:17.5px;font-weight:650}
+.app-tile .sub{font-size:13px;color:#8fa7b4;line-height:1.45;text-align:center}
+.home footer{color:#5f7a89;font-size:13px;text-align:center;max-width:620px;line-height:1.65}
+
+/* ===== patientformulär ===== */
+.progress{height:6px;background:#d7e2e9;border-radius:99px;overflow:hidden;margin:18px 0 22px}
+.progress > div{height:100%;background:var(--brand);border-radius:99px;transition:width .3s}
+.step-label{font-size:13px;font-weight:700;color:var(--brand);text-transform:uppercase;letter-spacing:.1em}
+.q-title{font-size:clamp(24px,3.2vw,33px);margin:.25em 0 .1em}
+.q-hint{color:var(--ink-2);font-size:16.5px;margin:0 0 20px;max-width:62ch}
+.options{display:grid;gap:11px;grid-template-columns:repeat(auto-fill,minmax(310px,1fr))}
+.options.cols{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.opt{display:flex;align-items:center;gap:13px;text-align:left;width:100%;background:#fff;border:2px solid var(--line);
+  border-radius:14px;padding:15px 17px;font-size:17px;cursor:pointer;min-height:68px;
+  transition:border-color .12s,background .12s,transform .1s}
+.opt:active{transform:scale(.985)}
+.opt.compact{min-height:56px;padding:12px 15px;font-size:16px}
+.opt .emoji{font-size:24px;line-height:1;flex:none}
+.opt.selected{border-color:var(--brand);background:var(--brand-soft)}
+.opt .check{margin-left:auto;width:25px;height:25px;border-radius:50%;border:2px solid var(--line);flex:none}
+.opt.selected .check{border-color:var(--brand);background:var(--brand);position:relative}
+.opt.selected .check::after{content:"";position:absolute;left:7.5px;top:3px;width:6px;height:12px;
+  border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg)}
+.opt .tag{font-size:11px;font-weight:700;color:var(--brand-dark);background:var(--brand-soft);
+  border-radius:99px;padding:2px 8px;margin-left:auto}
+.scale{display:grid;grid-template-columns:repeat(11,1fr);gap:7px}
+.scale button{aspect-ratio:1;border-radius:12px;border:2px solid var(--line);background:#fff;font-size:19px;
+  font-weight:750;cursor:pointer}
+.scale button.selected{background:var(--brand);border-color:var(--brand);color:#fff}
+.scale-legend{display:flex;justify-content:space-between;color:var(--ink-2);font-size:13.5px;margin-top:10px}
+.combo-q{margin-bottom:26px}
+.combo-q h2{font-size:20px;margin-bottom:12px}
+.nav{position:sticky;bottom:0;background:linear-gradient(to top,var(--surface-2) 62%,transparent);
+  padding:18px 0 20px;display:flex;gap:12px}
+.nav .btn{flex:1;padding:17px;font-size:17.5px}
+.nav .btn.ghost{flex:0 0 auto;min-width:130px}
+.receipt{padding:30px 26px;border-radius:20px;color:#fff}
+.receipt .lvl{font-size:13.5px;text-transform:uppercase;letter-spacing:.13em;opacity:.85}
+.receipt h2{font-size:clamp(26px,4vw,34px);margin:.12em 0 .3em}
+.receipt p{font-size:18.5px;margin:0;line-height:1.5}
+.bignum{font-size:clamp(46px,9vw,74px);font-weight:800;letter-spacing:-.04em;line-height:1}
+.score-split{display:flex;gap:18px;flex-wrap:wrap;font-size:14.5px;opacity:.95;margin-top:10px}
+
+/* BankID-attrapp */
+.bankid{max-width:420px;margin:8vh auto;text-align:center}
+.bankid .logo{width:64px;height:64px;border-radius:14px;background:#193e4a;color:#fff;display:flex;
+  align-items:center;justify-content:center;font-weight:800;font-size:26px;margin:0 auto 16px;letter-spacing:-.04em}
+.bankid .fake{background:#fff4d6;border:1px solid #ecd9a0;color:#6b5411;border-radius:10px;padding:8px 12px;
+  font-size:13px;font-weight:650;display:inline-block;margin-bottom:18px}
+.spinner{width:34px;height:34px;border:4px solid var(--line);border-top-color:var(--brand);border-radius:50%;
+  margin:20px auto;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ===== personal / kö ===== */
+.tabs{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+.tab{padding:9px 16px;border-radius:99px;border:1px solid var(--line);background:#fff;cursor:pointer;
+  font-weight:650;font-size:14.5px}
+.tab.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tab .n{opacity:.6;margin-left:6px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:12px;margin-bottom:20px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px 15px;box-shadow:var(--shadow)}
+.stat .n{font-size:26px;font-weight:800;line-height:1.1}
+.stat .l{color:var(--ink-2);font-size:12.5px;margin-top:2px}
+.queue{display:grid;gap:11px}
+.pt{display:grid;grid-template-columns:56px 1fr auto;gap:15px;align-items:center;background:#fff;
+  border:1px solid var(--line);border-left:7px solid var(--line);border-radius:14px;padding:13px 17px;
+  cursor:pointer;box-shadow:var(--shadow);text-align:left;width:100%}
+.pt:hover{border-color:#b7c7d1}
+.lvlbadge{width:50px;height:50px;border-radius:12px;color:#fff;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;font-weight:800;font-size:21px;line-height:1;flex:none}
+.lvlbadge small{font-size:8.5px;font-weight:650;opacity:.85;letter-spacing:.05em}
+.minibadge{width:32px;height:32px;border-radius:9px;color:#fff;font-weight:800;font-size:15px;
+  display:inline-flex;align-items:center;justify-content:center;flex:none}
+.pt .who{font-weight:700;font-size:17px}
+.pt .meta{color:var(--ink-2);font-size:13.5px;margin-top:3px}
+.pt .right{text-align:right}
+.pt .score{font-weight:800;font-size:21px}
+.pt .score small{font-weight:500;color:var(--ink-2);font-size:12.5px}
+.chip{display:inline-block;padding:3px 9px;border-radius:99px;font-size:11.5px;font-weight:700;
+  background:var(--surface-2);color:var(--ink-2);border:1px solid var(--line)}
+.chip.flag{background:#fdecea;color:var(--lvl1);border-color:#f3c4be}
+.chip.done{background:#e7f5ed;color:var(--lvl4);border-color:#bde0cd}
+.chip.desk{color:#fff;border:none}
+.empty{padding:44px 20px;text-align:center;color:var(--ink-2)}
+.detail-grid{display:grid;grid-template-columns:1.2fr .85fr;gap:18px}
+@media(max-width:980px){.detail-grid{grid-template-columns:1fr}}
+.answer{padding:11px 0;border-bottom:1px solid var(--line)}
+.answer:last-child{border-bottom:none}
+.answer .q{font-size:12.5px;color:var(--ink-2)}
+.answer .a{font-size:16.5px;font-weight:650;margin-top:2px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.answer .pts{margin-left:auto;font-weight:750;color:var(--brand);font-size:14.5px}
+.flagbox{background:#fdecea;border:1px solid #f3c4be;border-radius:12px;padding:13px 15px;margin-bottom:14px}
+.flagbox strong{color:var(--lvl1)}
+.flagbox ul{margin:8px 0 0;padding-left:20px;line-height:1.6}
+
+/* prover */
+.lab{padding:12px 0;border-bottom:1px solid var(--line)}
+.lab:last-of-type{border-bottom:none}
+.lab-head{display:flex;align-items:baseline;gap:9px;margin-bottom:8px;flex-wrap:wrap}
+.lab-head .nm{font-weight:700;font-size:15.5px}
+.lab-head .un{color:var(--ink-2);font-size:12.5px}
+.lab-head .res{margin-left:auto;font-weight:750;font-size:13.5px;color:var(--brand);white-space:nowrap}
+.lab-head .res.neg{color:var(--lvl4)} .lab-head .res.flag{color:var(--lvl1)}
+.lab-inputs{display:flex;gap:10px;flex-wrap:wrap}
+.lab-inputs label{font-size:12.5px;color:var(--ink-2);display:flex;flex-direction:column;gap:4px}
+.lab-inputs input.numfield{width:118px;border:2px solid var(--line);border-radius:11px;padding:10px 12px;
+  font-size:16px;background:#fff}
+.lab-inputs input.numfield:focus{outline:none;border-color:var(--brand)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip-btn{border:2px solid var(--line);background:#fff;border-radius:11px;padding:8px 12px;font-size:14.5px;
+  cursor:pointer;font-weight:600}
+.chip-btn.on{border-color:var(--brand);background:var(--brand-soft);color:var(--brand-dark)}
+.chip-btn.on.flag{border-color:var(--lvl1);background:#fdecea;color:var(--lvl1)}
+.lab-preview{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--surface-2);border-radius:12px;
+  padding:11px 14px;margin:14px 0;font-size:14.5px}
+
+/* inställningar */
+.setting-step{margin-bottom:14px}
+.setting-step h4{margin:0 0 8px;font-size:16px}
+.opt-row{display:grid;grid-template-columns:1fr 200px 106px;gap:14px;align-items:center;padding:7px 0;
+  border-bottom:1px solid var(--line)}
+.opt-row:last-child{border-bottom:none}
+@media(max-width:780px){.opt-row{grid-template-columns:1fr;gap:6px}}
+.slider-wrap{display:flex;align-items:center;gap:10px}
+.slider-wrap input[type=range]{flex:1;accent-color:var(--brand)}
+.pts-badge{min-width:38px;text-align:center;font-weight:800;background:var(--brand-soft);color:var(--brand-dark);
+  border-radius:8px;padding:4px 6px;font-size:13.5px}
+.flagtoggle{display:flex;align-items:center;gap:7px;font-size:13.5px;color:var(--ink-2);cursor:pointer;user-select:none}
+.flagtoggle input{width:17px;height:17px;accent-color:var(--lvl1)}
+.thr-row{display:grid;grid-template-columns:200px 1fr 78px;gap:14px;align-items:center;margin-bottom:12px}
+@media(max-width:780px){.thr-row{grid-template-columns:1fr}}
+.thr-name{display:flex;align-items:center;gap:9px;font-weight:700;font-size:15px}
+.dot{width:13px;height:13px;border-radius:4px;flex:none}
+.scalebar{height:32px;border-radius:10px;display:flex;overflow:hidden;border:1px solid var(--line)}
+.scalebar div{display:flex;align-items:center;justify-content:center;color:#fff;font-size:11.5px;font-weight:700}
+.savebar{position:sticky;bottom:0;z-index:6;background:rgba(238,243,246,.95);backdrop-filter:blur(6px);padding:13px 0;
+  display:flex;gap:12px;align-items:center;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:18px;border-radius:12px}
+
+/* ===== tabeller (patientdatabas, admin) ===== */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:#fff;box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:760px}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-2);cursor:pointer;user-select:none;
+  position:sticky;top:0;background:#fff;z-index:1}
+th .arrow{opacity:.45;margin-left:4px}
+tbody tr:hover{background:var(--surface-2)}
+tbody tr:last-child td{border-bottom:none}
+td.num{text-align:right;font-weight:650}
+
+/* ===== väntrumsskärm ===== */
+.board{min-height:100vh;min-height:100dvh;background:#0b1620;color:#fff;padding:34px 40px}
+.board-head{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;margin-bottom:22px}
+.board-head h1{font-size:clamp(26px,3.2vw,38px);margin:0;letter-spacing:-.03em}
+.board-head .sub{color:#8fa7b4;font-size:16px}
+.board-head .clock{margin-left:auto;font-size:clamp(26px,3vw,38px);font-weight:800;letter-spacing:-.03em}
+.board-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.bcard{border-radius:16px;padding:18px 20px;background:#13232f;border-left:8px solid var(--lvl4);
+  display:flex;align-items:center;gap:16px}
+.bcard .num{font-size:34px;font-weight:800;letter-spacing:-.03em;white-space:nowrap}
+.bcard .info{font-size:13.5px;color:#9db4c0;line-height:1.45}
+.bcard .place{margin-left:auto;text-align:right;font-size:12.5px;color:#7d94a2}
+.board-legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:26px;color:#8fa7b4;font-size:13.5px}
+.board-legend span{display:flex;align-items:center;gap:8px}
+.board-foot{margin-top:24px;color:#5f7a89;font-size:13px;max-width:70ch;line-height:1.6}
+
+/* ===== admin ===== */
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-bottom:20px}
+.kpi .panel{padding:16px 18px}
+.kpi .v{font-size:27px;font-weight:800;letter-spacing:-.02em}
+.kpi .k{color:var(--ink-2);font-size:12.5px;margin-top:3px}
+.bar{height:10px;border-radius:99px;background:var(--surface-2);overflow:hidden;display:flex;margin-top:8px}
+.bar i{display:block;height:100%}
+.tierpick{display:grid;gap:8px}
+.warn{background:#fff8e6;border:1px solid #f0dfae;color:#6b5411;border-radius:10px;padding:9px 13px;font-size:13.5px}
+
+.toast{position:fixed;left:50%;bottom:34px;transform:translateX(-50%);background:#122029;color:#fff;padding:12px 20px;
+  border-radius:12px;font-weight:650;z-index:99;box-shadow:0 8px 24px rgba(0,0,0,.25);transition:opacity .35s}
+.modal-bg{position:fixed;inset:0;background:rgba(10,20,28,.55);display:flex;align-items:center;justify-content:center;
+  padding:20px;z-index:60}
+.modal{background:#fff;border-radius:18px;padding:24px;width:100%;max-width:520px;box-shadow:0 24px 60px rgba(0,0,0,.3);
+  max-height:88vh;overflow:auto}
+
+</style>
+<div id="root"></div>
+<script>
+window.PRIOSIFT_DEMO = false;
+const DEMO_BUILD = "2026-08-23 17:57";
+const DEMO_FORM = {"version": 4, "painSymptoms": ["brostsmarta", "buksmarta", "ryggsmarta", "huvudvark"], "steps": [{"id": "huvudbesvar", "nr": 1, "type": "multi", "scored": true, "minChoices": 1, "title": "Vad söker du för idag?", "hint": "Välj allt som stämmer – du kan välja flera.", "options": [{"id": "brostsmarta", "emoji": "❤️", "label": "Bröstsmärta", "points": 8, "desk": "medicin"}, {"id": "buksmarta", "emoji": "🤢", "label": "Buk- eller flanksmärta", "points": 6, "desk": "kirurgi"}, {"id": "ryggsmarta", "emoji": "🦴", "label": "Ryggsmärta", "points": 5, "desk": "ortoped"}, {"id": "skada_arm_ben", "emoji": "🩹", "label": "Skada på arm eller ben", "points": 5, "desk": "ortoped", "trauma": true}, {"id": "andning", "emoji": "💨", "label": "Andningsbesvär", "points": 8, "desk": "medicin"}, {"id": "huvudvark", "emoji": "🧠", "label": "Huvudvärk", "points": 5, "desk": "medicin"}, {"id": "yrsel", "emoji": "🔄", "label": "Yrsel, svimning eller hjärtklappning", "points": 6, "desk": "medicin"}, {"id": "neurologi", "emoji": "⚡", "label": "Svaghet, domning eller talproblem", "points": 9, "redFlag": true, "desk": "medicin"}, {"id": "feber", "emoji": "🌡️", "label": "Feber eller sjukdomskänsla", "points": 4, "desk": "medicin"}, {"id": "medvetande", "emoji": "😵", "label": "Kramper, förvirring eller medvetslöshet", "points": 9, "redFlag": true, "desk": "medicin"}, {"id": "urin", "emoji": "💧", "label": "Urinbesvär, blod i urin eller urinstopp", "points": 3, "desk": "kirurgi"}, {"id": "underliv", "emoji": "⚠️", "label": "Pungbesvär eller besvär i underlivet", "points": 5, "desk": "kirurgi"}, {"id": "blodning", "emoji": "🩸", "label": "Blödning från mage/tarm eller blodkräkning", "points": 8, "redFlag": true, "desk": "kirurgi"}, {"id": "forgiftning", "emoji": "💊", "label": "Förgiftning eller överdos", "points": 8, "redFlag": true, "desk": "medicin"}, {"id": "syn", "emoji": "👁️", "label": "Synpåverkan", "points": 6, "desk": "medicin"}, {"id": "annat", "emoji": "❓", "label": "Annat / vet inte", "points": 3, "desk": "medicin"}]}, {"id": "smarta", "nr": 2, "type": "scale", "scored": true, "title": "Hur ont har du just nu?", "titleAlt": "Hur besvärad är du just nu?", "hint": "0 = inga besvär · 5 = måttligt · 7–8 = benbrott · 9–10 = outhärdligt", "hintAlt": "0 = inga besvär · 5 = måttligt besvärad · 9–10 = värsta tänkbara", "options": [{"id": "nrs0", "label": "0", "points": 0}, {"id": "nrs1", "label": "1", "points": 1}, {"id": "nrs2", "label": "2", "points": 1}, {"id": "nrs3", "label": "3", "points": 2}, {"id": "nrs4", "label": "4", "points": 3}, {"id": "nrs5", "label": "5", "points": 4}, {"id": "nrs6", "label": "6", "points": 5}, {"id": "nrs7", "label": "7", "points": 7}, {"id": "nrs8", "label": "8", "points": 8}, {"id": "nrs9", "label": "9", "points": 9}, {"id": "nrs10", "label": "10", "points": 10}]}, {"id": "varaktighet", "nr": 3, "type": "single", "scored": true, "title": "Hur länge har du haft besvären?", "options": [{"id": "under1h", "emoji": "⚡", "label": "Mindre än 1 timme", "points": 6}, {"id": "1_6h", "label": "1–6 timmar", "points": 5}, {"id": "6_24h", "label": "6–24 timmar", "points": 4}, {"id": "1_3d", "label": "1–3 dagar", "points": 3}, {"id": "3_7d", "label": "3–7 dagar", "points": 2}, {"id": "over1v", "label": "Mer än en vecka", "points": 1}]}, {"id": "debut", "nr": "4a", "type": "single", "scored": true, "title": "Hur började besvären?", "options": [{"id": "debut_plotsligt", "emoji": "⚡", "label": "Kom plötsligt – som ett slag", "points": 8}, {"id": "debut_successivt", "label": "Kom successivt, under några timmar", "points": 4}, {"id": "debut_smygande", "label": "Kom smygande, under dagar eller längre", "points": 2}]}, {"id": "forlopp", "nr": "4b", "type": "single", "scored": true, "title": "Hur har besvären förändrats sedan de började?", "options": [{"id": "snabbt_samre", "emoji": "📈", "label": "Har blivit snabbt sämre", "points": 7}, {"id": "gradvis", "label": "Tilltagit gradvis", "points": 3}, {"id": "stabilt", "label": "Ungefär likadant hela tiden", "points": 2}, {"id": "vagor", "label": "Kommer och går i vågor", "points": 2}, {"id": "battre", "label": "Blivit bättre sedan det började", "points": 1}]}, {"id": "samtidiga", "nr": 5, "type": "multi", "scored": true, "noneOption": "sym_inga", "columns": true, "title": "Har du några andra symtom samtidigt?", "hint": "Välj allt som stämmer.", "options": [{"id": "sym_inga", "label": "Inga andra symtom", "points": 0}, {"id": "sym_illamaende", "label": "Illamående", "points": 2}, {"id": "sym_krakningar", "label": "Kräkningar", "points": 3}, {"id": "sym_kallsvett", "label": "Kallsvettning", "points": 5}, {"id": "sym_andnod", "label": "Andnöd", "points": 5}, {"id": "sym_feber", "label": "Feber eller frossa", "points": 3}, {"id": "sym_yrsel", "label": "Yrsel", "points": 3}, {"id": "sym_svimning", "label": "Svimningskänsla", "points": 4}, {"id": "sym_hjartklappning", "label": "Hjärtklappning", "points": 3}, {"id": "sym_utstralning", "label": "Smärta som strålar ut i arm, hals eller käke", "points": 6}, {"id": "sym_huvudvark", "label": "Huvudvärk", "points": 2}, {"id": "sym_nackstelhet", "label": "Nackstelhet", "points": 6, "redFlag": true}, {"id": "sym_synrubbning", "label": "Synrubbning", "points": 4}, {"id": "sym_talsvarighet", "label": "Svårt att prata eller hitta ord", "points": 8, "redFlag": true}, {"id": "sym_domningar", "label": "Domningar eller svaghet i arm eller ben", "points": 7, "redFlag": true}, {"id": "sym_diarre", "label": "Diarré", "points": 2}, {"id": "sym_forstoppning", "label": "Förstoppning", "points": 1}, {"id": "sym_blod_avforing", "label": "Blod i avföringen", "points": 5}, {"id": "sym_blod_urin", "label": "Blod i urinen eller urinträngningar", "points": 3}, {"id": "sym_svullnad_ben", "label": "Svullnad i ett ben", "points": 5}, {"id": "sym_utslag", "label": "Hudutslag", "points": 2}, {"id": "sym_viktnedgang", "label": "Ofrivillig viktnedgång", "points": 2}, {"id": "sym_oro", "label": "Oro eller ångest", "points": 1}]}, {"id": "sjukdomar", "nr": 6, "type": "multi", "scored": true, "noneOption": "inga_sjukdomar", "columns": true, "title": "Har du något av detta sedan tidigare?", "hint": "Välj allt som stämmer.", "options": [{"id": "inga_sjukdomar", "label": "Inga kända sjukdomar", "points": 0}, {"id": "hjarta", "label": "Hjärtsjukdom eller kärlkramp", "points": 3}, {"id": "blodtryck", "label": "Högt blodtryck", "points": 1}, {"id": "diabetes", "label": "Diabetes", "points": 2}, {"id": "kol_astma", "label": "KOL eller astma", "points": 2}, {"id": "stroke", "label": "Stroke eller TIA", "points": 3}, {"id": "epilepsi", "label": "Epilepsi", "points": 2}, {"id": "cancer", "label": "Cancer", "points": 2}, {"id": "lever_njure", "label": "Lever- eller njursjukdom", "points": 2}, {"id": "psykisk", "label": "Psykisk sjukdom", "points": 1}, {"id": "blodpropp", "label": "Blodpropp (DVT eller lungemboli)", "points": 3}, {"id": "nyopererad", "emoji": "⚠️", "label": "Opererad de senaste 4 veckorna", "points": 5, "redFlag": true}, {"id": "sjukhusvardad", "label": "Vårdad på sjukhus de senaste 4 veckorna", "points": 3}]}, {"id": "lakemedel", "nr": "6b", "type": "multi", "scored": true, "noneOption": "inga_lakemedel", "columns": true, "title": "Tar du något av dessa läkemedel?", "hint": "Välj allt som stämmer. Utifrån dina svar visas troliga läkemedel först.", "options": [{"id": "inga_lakemedel", "label": "Inga fasta läkemedel", "points": 0}, {"id": "blodfortunnande", "emoji": "🩸", "label": "Blodförtunnande (Waran, Xarelto, Pradaxa, Trombyl)", "points": 3, "for": ["blodpropp", "hjarta", "stroke"]}, {"id": "diabetesmedicin", "emoji": "💉", "label": "Insulin eller tabletter mot diabetes", "points": 2, "for": ["diabetes"]}, {"id": "kortison", "label": "Kortison eller immunhämmande", "points": 2, "for": ["kol_astma", "cancer"]}, {"id": "epilepsimedicin", "label": "Epilepsimedicin", "points": 1, "for": ["epilepsi"]}, {"id": "psykofarmaka", "label": "Psykofarmaka eller antidepressiva", "points": 1, "for": ["psykisk"]}, {"id": "blodtrycksmedicin", "label": "Blodtrycksmedicin eller betablockerare", "points": 1, "for": ["blodtryck", "hjarta"]}, {"id": "inhalator", "label": "Inhalator mot astma eller KOL", "points": 1, "for": ["kol_astma"]}, {"id": "vattendrivande", "label": "Vattendrivande", "points": 1, "for": ["hjarta", "lever_njure"]}, {"id": "smartstillande", "label": "Starkare smärtstillande (morfin, oxikodon)", "points": 2, "for": ["cancer"]}, {"id": "cellgifter", "label": "Cellgifter eller strålbehandling pågår", "points": 4, "for": ["cancer"]}]}, {"id": "allergier", "nr": 7, "type": "multi", "scored": true, "noneOption": "inga_allergier", "title": "Har du några läkemedelsallergier?", "options": [{"id": "inga_allergier", "label": "Inga kända läkemedelsallergier", "points": 0}, {"id": "penicillin", "label": "Penicillin", "points": 0}, {"id": "nsaid", "label": "Diklofenak eller ibuprofen (NSAID)", "points": 0}, {"id": "kontrast", "label": "Röntgenkontrastmedel", "points": 0}]}, {"id": "slutfragor", "nr": 8, "type": "combo", "scored": true, "title": "Två sista frågor", "questions": [{"id": "graviditet", "title": "Kan du vara gravid?", "options": [{"id": "grav_ja", "emoji": "⚠️", "label": "Ja", "points": 4, "redFlag": true}, {"id": "grav_nej", "label": "Nej", "points": 0}]}, {"id": "rokning", "title": "Röker du?", "options": [{"id": "rok_ja", "label": "Ja", "points": 1}, {"id": "rok_tidigare", "label": "Tidigare", "points": 0}, {"id": "rok_nej", "label": "Nej", "points": 0}]}]}], "labs": [{"id": "bt", "name": "Blodtryck", "unit": "mmHg", "type": "number2", "scoreOn": "sys", "fields": [{"key": "sys", "label": "Systoliskt", "placeholder": "120"}, {"key": "dia", "label": "Diastoliskt", "placeholder": "80"}], "bands": [{"id": "bt_lt90", "label": "Under 90", "lt": 90, "points": 8, "redFlag": true}, {"id": "bt_90", "label": "90–99", "lt": 100, "points": 5}, {"id": "bt_100", "label": "100–139 (normalt)", "lt": 140, "points": -2}, {"id": "bt_140", "label": "140–179", "lt": 180, "points": 1}, {"id": "bt_180", "label": "180 och över", "lt": null, "points": 5}]}, {"id": "puls", "name": "Puls", "unit": "slag/min", "type": "number", "placeholder": "72", "bands": [{"id": "puls_lt40", "label": "Under 40", "lt": 40, "points": 8, "redFlag": true}, {"id": "puls_40", "label": "40–49", "lt": 50, "points": 3}, {"id": "puls_50", "label": "50–99 (normalt)", "lt": 100, "points": -2}, {"id": "puls_100", "label": "100–119", "lt": 120, "points": 2}, {"id": "puls_120", "label": "120–139", "lt": 140, "points": 5}, {"id": "puls_140", "label": "140 och över", "lt": null, "points": 8, "redFlag": true}]}, {"id": "temp", "name": "Feber / temperatur", "unit": "°C", "type": "number", "placeholder": "37,0", "bands": [{"id": "temp_lt35", "label": "Under 35,0", "lt": 35, "points": 6, "redFlag": true}, {"id": "temp_35", "label": "35,0–37,9 (normalt)", "lt": 38, "points": -2}, {"id": "temp_38", "label": "38,0–38,9", "lt": 39, "points": 2}, {"id": "temp_39", "label": "39,0–40,4", "lt": 40.5, "points": 4}, {"id": "temp_405", "label": "40,5 och över", "lt": null, "points": 6}]}, {"id": "spo2", "name": "Syremättnad (SpO₂)", "unit": "%", "type": "number", "placeholder": "98", "bands": [{"id": "spo2_lt90", "label": "Under 90", "lt": 90, "points": 8, "redFlag": true}, {"id": "spo2_90", "label": "90–93", "lt": 94, "points": 5}, {"id": "spo2_94", "label": "94–95", "lt": 96, "points": 2}, {"id": "spo2_96", "label": "96 och över (normalt)", "lt": null, "points": -2}]}, {"id": "vas", "name": "Smärtgrad (VAS/NRS)", "unit": "0–10", "type": "number", "placeholder": "4", "hint": "Uppmätt av personal – patientens egen skattning poängsätts separat.", "bands": [{"id": "vas_0", "label": "0–2", "lt": 3, "points": -2}, {"id": "vas_3", "label": "3–4", "lt": 5, "points": 0}, {"id": "vas_5", "label": "5–6", "lt": 7, "points": 2}, {"id": "vas_7", "label": "7–8", "lt": 9, "points": 5}, {"id": "vas_9", "label": "9–10", "lt": null, "points": 7}]}, {"id": "urin", "name": "Urinsticka", "type": "multi", "noneOption": "urin_normal", "options": [{"id": "urin_normal", "label": "Normal", "points": -2}, {"id": "urin_infektion", "label": "Nitrit och/eller leukocyter", "points": 3}, {"id": "urin_blod", "label": "Blod i urinen", "points": 3}, {"id": "urin_ketoner", "label": "Ketoner eller glukos", "points": 4}, {"id": "urin_grav", "label": "Positivt graviditetstest", "points": 3, "redFlag": true}]}, {"id": "blod", "name": "Blodprover", "type": "multi", "noneOption": "blod_normal", "options": [{"id": "blod_normal", "label": "Inga avvikelser", "points": -3}, {"id": "blod_crp", "label": "Förhöjt CRP", "points": 3}, {"id": "blod_lpk", "label": "Förhöjda vita blodkroppar", "points": 2}, {"id": "blod_hb", "label": "Lågt Hb (anemi)", "points": 3}, {"id": "blod_krea", "label": "Njurpåverkan (kreatinin)", "points": 3}, {"id": "blod_troponin", "label": "Förhöjt troponin", "points": 8, "redFlag": true}, {"id": "blod_laktat", "label": "Laktat 2 eller högre", "points": 6, "redFlag": true}, {"id": "blod_glukos", "label": "Avvikande blodsocker", "points": 4}]}, {"id": "ekg", "name": "EKG", "type": "single", "options": [{"id": "ekg_normal", "label": "Normalt", "points": -3}, {"id": "ekg_sinustaky", "label": "Sinustakykardi", "points": 2}, {"id": "ekg_ff", "label": "Förmaksflimmer eller -fladder", "points": 3}, {"id": "ekg_st", "label": "Nytillkomna ST-förändringar", "points": 9, "redFlag": true}, {"id": "ekg_annat", "label": "Annan avvikelse", "points": 3}]}], "desks": [{"id": "medicin", "name": "Medicin", "color": "#2f7dc4"}, {"id": "kirurgi", "name": "Kirurgi", "color": "#8e5bc9"}, {"id": "ortoped", "name": "Ortopedi", "color": "#c98a2b"}], "deskPriority": ["kirurgi", "ortoped", "medicin"], "levels": [{"id": 1, "name": "Omedelbar", "color": "#c0392b", "patientMessage": "Vi tar hand om dig nu. Gå direkt till receptionen och visa denna skärm.", "staffNote": "Utlöser en notifikation till triagesjuksköterskan i realtid."}, {"id": 2, "name": "Brådskande", "color": "#e07b1f", "patientMessage": "Stanna kvar – du kommer att träffa en sjuksköterska inom kort.", "staffNote": "Prioriteras före lägre nivåer."}, {"id": 3, "name": "Kan vänta", "color": "#2f7dc4", "patientMessage": "Stanna kvar – du kommer att bli bedömd av sjuksköterska och läkare. Väntetiden kan vara några timmar.", "staffNote": "Ordinarie kö."}, {"id": 4, "name": "Lägre prioritet", "color": "#2b8a5a", "patientMessage": "Du kommer att bli bedömd här. Om väntetiden känns lång kan du även vända dig till en närakut – men återvänd hit om besvären förändras.", "staffNote": "Kan hänvisas till närakut vid behov."}], "defaultThresholds": {"level1": 45, "level2": 30, "level3": 18}, "tiers": [{"id": 1, "name": "Nivå 1", "volume": "Under 25 000 patienter/år", "maxVolume": 25000, "priceMonth": 9900}, {"id": 2, "name": "Nivå 2", "volume": "25 000–50 000 patienter/år", "maxVolume": 50000, "priceMonth": 16900}, {"id": 3, "name": "Nivå 3", "volume": "50 000–75 000 patienter/år", "maxVolume": 75000, "priceMonth": 24900}, {"id": 4, "name": "Nivå 4", "volume": "Över 75 000 patienter/år", "maxVolume": null, "priceMonth": 34900}]};
+/* ==========================================================================
+   PrioSift – klientapplikation
+   Vyer: hem · patient · personal · väntrum · patientdatabas · admin · inställningar
+   ========================================================================== */
+
+
+/* ---------------------------------------------------------------- hjälpare */
+const $ = id => document.getElementById(id);
+const root = () => $('root');
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
+  ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+const klockan = iso => new Date(iso).toLocaleTimeString('sv-SE', { hour:'2-digit', minute:'2-digit' });
+const datum = iso => new Date(iso).toLocaleDateString('sv-SE');
+const kr = n => new Intl.NumberFormat('sv-SE').format(Math.round(n)) + ' kr';
+function tidsedan(iso) {
+  const min = Math.floor((Date.now() - new Date(iso)) / 60000);
+  if (min < 1) return 'nyss';
+  if (min < 60) return min + ' min';
+  return Math.floor(min / 60) + ' tim ' + (min % 60) + ' min';
+}
+function toast(msg) {
+  let el = $('toast');
+  if (!el) { el = document.createElement('div'); el.id = 'toast'; el.className = 'toast'; document.body.appendChild(el); }
+  el.textContent = msg; el.style.opacity = '1';
+  clearTimeout(el._t); el._t = setTimeout(() => { el.style.opacity = '0'; }, 2400);
+}
+async function api(path, opts = {}) {
+  if (window.PRIOSIFT_DEMO) return demoApi(path, opts);
+  const res = await fetch(path, {
+    credentials: 'same-origin',
+    headers: { 'Content-Type': 'application/json' },
+    ...opts,
+    body: opts.body ? JSON.stringify(opts.body) : undefined
+  });
+  if (res.status === 401) { if (typeof renderLanding === 'function') renderLanding(); else location.href = '/'; throw new Error('utloggad'); }
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw Object.assign(new Error(data.error || 'Fel'), { data, status: res.status });
+  return data;
+}
+function confirmDialog(title, text, confirmLabel = 'Ja, fortsätt') {
+  return new Promise(resolve => {
+    const bg = document.createElement('div');
+    bg.className = 'modal-bg';
+    bg.innerHTML = `<div class="modal"><h2 style="font-size:21px">${esc(title)}</h2>
+      <p style="margin-top:0">${text}</p>
+      <div class="row" style="justify-content:flex-end;margin-top:18px">
+        <button class="btn ghost" data-no>Avbryt</button>
+        <button class="btn danger" data-yes>${esc(confirmLabel)}</button></div></div>`;
+    document.body.appendChild(bg);
+    bg.querySelector('[data-no]').onclick = () => { bg.remove(); resolve(false); };
+    bg.querySelector('[data-yes]').onclick = () => { bg.remove(); resolve(true); };
+  });
+}
+
+/* ------------------------------------------------------------------ ikoner */
+const ICONS = {
+  patient:  { c1:'#129AA0', c2:'#0A4C63', foot:'drop' },
+  personal: { c1:'#2F4A5C', c2:'#101C27', foot:'lines' },
+  vantrum:  { c1:'#3E6EA8', c2:'#152B45', foot:'screen' },
+  databas:  { c1:'#7B5AA6', c2:'#2C1B45', foot:'db' },
+  admin:    { c1:'#B98A34', c2:'#3D2A0C', foot:'gear' }
+};
+function icon(kind) {
+  const s = ICONS[kind] || ICONS.patient;
+  const bars = ['#C0392B', '#E07B1F', '#4EA8E8'].map((c, i) => {
+    const half = 27 * (1 - i * 0.235) - 4.5, y = 28.5 + i * 8;
+    return `<rect x="${50 - half}" y="${y}" width="${half * 2}" height="5.2" rx="2.6" fill="${c}"/>`;
+  }).join('');
+  const feet = {
+    drop:   `<circle cx="50" cy="81.5" r="6.2" fill="#4CD994"/>`,
+    lines:  [0,1,2].map(i => `<rect x="34" y="${77.5 + i*6.2}" width="32" height="3.2" rx="1.6" fill="#fff" opacity=".92"/>`).join(''),
+    screen: `<rect x="31" y="75" width="38" height="15" rx="3" fill="none" stroke="#fff" stroke-width="3" opacity=".92"/>`,
+    db:     [0,1,2].map(i => `<ellipse cx="50" cy="${77 + i*5.5}" rx="15" ry="4" fill="none" stroke="#fff" stroke-width="2.6" opacity=".92"/>`).join(''),
+    gear:   `<circle cx="50" cy="82" r="8.5" fill="none" stroke="#fff" stroke-width="3.4" opacity=".92"/>
+             <circle cx="50" cy="82" r="2.6" fill="#fff" opacity=".92"/>`
+  }[s.foot];
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="${s.c1}"/><stop offset="1" stop-color="${s.c2}"/></linearGradient></defs>
+    <rect width="100" height="100" rx="22.5" fill="url(#g)"/>
+    <path d="M23 24 H77 L55.75 54.5 V70 H44.25 V54.5 Z" fill="#fff"/>${bars}${feet}</svg>`;
+  return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+}
+
+/* ------------------------------------------------------------------- state */
+let BOOT = null;          // { user, form, overrides, thresholds, tiers, departments, ... }
+let FORM = null;
+let DEPT = null;          // aktuell avdelning (id)
+let refreshTimer = null;
+
+const isOwner = () => BOOT.user.role === 'owner';
+const levelOf = id => FORM.levels.find(l => l.id === id) || FORM.levels[3];
+const deskOf = id => FORM.desks.find(d => d.id === id) || FORM.desks[0];
+const deptName = id => (BOOT.departments.find(d => d.id === id) || {}).name || id;
+
+/* --------------------------------------------------------- poäng (klient) */
+const optCfg = o => {
+  const ov = BOOT.overrides[o.id] || {};
+  return { points: ov.points ?? o.points ?? 0, redFlag: ov.redFlag ?? !!o.redFlag };
+};
+const labItems = lab => lab.bands || lab.options;
+const numval = v => {
+  if (v === '' || v === null || v === undefined) return null;
+  const n = Number(String(v).replace(',', '.'));
+  return Number.isFinite(n) ? n : null;
+};
+const bandFor = (lab, n) => lab.bands.find(b => b.lt === null || n < b.lt) || lab.bands[lab.bands.length - 1];
+const stepOptions = st => st.type === 'combo' ? st.questions.flatMap(q => q.options) : (st.options || []);
+
+function maxFormScore() {
+  let sum = 0;
+  for (const st of FORM.steps) {
+    if (!st.scored) continue;
+    if (st.type === 'combo') for (const q of st.questions) sum += Math.max(...q.options.map(o => optCfg(o).points), 0);
+    else if (st.type === 'multi') sum += st.options.map(o => Math.max(0, optCfg(o).points))
+      .sort((a, b) => b - a).slice(0, 3).reduce((a, b) => a + b, 0);
+    else sum += Math.max(...st.options.map(o => optCfg(o).points), 0);
+  }
+  return sum;
+}
+const maxLabScore = () => FORM.labs.reduce((sum, lab) => {
+  const pts = labItems(lab).map(o => optCfg(o).points);
+  return sum + (lab.type === 'multi'
+    ? pts.map(p => Math.max(0, p)).sort((a, b) => b - a).slice(0, 3).reduce((a, b) => a + b, 0)
+    : Math.max(...pts, 0));
+}, 0);
+
+function evaluate(answers, labs) {
+  const breakdown = [], labBreakdown = [], redFlags = [];
+  let formScore = 0, labScore = 0;
+  const take = (o, stepId, stepTitle, scored) => {
+    const cfg = optCfg(o), pts = scored ? cfg.points : 0;
+    formScore += pts;
+    breakdown.push({ stepId, stepTitle, label:o.label, points:pts, redFlag:cfg.redFlag, optionId:o.id });
+    if (cfg.redFlag) redFlags.push({ stepTitle, label:o.label });
+  };
+  for (const st of FORM.steps) {
+    if (st.type === 'combo') {
+      for (const q of st.questions) {
+        const o = q.options.find(x => x.id === answers[q.id]);
+        if (o) take(o, st.id, q.title, st.scored);
+      }
+      continue;
+    }
+    const v = answers[st.id];
+    const chosen = Array.isArray(v) ? v : (v ? [v] : []);
+    for (const id of chosen) {
+      const o = (st.options || []).find(x => x.id === id);
+      if (o) take(o, st.id, st.title, st.scored);
+    }
+  }
+  for (const lab of FORM.labs) {
+    const v = (labs || {})[lab.id];
+    if (v === undefined || v === null || v === '' || (Array.isArray(v) && !v.length)) continue;
+    let hits = [], shown = '';
+    if (lab.type === 'number' || lab.type === 'number2') {
+      const raw = lab.type === 'number2' ? v[lab.scoreOn] : v;
+      const n = numval(raw);
+      if (n === null) continue;
+      hits = [bandFor(lab, n)];
+      shown = lab.type === 'number2' ? `${v.sys || '?'}/${v.dia || '?'} ${lab.unit}`
+                                     : `${String(raw).replace('.', ',')} ${lab.unit || ''}`.trim();
+    } else {
+      const ids = Array.isArray(v) ? v : [v];
+      hits = ids.map(id => lab.options.find(o => o.id === id)).filter(Boolean);
+      shown = hits.map(o => o.label).join(' · ');
+    }
+    for (const h of hits) {
+      const cfg = optCfg(h);
+      labScore += cfg.points;
+      if (cfg.redFlag) redFlags.push({ stepTitle: lab.name, label: h.label });
+    }
+    labBreakdown.push({ labId:lab.id, labName:lab.name, value:shown,
+      band: hits.map(h => h.label).join(' · '),
+      points: hits.reduce((a, h) => a + optCfg(h).points, 0),
+      redFlag: hits.some(h => optCfg(h).redFlag) });
+  }
+  const score = formScore + labScore, t = BOOT.thresholds;
+  const level = (redFlags.length || score >= t.level1) ? 1 : score >= t.level2 ? 2 : score >= t.level3 ? 3 : 4;
+  return { formScore, labScore, score, level, redFlags, breakdown, labBreakdown,
+           maxScore: maxFormScore() + maxLabScore() };
+}
+function suggestDesk(answers) {
+  const chosen = Array.isArray(answers.huvudbesvar) ? answers.huvudbesvar : [];
+  const step = FORM.steps.find(s => s.id === 'huvudbesvar');
+  const desks = chosen.map(id => (step.options.find(o => o.id === id) || {}).desk).filter(Boolean);
+  for (const d of FORM.deskPriority) if (desks.includes(d)) return d;
+  return 'medicin';
+}
+
+/* ----------------------------------------------------------------- routing */
+const go = hash => { location.hash = hash; };
+function route() {
+  clearInterval(refreshTimer); refreshTimer = null;
+  const h = location.hash.replace('#', '') || '/';
+  if (h.startsWith('/patient')) return viewPatient();
+  if (h.startsWith('/personal')) return viewStaff();
+  if (h.startsWith('/vantrum')) return viewBoard();
+  if (h.startsWith('/databas')) return viewDatabase();
+  if (h.startsWith('/admin')) return viewAdmin();
+  if (h.startsWith('/installningar')) return viewSettings();
+  if (h.startsWith('/cosmic-preview')) {
+    const id = h.split('/')[2] || '';
+    return viewCosmicPreview(id);
+  }
+  if (h.startsWith('/presentation')) return viewPresentation();
+  return viewHome();
+}
+window.addEventListener('hashchange', route);
+
+/* -------------------------------------------------------------- appskal */
+function shell(body, opts = {}) {
+  root().innerHTML = `
+    <div class="topbar"><div class="topbar-inner">
+      <img class="mark" src="${icon(opts.icon || 'patient')}" alt="">
+      <span class="title">${esc(opts.title || 'PrioSift')}</span>
+      ${opts.dept === false ? '' : `<select class="deptpick" id="deptPick">${
+        BOOT.departments.filter(d => d.active).map(d =>
+          `<option value="${d.id}" ${d.id === DEPT ? 'selected' : ''}>${esc(d.name)}</option>`).join('')}</select>`}
+      <span class="spacer"></span>
+      <span class="who">${esc(BOOT.user.name)}${isOwner() ? ' · administratör' : ''}</span>
+      ${opts.home === false ? '' : '<button class="btn ghost small" id="homeBtn">Hem</button>'}
+      <button class="btn ghost small" id="logoutBtn">Logga ut</button>
+    </div></div>
+    <main class="shell ${opts.narrow ? 'narrow' : ''}" id="view">${body}</main>`;
+  if ($('homeBtn')) $('homeBtn').onclick = () => go('/');
+  $('logoutBtn').onclick = async () => { await api('/api/logout', { method:'POST' }); location.href = '/'; };
+  if ($('deptPick')) $('deptPick').onchange = e => {
+    DEPT = e.target.value; localStorage.setItem('ps_dept', DEPT); route();
+  };
+}
+
+/* ==========================================================================
+   HEM
+   ========================================================================== */
+function viewHome() {
+  const tiles = [
+    { k:'patient',       href:'/patient',       name:'Patient',        sub:'Anamnesformulär för patienten' },
+    { k:'personal',      href:'/personal',      name:'Personal',       sub:'Patientkö, triagering och provsvar' },
+    { k:'vantrum',       href:'/vantrum',       name:'Väntrummet',     sub:'Anonym skärm med köplatser' },
+    { k:'databas',       href:'/databas',       name:'Patientdatabas', sub:'Sök, analysera och radera' },
+    { k:'installningar', href:'/presentation',  name:'Presentation',   sub:'Produktdemo och funktionsöversikt' }
+  ];
+  if (isOwner()) tiles.push({ k:'admin', href:'/admin', name:'Admin', sub:'Akutmottagningar och abonnemang' });
+
+  root().innerHTML = `
+    <div class="topbar"><div class="topbar-inner">
+      <img class="mark" src="${icon('patient')}" alt=""><span class="title">PrioSift</span>
+      <select class="deptpick" id="deptPick">${BOOT.departments.filter(d => d.active).map(d =>
+        `<option value="${d.id}" ${d.id === DEPT ? 'selected' : ''}>${esc(d.name)}</option>`).join('')}</select>
+      <span class="spacer"></span>
+      <span class="who">${esc(BOOT.user.name)}${isOwner() ? ' · administratör' : ''}</span>
+      <button class="btn ghost small" id="logoutBtn">Logga ut</button>
+    </div></div>
+    <main class="home">
+      <div class="wordmark"><img src="${icon('patient')}" alt="">
+        <div><h1>PrioSift</h1><p class="tagline">${esc(deptName(DEPT))}</p></div></div>
+      <div class="apps">${tiles.map(t => `
+        <button class="app-tile" data-go="${t.href}">
+          <img class="icon" src="${icon(t.k)}" alt="">
+          <span class="name">${t.name}</span><span class="sub">${t.sub}</span></button>`).join('')}</div>
+      <footer>PrioSift är ett beslutsstöd och ersätter inte klinisk bedömning.
+        ${isOwner() ? '<br>Som administratör kan du ändra poäng, nivåer och akutmottagningar.' : ''}</footer>
+    </main>`;
+  $('logoutBtn').onclick = async () => { await api('/api/logout', { method:'POST' }); location.href = '/'; };
+  $('deptPick').onchange = e => { DEPT = e.target.value; localStorage.setItem('ps_dept', DEPT); route(); };
+  document.querySelectorAll('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go));
+}
+
+/* ==========================================================================
+   PATIENT
+   ========================================================================== */
+let pStage = 'bankid', pIdx = 0, pAnswers = {}, pIdent = null, pIdle = null;
+
+function viewPatient() {
+  pStage = 'bankid'; pIdx = 0; pAnswers = {}; pIdent = null;
+  paintBankid();
+}
+
+/* --- BankID-attrapp --- */
+function paintBankid(state = 'start') {
+  const body = state === 'start' ? `
+    <div class="bankid">
+      <div class="logo">ID</div>
+      <div class="fake">Låtsas-BankID · endast för test</div>
+      <h1 style="font-size:26px">Legitimera dig</h1>
+      <p class="muted">Ange ditt personnummer för att börja. Dina svar kopplas till ett anonymt
+        patientnummer som du kan följa på skärmen i väntrummet.</p>
+      <div class="field-row" style="margin-top:22px;text-align:left">
+        <label class="field-label" for="pnr">Personnummer</label>
+        <input class="field" id="pnr" placeholder="ÅÅÅÅMMDD-XXXX" inputmode="numeric" autocomplete="off"></div>
+      <div class="field-row" style="text-align:left">
+        <label class="field-label" for="namn">Namn <span class="muted" style="font-weight:400">(hämtas normalt från BankID)</span></label>
+        <input class="field" id="namn" placeholder="För- och efternamn" autocomplete="off"></div>
+      <button class="btn wide" id="startBankid">Öppna BankID</button>
+    </div>` : `
+    <div class="bankid">
+      <div class="logo">ID</div>
+      <div class="fake">Låtsas-BankID · endast för test</div>
+      <h1 style="font-size:26px">Öppna BankID-appen</h1>
+      <p class="muted">Skriv din säkerhetskod i BankID-appen och välj Legitimera.</p>
+      <div class="spinner"></div>
+      <button class="btn ghost" id="cancelBankid">Avbryt</button>
+    </div>`;
+  shell(body, { title:'PrioSift', icon:'patient', narrow:true, dept:false });
+
+  if (state === 'start') {
+    $('startBankid').onclick = () => {
+      const pnr = $('pnr').value.trim(), namn = $('namn').value.trim();
+      if (!/^\d{6,8}[-+]?\d{4}$/.test(pnr.replace(/\s/g, ''))) return toast('Ange personnummer som ÅÅÅÅMMDD-XXXX');
+      if (!namn) return toast('Ange ditt namn');
+      pIdent = { pnr, namn };
+      paintBankid('waiting');
+      setTimeout(() => { pStage = 'form'; pIdx = 0; paintForm(); }, 1800);
+    };
+    $('pnr').focus();
+  } else {
+    $('cancelBankid').onclick = () => paintBankid('start');
+  }
+}
+
+/* --- formulärsteg --- */
+const painSelected = () => {
+  const chosen = pAnswers.huvudbesvar || [];
+  return chosen.some(id => FORM.painSymptoms.includes(id));
+};
+function stepTitle(st) {
+  if (st.id === 'smarta' && !painSelected() && st.titleAlt) return st.titleAlt;
+  return st.title;
+}
+function stepHint(st) {
+  if (st.id === 'smarta' && !painSelected() && st.hintAlt) return st.hintAlt;
+  return st.hint;
+}
+/** Steg 6b: läkemedel som är troliga utifrån valda sjukdomar hamnar först. */
+function orderedOptions(st) {
+  if (st.id !== 'lakemedel') return st.options;
+  const sick = pAnswers.sjukdomar || [];
+  const score = o => (o.for || []).some(f => sick.includes(f)) ? 0 : 1;
+  return [...st.options].map((o, i) => ({ o, i, s: o.id === st.noneOption ? 2 : score(o) }))
+    .sort((a, b) => a.s - b.s || a.i - b.i).map(x => x.o);
+}
+
+function paintForm() {
+  const st = FORM.steps[pIdx];
+  const pct = (pIdx / FORM.steps.length) * 100;
+  let html = `<div class="progress"><div style="width:${pct}%"></div></div>
+    <div class="step-label">Steg ${st.nr}</div>
+    <h1 class="q-title">${esc(stepTitle(st))}</h1>`;
+  const hint = stepHint(st);
+  if (hint) html += `<p class="q-hint">${esc(hint)}</p>`;
+
+  if (st.type === 'scale') {
+    html += `<div class="scale">${st.options.map(o =>
+      `<button type="button" data-opt="${o.id}" class="${pAnswers[st.id] === o.id ? 'selected' : ''}">${o.label}</button>`
+      ).join('')}</div><div class="scale-legend"><span>Inga besvär</span><span>Värsta tänkbara</span></div>`;
+  } else if (st.type === 'combo') {
+    html += st.questions.map(q => `<div class="combo-q"><h2>${esc(q.title)}</h2>
+      <div class="options">${q.options.map(o => `
+        <button type="button" class="opt compact ${pAnswers[q.id] === o.id ? 'selected' : ''}"
+          data-opt="${o.id}" data-q="${q.id}">
+          ${o.emoji ? `<span class="emoji">${o.emoji}</span>` : ''}
+          <span>${esc(o.label)}</span><span class="check"></span></button>`).join('')}</div></div>`).join('');
+  } else {
+    const sel = pAnswers[st.id];
+    const on = id => st.type === 'multi' ? (sel || []).includes(id) : sel === id;
+    const opts = orderedOptions(st);
+    const sick = pAnswers.sjukdomar || [];
+    html += `<div class="options ${st.columns ? 'cols' : ''}">${opts.map(o => `
+      <button type="button" class="opt ${st.columns ? 'compact' : ''} ${on(o.id) ? 'selected' : ''}" data-opt="${o.id}">
+        ${o.emoji ? `<span class="emoji">${o.emoji}</span>` : ''}
+        <span>${esc(o.label)}</span>
+        ${st.id === 'lakemedel' && (o.for || []).some(f => sick.includes(f))
+          ? '<span class="tag">Troligt</span>' : ''}
+        <span class="check"></span></button>`).join('')}</div>`;
+  }
+
+  const last = pIdx === FORM.steps.length - 1;
+  html += `<div class="nav">
+    ${pIdx > 0 ? '<button class="btn ghost" id="back">Tillbaka</button>' : ''}
+    <button class="btn" id="next">${last ? 'Skicka in mina svar' : 'Nästa'}</button></div>`;
+
+  shell(html, { title:'PrioSift', icon:'patient', narrow:true, dept:false, home:false });
+
+  root().querySelectorAll('[data-opt]').forEach(b => b.onclick = () => {
+    const id = b.dataset.opt;
+    if (b.dataset.q) { pAnswers[b.dataset.q] = id; paintForm(); return; }
+    if (st.type === 'multi') {
+      let cur = [...(pAnswers[st.id] || [])];
+      cur = cur.includes(id) ? cur.filter(x => x !== id) : [...cur, id];
+      if (st.noneOption) cur = (id === st.noneOption && cur.includes(id))
+        ? [st.noneOption] : cur.filter(x => x !== st.noneOption);
+      pAnswers[st.id] = cur;
+      paintForm();
+    } else {
+      pAnswers[st.id] = id;
+      paintForm();
+      setTimeout(nextStep, 170);
+    }
+  });
+  const back = $('back'); if (back) back.onclick = () => { pIdx--; paintForm(); };
+  $('next').onclick = nextStep;
+  window.scrollTo(0, 0);
+  clearTimeout(pIdle); pIdle = setTimeout(viewPatient, 10 * 60 * 1000);
+}
+
+function nextStep() {
+  const st = FORM.steps[pIdx];
+  if (st.type === 'multi' && !(pAnswers[st.id] || []).length) return toast('Välj minst ett alternativ.');
+  if ((st.type === 'single' || st.type === 'scale') && !pAnswers[st.id]) return toast('Välj ett alternativ.');
+  if (st.type === 'combo') {
+    for (const q of st.questions) if (!pAnswers[q.id]) return toast('Svara på båda frågorna.');
+  }
+  if (pIdx === FORM.steps.length - 1) return submitForm();
+  pIdx++; paintForm();
+}
+
+async function submitForm() {
+  const btn = $('next'); btn.disabled = true; btn.textContent = 'Skickar …';
+  try {
+    const r = await api('/api/patients', { method:'POST',
+      body: { deptId: DEPT, namn: pIdent.namn, pnr: pIdent.pnr, answers: pAnswers } });
+    const l = r.levelInfo;
+    shell(`
+      <div class="receipt" style="background:${l.color};margin-top:20px">
+        <div class="lvl">Nivå ${l.id} · ${esc(l.name)}</div>
+        <h2>Ditt nummer</h2>
+        <div class="bignum">${esc(r.number)}</div>
+        <p style="margin-top:18px">${esc(l.patientMessage)}</p>
+      </div>
+      <div class="panel" style="margin-top:16px">
+        <p style="margin:0">Följ ditt nummer på skärmen i väntrummet — där syns inga namn.
+        Du är hänvisad till <strong>${esc(r.deskName)}</strong>.
+        Blir du sämre medan du väntar, säg till personalen direkt.</p>
+      </div>
+      <div class="nav"><button class="btn ghost" id="restart" style="flex:1">Klart – lämna till nästa patient</button></div>`,
+      { title:'PrioSift', icon:'patient', narrow:true, dept:false, home:false });
+    $('restart').onclick = viewPatient;
+    clearTimeout(pIdle); pIdle = setTimeout(viewPatient, 3 * 60 * 1000);
+  } catch (e) {
+    toast(e.message || 'Kunde inte skicka in svaren');
+    btn.disabled = false; btn.textContent = 'Skicka in mina svar';
+  }
+}
+
+/* ==========================================================================
+   PERSONAL
+   ========================================================================== */
+let sDesk = 'alla', sCurrent = null, labDraft = {};
+
+async function viewStaff() {
+  if (sCurrent) return paintDetail(sCurrent);
+  const { patients } = await api(`/api/patients?dept=${encodeURIComponent(DEPT)}`);
+  const waiting = patients.filter(p => p.status !== 'klar');
+  const done = patients.filter(p => p.status === 'klar');
+  const inDesk = p => sDesk === 'alla' || p.desk === sDesk;
+  const list = waiting.filter(inDesk);
+
+  shell(`
+    <div class="tabs">
+      <button class="tab ${sDesk === 'alla' ? 'active' : ''}" data-desk="alla">Alla diskar
+        <span class="n">${waiting.length}</span></button>
+      ${FORM.desks.map(d => `<button class="tab ${sDesk === d.id ? 'active' : ''}" data-desk="${d.id}">
+        ${esc(d.name)} <span class="n">${waiting.filter(p => p.desk === d.id).length}</span></button>`).join('')}
+      <span class="spacer"></span>
+      ${isOwner() ? '<button class="tab" id="cfgBtn">Poäng &amp; nivåer</button>' : ''}
+    </div>
+    <div class="stats">${FORM.levels.map(l => `
+      <div class="stat" style="border-left:6px solid ${l.color}">
+        <div class="n">${list.filter(p => p.level === l.id).length}</div>
+        <div class="l">Nivå ${l.id} · ${esc(l.name)}</div></div>`).join('')}
+      <div class="stat" style="border-left:6px solid var(--ink-3)">
+        <div class="n">${list.filter(p => !p.labsAt).length}</div>
+        <div class="l">Väntar på vitalparametrar</div></div>
+    </div>
+    <h2 style="font-size:19px">I kö <span class="muted" style="font-weight:400">(${list.length})</span></h2>
+    <div class="queue">${list.length ? list.map(card).join('')
+      : '<div class="empty panel">Ingen patient i kön just nu.</div>'}</div>
+    ${done.length ? `<h2 style="font-size:19px;margin-top:28px">Avslutade i dag
+      <span class="muted" style="font-weight:400">(${done.length})</span></h2>
+      <div class="queue">${done.filter(inDesk).map(card).join('')}</div>` : ''}`,
+    { title:'PrioSift Personal', icon:'personal' });
+
+  document.querySelectorAll('[data-desk]').forEach(t => t.onclick = () => { sDesk = t.dataset.desk; viewStaff(); });
+  if ($('cfgBtn')) $('cfgBtn').onclick = () => go('/installningar');
+  document.querySelectorAll('.pt').forEach(el => el.onclick = () => { sCurrent = el.dataset.id; paintDetail(sCurrent); });
+  refreshTimer = setInterval(() => { if (!sCurrent && location.hash.startsWith('#/personal')) viewStaff(); }, 20000);
+}
+
+function card(p) {
+  const l = levelOf(p.level), d = deskOf(p.desk);
+  const besvar = (p.breakdown || []).filter(b => b.stepId === 'huvudbesvar').map(b => b.label).join(', ');
+  return `<button class="pt" data-id="${p.id}" style="border-left-color:${l.color}">
+    <span class="lvlbadge" style="background:${l.color}">${l.id}<small>NIVÅ</small></span>
+    <span>
+      <span class="who">${esc(p.number)} · ${esc(p.namn || 'Okänd')}</span>
+      ${p.status === 'klar' ? '<span class="chip done">Avslutad</span>' : ''}
+      ${p.status === 'triagerad' ? '<span class="chip">Triagerad</span>' : ''}
+      <span class="meta" style="display:block">${esc(besvar || '–')}</span>
+      <span class="meta" style="display:block;margin-top:6px">
+        <span class="chip desk" style="background:${d.color}">${esc(d.name)}</span>
+        ${p.redFlags.length ? `<span class="chip flag">⚠ ${p.redFlags.length} röd flagga${p.redFlags.length > 1 ? 'r' : ''}</span> ` : ''}
+        ${p.labsAt ? `<span class="chip done">Prover ${p.labScore >= 0 ? '+' : '−'}${Math.abs(p.labScore)} p</span>`
+          : '<span class="chip">Inga prover</span>'}
+        <span class="chip">väntat ${tidsedan(p.createdAt)}</span></span>
+    </span>
+    <span class="right"><span class="score">${p.score}<small> / ${p.maxScore} p</small></span>
+      <span class="meta" style="display:block">${esc(l.name)}</span></span></button>`;
+}
+
+/* --- provsvarsrader --- */
+function labResult(lab, draft) {
+  const v = draft[lab.id];
+  if (lab.type === 'number' || lab.type === 'number2') {
+    const n = numval(lab.type === 'number2' ? v?.[lab.scoreOn] : v);
+    if (n === null) return null;
+    const b = bandFor(lab, n), cfg = optCfg(b);
+    return { text:`${b.label} · ${cfg.points >= 0 ? '+' : ''}${cfg.points} p${cfg.redFlag ? ' ⚠️' : ''}`,
+             cls: cfg.redFlag ? 'flag' : cfg.points < 0 ? 'neg' : '' };
+  }
+  const sel = Array.isArray(v) ? v : (v ? [v] : []);
+  if (!sel.length) return null;
+  const picks = sel.map(x => lab.options.find(o => o.id === x)).filter(Boolean);
+  const pts = picks.reduce((a, o) => a + optCfg(o).points, 0);
+  const flag = picks.some(o => optCfg(o).redFlag);
+  return { text:`${pts >= 0 ? '+' : ''}${pts} p${flag ? ' ⚠️' : ''}`, cls: flag ? 'flag' : pts < 0 ? 'neg' : '' };
+}
+function labRowHtml(lab, draft) {
+  const v = draft[lab.id];
+  let inputs = '';
+  if (lab.type === 'number' || lab.type === 'number2') {
+    const fields = lab.type === 'number2' ? lab.fields : [{ key:'', label:'', placeholder:lab.placeholder }];
+    inputs = `<div class="lab-inputs">${fields.map(f => {
+      const val = lab.type === 'number2' ? (v?.[f.key] ?? '') : (v ?? '');
+      return `<label>${esc(f.label)}<input type="text" class="numfield" data-lab="${lab.id}" data-key="${f.key}"
+        value="${esc(val)}" placeholder="${esc(f.placeholder || '')}" inputmode="decimal" autocomplete="off"></label>`;
+    }).join('')}</div>`;
+  } else {
+    const sel = Array.isArray(v) ? v : (v ? [v] : []);
+    inputs = `<div class="chips">${lab.options.map(o => {
+      const cfg = optCfg(o);
+      return `<button type="button" class="chip-btn ${sel.includes(o.id) ? 'on' : ''} ${cfg.redFlag ? 'flag' : ''}"
+        data-lab="${lab.id}" data-opt="${o.id}">${esc(o.label)}</button>`;
+    }).join('')}</div>`;
+  }
+  const r = labResult(lab, draft);
+  return `<div class="lab" id="row_${lab.id}">
+    <div class="lab-head"><span class="nm">${esc(lab.name)}</span>
+      ${lab.unit ? `<span class="un">${esc(lab.unit)}</span>` : ''}
+      <span class="res ${r ? r.cls : ''}" id="res_${lab.id}" ${r ? '' : 'style="color:var(--ink-2);font-weight:500"'}
+        >${r ? esc(r.text) : 'ej taget'}</span></div>
+    ${lab.hint ? `<p class="muted" style="margin:-2px 0 8px;font-size:12.5px">${esc(lab.hint)}</p>` : ''}
+    ${inputs}</div>`;
+}
+
+async function paintDetail(id) {
+  const p = await api('/api/patients/' + id);
+  labDraft = structuredClone(p.labs || {});
+  const l = levelOf(p.level), d = deskOf(p.desk);
+  const rows = FORM.steps.map(st => {
+    const picks = (p.breakdown || []).filter(b => b.stepId === st.id);
+    if (!picks.length) return '';
+    return picks.length && st.type === 'combo'
+      ? picks.map(b => `<div class="answer"><div class="q">${esc(b.stepTitle)}</div>
+          <div class="a">${b.redFlag ? '⚠️ ' : ''}${esc(b.label)}<span class="pts">+${b.points} p</span></div></div>`).join('')
+      : `<div class="answer"><div class="q">${esc(st.title)}</div>
+          <div class="a">${picks.map(b => (b.redFlag ? '⚠️ ' : '') + esc(b.label)).join(' · ')}
+          <span class="pts">+${picks.reduce((a, b) => a + b.points, 0)} p</span></div></div>`;
+  }).join('');
+
+  shell(`
+    <button class="btn ghost small" id="backBtn" style="margin-bottom:14px">← Tillbaka till kön</button>
+    <div class="receipt" style="background:${l.color};margin-bottom:18px">
+      <div class="lvl">Nivå ${l.id} · ${esc(l.name)} · ${esc(d.name)}</div>
+      <h2 style="margin-bottom:.1em">${esc(p.number)} · ${esc(p.namn || 'Okänd')}</h2>
+      <p style="font-size:16px;opacity:.95">${esc(p.pnr || '')} · inskrivet ${klockan(p.createdAt)}
+        (väntat ${tidsedan(p.createdAt)})</p>
+      <div class="score-split"><span>Formulär <strong>${p.formScore} p</strong></span>
+        <span>Prover <strong>${p.labScore >= 0 ? '+' : ''}${p.labScore} p</strong></span>
+        <span>Totalt <strong>${p.score} p</strong></span></div>
+    </div>
+    <div class="detail-grid">
+      <div>
+        <div class="panel" style="margin-bottom:16px"><h3>Patientens svar</h3>
+          ${p.redFlags.length ? `<div class="flagbox"><strong>⚠️ Röda flaggor</strong><ul>${
+            p.redFlags.map(f => `<li>${esc(f.stepTitle)}: <strong>${esc(f.label)}</strong></li>`).join('')}</ul></div>` : ''}
+          ${rows}</div>
+        <div class="panel"><h3>Prover och vitalparametrar</h3>
+          <p class="muted" style="margin:-8px 0 6px;font-size:13px">Fyll i det ni tagit. Tomma fält påverkar inte poängen.
+            ${p.labsAt ? `Senast ${klockan(p.labsAt)}${p.labsBy ? ' av ' + esc(p.labsBy) : ''}.` : ''}</p>
+          <div id="labRows">${FORM.labs.map(lab => labRowHtml(lab, labDraft)).join('')}</div>
+          <div class="lab-preview" id="labPreview"></div>
+          <div class="row">
+            <input class="field" id="labsBy" style="max-width:170px" placeholder="Signatur" value="${esc(p.labsBy || '')}">
+            <button class="btn" id="saveLabs">Spara provsvar</button>
+            <button class="btn ghost small" id="clearLabs">Rensa</button></div>
+        </div>
+      </div>
+      <div>
+        <div class="panel" style="margin-bottom:14px"><h3>Prioritet och disk</h3>
+          <label class="field-label">Prioritetsnivå</label>
+          <div class="queue" style="gap:8px">${FORM.levels.map(lv => `
+            <button class="opt compact ${p.level === lv.id ? 'selected' : ''}" data-lvl="${lv.id}">
+              <span class="minibadge" style="background:${lv.color}">${lv.id}</span>
+              <span>${esc(lv.name)}</span><span class="check"></span></button>`).join('')}</div>
+          <p class="muted" style="font-size:13px;margin:10px 0 14px">Systemets förslag: nivå ${p.autoLevel}.</p>
+          <label class="field-label">Disk</label>
+          <div class="chips">${FORM.desks.map(dd => `
+            <button class="chip-btn ${p.desk === dd.id ? 'on' : ''}" data-desk-set="${dd.id}">${esc(dd.name)}</button>`).join('')}</div>
+          <p class="muted" style="font-size:13px;margin:9px 0 0">Systemets förslag: ${esc(deskOf(p.autoDesk).name)}
+            (utifrån sökorsak).</p></div>
+
+        <div class="panel" style="margin-bottom:14px"><h3>Beslut efter triagering</h3>
+          <div class="chips">${[
+            ['', 'Inte beslutat'], ['inlaggning', 'Förbered inläggning'],
+            ['inväntar_prov', 'Inväntar provsvar'], ['lakare', 'Till läkare'], ['hemgang', 'Säker hemgång']
+          ].map(([v, t]) => `<button class="chip-btn ${(p.decision || '') === v ? 'on' : ''}" data-dec="${v}">${t}</button>`).join('')}</div>
+          <div class="field-row" style="margin-top:14px"><label class="field-label">Signatur</label>
+            <input class="field" id="handledBy" placeholder="Ditt namn" value="${esc(p.handledBy || '')}"></div>
+          <div class="field-row"><label class="field-label">Anteckning</label>
+            <textarea class="field" id="staffNote" style="min-height:88px">${esc(p.staffNote || '')}</textarea></div>
+          <button class="btn wide" id="saveNote">Spara</button>
+          <div class="row" style="margin-top:10px">
+            <button class="btn ghost grow" id="markTriaged">${p.status === 'vantar' ? 'Markera som triagerad' : 'Åter till kö'}</button>
+            <button class="btn ghost grow" id="markDone">${p.status === 'klar' ? 'Återöppna' : 'Avsluta'}</button>
+            <button class="btn ghost" id="cosmicBtn" title="Förhandsgranska Cosmic-data">📋 Cosmic</button></div></div>
+
+        <div class="panel"><h3>Meddelande till patienten</h3>
+          <p style="margin:0">${esc(l.patientMessage)}</p>
+          <p class="muted" style="font-size:13px;margin:10px 0 0">${esc(l.staffNote || '')}</p></div>
+      </div></div>`,
+    { title:'PrioSift Personal', icon:'personal' });
+
+  wireLabs(p);
+  $('backBtn').onclick = () => { sCurrent = null; viewStaff(); };
+  const patch = async body => { await api('/api/patients/' + id, { method:'PATCH', body }); paintDetail(id); };
+  document.querySelectorAll('[data-lvl]').forEach(b => b.onclick = () => patch({ level: Number(b.dataset.lvl) }));
+  document.querySelectorAll('[data-desk-set]').forEach(b => b.onclick = () => patch({ desk: b.dataset.deskSet }));
+  document.querySelectorAll('[data-dec]').forEach(b => b.onclick = () => patch({ decision: b.dataset.dec }));
+  $('saveNote').onclick = async () => {
+    await api('/api/patients/' + id, { method:'PATCH',
+      body: { handledBy: $('handledBy').value, staffNote: $('staffNote').value } });
+    toast('Sparat');
+  };
+  $('markTriaged').onclick = () => patch({ status: p.status === 'vantar' ? 'triagerad' : 'vantar' });
+  $('markDone').onclick = async () => {
+    await api('/api/patients/' + id, { method:'PATCH', body: { status: p.status === 'klar' ? 'triagerad' : 'klar' } });
+    sCurrent = null; viewStaff();
+  };
+  $('cosmicBtn').onclick = () => go('/cosmic-preview/' + id);
+}
+
+function wireLabs(p) {
+  const preview = () => {
+    const ev = evaluate(p.answers, labDraft);
+    const after = levelOf(ev.level);
+    $('labPreview').innerHTML = `
+      <span>Med dessa provsvar: <b>${ev.score} p</b>
+        <span class="muted">(formulär ${ev.formScore} ${ev.labScore >= 0 ? '+' : '−'} prover ${Math.abs(ev.labScore)})</span></span>
+      <span class="minibadge" style="background:${after.color}">${after.id}</span>
+      <span><strong>${esc(after.name)}</strong>${ev.level !== p.level ? ` <span class="muted">(nu nivå ${p.level})</span>` : ''}</span>`;
+  };
+  const wireChips = lab => {
+    document.querySelectorAll(`#row_${lab.id} [data-opt]`).forEach(b => b.onclick = () => {
+      const optId = b.dataset.opt;
+      if (lab.type === 'single') labDraft[lab.id] = labDraft[lab.id] === optId ? undefined : optId;
+      else {
+        let cur = [...(labDraft[lab.id] || [])];
+        cur = cur.includes(optId) ? cur.filter(x => x !== optId) : [...cur, optId];
+        if (lab.noneOption) cur = (optId === lab.noneOption && cur.includes(optId))
+          ? [lab.noneOption] : cur.filter(x => x !== lab.noneOption);
+        labDraft[lab.id] = cur;
+      }
+      $('row_' + lab.id).outerHTML = labRowHtml(lab, labDraft);
+      wireChips(lab); preview();
+    });
+  };
+  for (const lab of FORM.labs) {
+    if (lab.type === 'number' || lab.type === 'number2') {
+      document.querySelectorAll(`#row_${lab.id} input[data-lab]`).forEach(inp => inp.oninput = () => {
+        if (lab.type === 'number2') labDraft[lab.id] = { ...(labDraft[lab.id] || {}), [inp.dataset.key]: inp.value };
+        else labDraft[lab.id] = inp.value;
+        const r = labResult(lab, labDraft), el = $('res_' + lab.id);
+        el.className = 'res ' + (r ? r.cls : '');
+        el.style.cssText = r ? '' : 'color:var(--ink-2);font-weight:500';
+        el.textContent = r ? r.text : 'ej taget';
+        preview();
+      });
+    } else wireChips(lab);
+  }
+  preview();
+  $('saveLabs').onclick = async () => {
+    await api('/api/patients/' + p.id, { method:'PATCH', body: { labs: labDraft, labsBy: $('labsBy').value } });
+    toast('Provsvar sparade');
+    paintDetail(p.id);
+  };
+  $('clearLabs').onclick = () => {
+    labDraft = {};
+    $('labRows').innerHTML = FORM.labs.map(lab => labRowHtml(lab, labDraft)).join('');
+    wireLabs(p);
+  };
+}
+
+/* ==========================================================================
+   VÄNTRUMSSKÄRM (anonym)
+   ========================================================================== */
+async function viewBoard() {
+  const paint = async () => {
+    const { queue } = await api(`/api/waiting?dept=${encodeURIComponent(DEPT)}`);
+    const byLevel = l => queue.filter(q => q.level === l).length;
+    root().innerHTML = `
+      <div class="board">
+        <div class="board-head">
+          <h1>${esc(deptName(DEPT))}</h1>
+          <span class="sub">Väntande just nu: ${queue.length}</span>
+          <span class="clock">${new Date().toLocaleTimeString('sv-SE', { hour:'2-digit', minute:'2-digit' })}</span>
+        </div>
+        <div class="board-grid">${queue.length ? queue.map(q => {
+          const l = levelOf(q.level), d = deskOf(q.desk);
+          return `<div class="bcard" style="border-left-color:${l.color}">
+            <span class="num">${esc(q.number)}</span>
+            <span class="info">${esc(l.name)}<br>${esc(d.name)}</span>
+            <span class="place">plats ${q.place}<br>väntat ${q.waitedMinutes} min</span></div>`;
+        }).join('') : '<div class="bcard" style="border-left-color:#2b8a5a"><span class="info">Ingen väntar just nu.</span></div>'}</div>
+        <div class="board-legend">${FORM.levels.map(l =>
+          `<span><i class="dot" style="background:${l.color};width:14px;height:14px;border-radius:4px;display:inline-block"></i>
+           ${esc(l.name)} (${byLevel(l.id)})</span>`).join('')}</div>
+        <p class="board-foot">Ditt nummer visas på skärmen. Ordningen bygger på hur brådskande besvären bedöms vara,
+          inte på när du kom — den som är sjukast tas emot först. Mår du sämre, säg till i receptionen.</p>
+        <div class="row" style="margin-top:20px">
+          <button class="btn ghost small" id="exitBoard">Stäng skärmläget</button></div>
+      </div>`;
+    $('exitBoard').onclick = () => go('/');
+  };
+  await paint();
+  refreshTimer = setInterval(() => { if (location.hash.startsWith('#/vantrum')) paint(); }, 15000);
+}
+
+/* ==========================================================================
+   PATIENTDATABAS
+   ========================================================================== */
+let dbSort = { key:'createdAt', dir:-1 }, dbFilter = { q:'', level:'', desk:'', status:'' };
+
+async function viewDatabase() {
+  const { patients } = await api(`/api/patients?dept=${encodeURIComponent(DEPT)}`);
+  const f = dbFilter;
+  let rows = patients.filter(p =>
+    (!f.level || p.level === Number(f.level)) &&
+    (!f.desk || p.desk === f.desk) &&
+    (!f.status || p.status === f.status) &&
+    (!f.q || `${p.number} ${p.namn} ${p.pnr}`.toLowerCase().includes(f.q.toLowerCase())));
+  rows.sort((a, b) => {
+    const k = dbSort.key;
+    const va = k === 'createdAt' ? new Date(a[k]) : a[k], vb = k === 'createdAt' ? new Date(b[k]) : b[k];
+    return (va > vb ? 1 : va < vb ? -1 : 0) * dbSort.dir;
+  });
+  const th = (key, label) => `<th data-sort="${key}">${label}<span class="arrow">${
+    dbSort.key === key ? (dbSort.dir > 0 ? '▲' : '▼') : '↕'}</span></th>`;
+
+  const lvlCount = l => patients.filter(p => p.level === l).length;
+  shell(`
+    <h1 style="font-size:23px">Patientdatabas <span class="muted" style="font-weight:400;font-size:17px">${esc(deptName(DEPT))}</span></h1>
+    <div class="stats">
+      <div class="stat"><div class="n">${patients.length}</div><div class="l">Registrerade totalt</div></div>
+      ${FORM.levels.map(l => `<div class="stat" style="border-left:6px solid ${l.color}">
+        <div class="n">${lvlCount(l.id)}</div><div class="l">Nivå ${l.id} · ${esc(l.name)}</div></div>`).join('')}
+    </div>
+    <div class="panel" style="margin-bottom:16px">
+      <div class="row">
+        <input class="field grow" id="q" placeholder="Sök på nummer, namn eller personnummer" value="${esc(f.q)}" style="min-width:220px">
+        <select class="field" id="fLevel" style="width:auto"><option value="">Alla nivåer</option>
+          ${FORM.levels.map(l => `<option value="${l.id}" ${f.level == l.id ? 'selected' : ''}>Nivå ${l.id}</option>`).join('')}</select>
+        <select class="field" id="fDesk" style="width:auto"><option value="">Alla diskar</option>
+          ${FORM.desks.map(d => `<option value="${d.id}" ${f.desk === d.id ? 'selected' : ''}>${esc(d.name)}</option>`).join('')}</select>
+        <select class="field" id="fStatus" style="width:auto"><option value="">Alla status</option>
+          <option value="vantar" ${f.status === 'vantar' ? 'selected' : ''}>Väntar</option>
+          <option value="triagerad" ${f.status === 'triagerad' ? 'selected' : ''}>Triagerad</option>
+          <option value="klar" ${f.status === 'klar' ? 'selected' : ''}>Avslutad</option></select>
+        <button class="btn ghost small" id="csv">Exportera CSV</button>
+      </div>
+    </div>
+    <div class="tablewrap"><table>
+      <thead><tr>${th('number','Nummer')}${th('createdAt','Inskrivet')}${th('level','Nivå')}${th('desk','Disk')}
+        ${th('score','Poäng')}${th('status','Status')}<th>Beslut</th><th>Röda flaggor</th><th></th></tr></thead>
+      <tbody>${rows.length ? rows.map(p => {
+        const l = levelOf(p.level), d = deskOf(p.desk);
+        return `<tr>
+          <td><strong>${esc(p.number)}</strong></td>
+          <td>${datum(p.createdAt)} ${klockan(p.createdAt)}</td>
+          <td><span class="minibadge" style="background:${l.color};width:26px;height:26px;font-size:13px">${l.id}</span></td>
+          <td><span class="chip desk" style="background:${d.color}">${esc(d.name)}</span></td>
+          <td class="num">${p.score}</td>
+          <td>${p.status === 'klar' ? 'Avslutad' : p.status === 'triagerad' ? 'Triagerad' : 'Väntar'}</td>
+          <td>${esc({ inlaggning:'Inläggning', 'inväntar_prov':'Inväntar prov', lakare:'Till läkare', hemgang:'Hemgång' }[p.decision] || '–')}</td>
+          <td>${p.redFlags.length ? `<span class="chip flag">${p.redFlags.length}</span>` : '–'}</td>
+          <td><button class="btn ghost small" data-open="${p.id}">Öppna</button>
+              ${isOwner() ? `<button class="btn danger small" data-del="${p.id}">Radera</button>` : ''}</td>
+        </tr>`;
+      }).join('') : '<tr><td colspan="9" class="empty">Inga patienter matchar filtret.</td></tr>'}</tbody>
+    </table></div>
+    <p class="muted" style="font-size:13px;margin-top:14px">
+      Radering tar bort patienten och alla svar permanent. Enligt patientdatalagen ska gallring ske
+      enligt fastställd rutin — logga vem som raderar innan detta används skarpt.</p>`,
+    { title:'PrioSift Patientdatabas', icon:'databas' });
+
+  const upd = () => { dbFilter = { q:$('q').value, level:$('fLevel').value, desk:$('fDesk').value, status:$('fStatus').value }; viewDatabase(); };
+  $('q').oninput = () => { clearTimeout(window._dbt); window._dbt = setTimeout(upd, 350); };
+  ['fLevel','fDesk','fStatus'].forEach(i => $(i).onchange = upd);
+  document.querySelectorAll('[data-sort]').forEach(t => t.onclick = () => {
+    const k = t.dataset.sort;
+    dbSort = { key:k, dir: dbSort.key === k ? -dbSort.dir : -1 };
+    viewDatabase();
+  });
+  document.querySelectorAll('[data-open]').forEach(b => b.onclick = () => { sCurrent = b.dataset.open; go('/personal'); });
+  document.querySelectorAll('[data-del]').forEach(b => b.onclick = async () => {
+    const p = patients.find(x => x.id === b.dataset.del);
+    if (!await confirmDialog('Radera patient?',
+      `Patient <strong>${esc(p.number)}</strong> och alla svar tas bort permanent. Det går inte att ångra.`,
+      'Radera permanent')) return;
+    await api('/api/patients/' + b.dataset.del, { method:'DELETE' });
+    toast('Patienten raderad');
+    viewDatabase();
+  });
+  $('csv').onclick = async () => {
+    const head = ['Nummer','Inskrivet','Nivå','Disk','Formulärpoäng','Provpoäng','Totalpoäng','Status','Beslut','Röda flaggor'];
+    const body = rows.map(p => [p.number, p.createdAt, p.level, deskOf(p.desk).name, p.formScore, p.labScore,
+      p.score, p.status, p.decision || '', p.redFlags.length]);
+    const csv = '\ufeff' + [head, ...body].map(r => r.map(c => `"${String(c).replace(/"/g, '""')}"`).join(';')).join('\n');
+    const filename = `priosift-${DEPT}-${new Date().toISOString().slice(0,10)}.csv`;
+    if (window.PRIOSIFT_DEMO) {                       // demon sparar via värdmiljön
+      try {
+        const dl = await window.claude?.use?.('downloads');
+        if (dl) { await dl.save({ filename, data: csv }); return; }
+      } catch (e) {}
+      return toast('CSV-export fungerar i serverversionen på din egen domän.');
+    }
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([csv], { type:'text/csv' }));
+    a.download = filename;
+    a.click();
+  };
+}
+
+/* ==========================================================================
+   ADMIN
+   ========================================================================== */
+async function viewAdmin() {
+  if (!isOwner()) return go('/');
+  const stats = await api('/api/stats');
+  const t = stats.totals;
+
+  shell(`
+    <h1 style="font-size:23px">Admin</h1>
+    <div class="kpi">
+      <div class="panel"><div class="v">${stats.departments.filter(d => d.active).length}</div><div class="k">Aktiva kunder</div></div>
+      <div class="panel"><div class="v">${kr(t.monthlyRevenue)}</div><div class="k">Intäkt per månad</div></div>
+      <div class="panel"><div class="v">${kr(t.annualRevenue)}</div><div class="k">Årstakt</div></div>
+      <div class="panel"><div class="v">${t.patients}</div><div class="k">Patienter i systemet</div></div>
+    </div>
+
+    <div class="row" style="margin-bottom:14px">
+      <h2 style="font-size:19px;margin:0">Akutmottagningar</h2><span class="spacer"></span>
+      <button class="btn small" id="addDep">Lägg till akutmottagning</button>
+    </div>
+
+    <div class="queue">${stats.departments.map(d => {
+      const lv = FORM.levels.map(l => ({ l, n: d.levels[l.id] || 0 }));
+      const tot = lv.reduce((a, x) => a + x.n, 0) || 1;
+      return `<div class="panel">
+        <div class="row">
+          <div class="grow">
+            <h3 style="margin:0 0 4px;font-size:18px;text-transform:none;letter-spacing:0;color:var(--ink)">
+              ${esc(d.name)} ${d.active ? '' : '<span class="chip">Pausad</span>'}</h3>
+            <div class="muted" style="font-size:13.5px">${esc(d.city || '')} · ${esc(d.tierName)} ·
+              ${kr(d.priceMonth)}/mån · ${d.annualVolume ? d.annualVolume.toLocaleString('sv-SE') + ' besök/år (avtal)' : 'volym ej satt'}</div>
+          </div>
+          <button class="btn ghost small" data-edit="${d.id}">Ändra</button>
+          <button class="btn danger small" data-del-dep="${d.id}">Ta bort</button>
+        </div>
+        <div class="stats" style="margin:16px 0 0">
+          <div class="stat"><div class="n">${d.d1}</div><div class="l">Senaste dygnet</div></div>
+          <div class="stat"><div class="n">${d.d7}</div><div class="l">Senaste 7 dagarna</div></div>
+          <div class="stat"><div class="n">${d.d30}</div><div class="l">Senaste 30 dagarna</div></div>
+          <div class="stat"><div class="n">${d.projectedAnnual.toLocaleString('sv-SE')}</div><div class="l">Årstakt (uppmätt)</div></div>
+          <div class="stat"><div class="n">${d.avgTriageMinutes ?? '–'}</div><div class="l">Min till triagering (snitt)</div></div>
+        </div>
+        <div class="bar">${lv.map(x => `<i style="background:${x.l.color};width:${(x.n / tot) * 100}%"></i>`).join('')}</div>
+        <div class="muted" style="font-size:12.5px;margin-top:6px">
+          ${lv.map(x => `${x.l.name} ${x.n}`).join(' · ')} ·
+          ${FORM.desks.map(dd => `${dd.name} ${d.desks[dd.id] || 0}`).join(' · ')}</div>
+        ${d.tierMismatch ? `<div class="warn" style="margin-top:12px">
+          Uppmätt årstakt (${d.projectedAnnual.toLocaleString('sv-SE')} besök) motsvarar
+          <strong>${esc(stats.tiers.find(x => x.id === d.suggestedTier).name)}</strong> —
+          kunden ligger på ${esc(d.tierName)}. Se över faktureringen.</div>` : ''}
+      </div>`;
+    }).join('')}</div>
+
+    <div class="panel" style="margin-top:20px"><h3>Abonnemangsnivåer</h3>
+      <div class="tablewrap"><table><thead><tr><th>Nivå</th><th>Volym</th><th>Pris per månad</th><th>Per år</th><th>Kunder</th></tr></thead>
+        <tbody>${stats.tiers.map(tier => {
+          const n = stats.departments.filter(d => d.tier === tier.id && d.active).length;
+          return `<tr><td><strong>${esc(tier.name)}</strong></td><td>${esc(tier.volume)}</td>
+            <td class="num"><input class="field" data-tier="${tier.id}" value="${tier.priceMonth}"
+              style="width:120px;text-align:right;padding:7px 10px"></td>
+            <td class="num">${kr(tier.priceMonth * 12)}</td><td class="num">${n}</td></tr>`;
+        }).join('')}</tbody></table></div>
+      <div class="row" style="margin-top:14px"><button class="btn" id="saveTiers">Spara priser</button>
+        <span class="muted" style="font-size:13px">Volymen avser antal patientbesök per år.</span></div>
+    </div>
+
+    <div class="panel" style="margin-top:16px"><h3>Fakturaunderlag denna månad</h3>
+      <div class="tablewrap"><table><thead><tr><th>Kund</th><th>Nivå</th><th>Uppmätt årstakt</th><th>Att fakturera</th></tr></thead>
+        <tbody>${stats.departments.filter(d => d.active).map(d => `<tr>
+          <td>${esc(d.name)}</td><td>${esc(d.tierName)}</td>
+          <td class="num">${d.projectedAnnual.toLocaleString('sv-SE')}</td>
+          <td class="num">${kr(d.priceMonth)}</td></tr>`).join('')}
+          <tr><td colspan="3"><strong>Summa</strong></td><td class="num"><strong>${kr(t.monthlyRevenue)}</strong></td></tr>
+        </tbody></table></div>
+    </div>
+
+    <div class="panel" style="margin-top:16px"><h3>Mitt konto</h3>
+      <div class="row">
+        <input class="field" id="pwCur" type="password" placeholder="Nuvarande lösenord" style="max-width:220px">
+        <input class="field" id="pwNew" type="password" placeholder="Nytt lösenord (minst 12 tecken)" style="max-width:260px">
+        <button class="btn ghost" id="savePw">Byt lösenord</button></div>
+    </div>`,
+    { title:'PrioSift Admin', icon:'admin', dept:false });
+
+  $('addDep').onclick = () => depForm(null);
+  document.querySelectorAll('[data-edit]').forEach(b => b.onclick = () =>
+    depForm(BOOT.departments.find(d => d.id === b.dataset.edit)));
+  document.querySelectorAll('[data-del-dep]').forEach(b => b.onclick = async () => {
+    const dep = stats.departments.find(d => d.id === b.dataset.delDep);
+    const ok = await confirmDialog('Ta bort akutmottagning?',
+      `<strong>${esc(dep.name)}</strong> tas bort. ${dep.total} registrerade patienter raderas samtidigt.`,
+      'Ta bort allt');
+    if (!ok) return;
+    await api(`/api/departments/${b.dataset.delDep}?force=1`, { method:'DELETE' });
+    await reloadBoot(); toast('Akutmottagningen borttagen'); viewAdmin();
+  });
+  $('saveTiers').onclick = async () => {
+    const tiers = stats.tiers.map(t2 => ({ ...t2, priceMonth: Number(document.querySelector(`[data-tier="${t2.id}"]`).value) || 0 }));
+    await api('/api/config', { method:'PUT', body: { tiers } });
+    await reloadBoot(); toast('Priser sparade'); viewAdmin();
+  };
+  $('savePw').onclick = async () => {
+    try {
+      await api('/api/password', { method:'PUT', body: { current: $('pwCur').value, next: $('pwNew').value } });
+      toast('Lösenordet är bytt'); $('pwCur').value = ''; $('pwNew').value = '';
+    } catch (e) { toast(e.message); }
+  };
+}
+
+function depForm(dep) {
+  const bg = document.createElement('div');
+  bg.className = 'modal-bg';
+  bg.innerHTML = `<div class="modal">
+    <h2 style="font-size:21px">${dep ? 'Ändra akutmottagning' : 'Ny akutmottagning'}</h2>
+    <div class="field-row"><label class="field-label">Namn</label>
+      <input class="field" id="dName" value="${esc(dep?.name || '')}" placeholder="Akutmottagningen Södersjukhuset"></div>
+    <div class="field-row"><label class="field-label">Ort</label>
+      <input class="field" id="dCity" value="${esc(dep?.city || '')}" placeholder="Stockholm"></div>
+    <div class="field-row"><label class="field-label">Kontakt</label>
+      <input class="field" id="dContact" value="${esc(dep?.contact || '')}" placeholder="namn@sjukhuset.se"></div>
+    <div class="field-row"><label class="field-label">Avtalad volym (besök per år)</label>
+      <input class="field" id="dVolume" value="${dep?.annual_volume || ''}" inputmode="numeric" placeholder="38000"></div>
+    <div class="field-row"><label class="field-label">Abonnemangsnivå</label>
+      <div class="tierpick">${(BOOT.tiers || FORM.tiers).map(t => `
+        <button class="opt compact ${(dep?.tier || 1) === t.id ? 'selected' : ''}" data-tierpick="${t.id}">
+          <span>${esc(t.name)} — ${esc(t.volume)}<br><span class="muted" style="font-size:13px">${kr(t.priceMonth)}/mån</span></span>
+          <span class="check"></span></button>`).join('')}</div></div>
+    <label class="flagtoggle" style="margin-bottom:16px"><input type="checkbox" id="dActive"
+      ${dep ? (dep.active ? 'checked' : '') : 'checked'}> Aktiv kund</label>
+    <div class="row" style="justify-content:flex-end">
+      <button class="btn ghost" id="cancel">Avbryt</button>
+      <button class="btn" id="save">${dep ? 'Spara' : 'Lägg till'}</button></div></div>`;
+  document.body.appendChild(bg);
+  let tier = dep?.tier || 1;
+  bg.querySelectorAll('[data-tierpick]').forEach(b => b.onclick = () => {
+    tier = Number(b.dataset.tierpick);
+    bg.querySelectorAll('[data-tierpick]').forEach(x => x.classList.toggle('selected', x === b));
+  });
+  bg.querySelector('#cancel').onclick = () => bg.remove();
+  bg.querySelector('#save').onclick = async () => {
+    const body = { name: bg.querySelector('#dName').value.trim(), city: bg.querySelector('#dCity').value.trim(),
+      contact: bg.querySelector('#dContact').value.trim(),
+      annualVolume: Number(bg.querySelector('#dVolume').value) || 0,
+      tier, active: bg.querySelector('#dActive').checked };
+    if (!body.name) return toast('Namn krävs');
+    try {
+      if (dep) await api('/api/departments/' + dep.id, { method:'PATCH', body });
+      else await api('/api/departments', { method:'POST', body });
+      bg.remove(); await reloadBoot(); toast('Sparat'); viewAdmin();
+    } catch (e) { toast(e.message); }
+  };
+}
+
+/* ==========================================================================
+   INSTÄLLNINGAR (poäng och nivåer) – endast administratör
+   ========================================================================== */
+let cfgDirty = { overrides:{}, thresholds:null };
+
+function viewSettings() {
+  if (!isOwner()) return go('/');
+  const t = { ...BOOT.thresholds, ...(cfgDirty.thresholds || {}) };
+  const maxF = maxFormScore(), maxL = maxLabScore(), max = maxF + maxL;
+  const val = (o, key) => cfgDirty.overrides[o.id]?.[key] ?? optCfg(o)[key];
+  const bar = () => {
+    const seg = [
+      [FORM.levels[3].color, t.level3, `Nivå 4 (0–${t.level3 - 1})`],
+      [FORM.levels[2].color, t.level2 - t.level3, `Nivå 3 (${t.level3}–${t.level2 - 1})`],
+      [FORM.levels[1].color, t.level1 - t.level2, `Nivå 2 (${t.level2}–${t.level1 - 1})`],
+      [FORM.levels[0].color, max - t.level1, `Nivå 1 (${t.level1}+)`]
+    ];
+    return `<div class="scalebar">${seg.map(([c, w, txt]) =>
+      `<div style="background:${c};flex:${Math.max(w, .4)}">${w / max > .13 ? txt : ''}</div>`).join('')}</div>`;
+  };
+  const optRow = (o, min) => `<div class="opt-row">
+    <div>${o.emoji ? o.emoji + ' ' : ''}${esc(o.label)}</div>
+    <div class="slider-wrap">
+      <input type="range" min="${min}" max="10" step="1" value="${val(o,'points')}" data-pts="${o.id}">
+      <span class="pts-badge" id="badge_${o.id}">${min < 0 && val(o,'points') > 0 ? '+' : ''}${val(o,'points')}</span></div>
+    <label class="flagtoggle"><input type="checkbox" data-flag="${o.id}" ${val(o,'redFlag') ? 'checked' : ''}> Röd flagga</label>
+  </div>`;
+
+  shell(`
+    <h1 style="font-size:23px">Poäng och nivåer</h1>
+    <div class="panel" style="margin-bottom:20px"><h3>Tröskelvärden</h3>
+      <p class="muted" style="margin:-6px 0 14px">Formulärets svar (max ${maxF} p) plus provsvaren (max ${maxL} p)
+        ger totalpoängen. En <strong>röd flagga</strong> ger alltid nivå 1.</p>
+      <div id="barWrap">${bar()}</div>
+      <div style="margin-top:16px">
+        ${[['level1',0,'Nivå 1 · Omedelbar från'],['level2',1,'Nivå 2 · Brådskande från'],['level3',2,'Nivå 3 · Kan vänta från']]
+          .map(([k, i, label]) => `<div class="thr-row">
+            <div class="thr-name"><span class="dot" style="background:${FORM.levels[i].color}"></span>${label}</div>
+            <input type="range" min="1" max="${max}" value="${t[k]}" data-thr="${k}">
+            <div class="pts-badge" id="thr_${k}">${t[k]} p</div></div>`).join('')}
+      </div></div>
+
+    <h2 style="font-size:19px">Poäng per svar i formuläret</h2>
+    <p class="muted" style="margin:-8px 0 14px">0–10 poäng per svar.</p>
+    ${FORM.steps.filter(s => s.scored).map(st => st.type === 'combo'
+      ? st.questions.map(q => `<div class="panel setting-step"><h4>${esc(q.title)}</h4>
+          ${q.options.map(o => optRow(o, 0)).join('')}</div>`).join('')
+      : `<div class="panel setting-step"><h4>Steg ${st.nr} · ${esc(st.title)}</h4>
+          ${st.options.map(o => optRow(o, 0)).join('')}</div>`).join('')}
+
+    <h2 style="font-size:19px;margin-top:26px">Poäng för provsvar</h2>
+    <p class="muted" style="margin:-8px 0 14px">−10 till +10. Normala värden får ge minuspoäng.</p>
+    ${FORM.labs.map(lab => `<div class="panel setting-step">
+      <h4>${esc(lab.name)}${lab.unit ? ` <span class="muted" style="font-weight:400;font-size:14px">${esc(lab.unit)}</span>` : ''}</h4>
+      ${labItems(lab).map(o => optRow(o, -10)).join('')}</div>`).join('')}
+
+    <div class="savebar">
+      <button class="btn" id="saveCfg">Spara inställningar</button>
+      <label class="flagtoggle"><input type="checkbox" id="recalc" checked> Räkna om alla patienter</label>
+      <button class="btn ghost small" id="resetCfg">Återställ standardvärden</button>
+      <span class="spacer"></span><button class="btn ghost small" id="toStaff">Till patientkön</button>
+    </div>`,
+    { title:'PrioSift Inställningar', icon:'personal', dept:false });
+
+  document.querySelectorAll('[data-pts]').forEach(r => r.oninput = () => {
+    const id = r.dataset.pts, n = Number(r.value);
+    cfgDirty.overrides[id] = { ...(cfgDirty.overrides[id] || {}), points:n };
+    $('badge_' + id).textContent = (r.min === '-10' && n > 0 ? '+' : '') + n;
+  });
+  document.querySelectorAll('[data-flag]').forEach(c => c.onchange = () => {
+    cfgDirty.overrides[c.dataset.flag] = { ...(cfgDirty.overrides[c.dataset.flag] || {}), redFlag:c.checked };
+  });
+  document.querySelectorAll('[data-thr]').forEach(r => r.oninput = () => {
+    cfgDirty.thresholds = { ...t, ...(cfgDirty.thresholds || {}), [r.dataset.thr]: Number(r.value) };
+    Object.assign(t, cfgDirty.thresholds);
+    $('thr_' + r.dataset.thr).textContent = r.value + ' p';
+    $('barWrap').innerHTML = bar();
+  });
+  $('saveCfg').onclick = async () => {
+    const all = [...FORM.steps.flatMap(stepOptions), ...FORM.labs.flatMap(labItems)];
+    const overrides = {};
+    for (const o of all) overrides[o.id] = {
+      points: cfgDirty.overrides[o.id]?.points ?? optCfg(o).points,
+      redFlag: cfgDirty.overrides[o.id]?.redFlag ?? optCfg(o).redFlag };
+    const r = await api('/api/config', { method:'PUT',
+      body: { overrides, thresholds: cfgDirty.thresholds || BOOT.thresholds, recalculate: $('recalc').checked } });
+    BOOT.overrides = r.overrides; BOOT.thresholds = r.thresholds;
+    cfgDirty = { overrides:{}, thresholds:null };
+    toast('Inställningarna är sparade'); viewSettings();
+  };
+  $('resetCfg').onclick = async () => {
+    const overrides = {};
+    for (const o of [...FORM.steps.flatMap(stepOptions), ...FORM.labs.flatMap(labItems)])
+      overrides[o.id] = { points: o.points ?? 0, redFlag: !!o.redFlag };
+    const r = await api('/api/config', { method:'PUT',
+      body: { overrides, thresholds: FORM.defaultThresholds, recalculate: true } });
+    BOOT.overrides = r.overrides; BOOT.thresholds = r.thresholds;
+    cfgDirty = { overrides:{}, thresholds:null };
+    toast('Standardvärden återställda'); viewSettings();
+  };
+  $('toStaff').onclick = () => go('/personal');
+}
+
+/* ==========================================================================
+   Start
+   ========================================================================== */
+async function reloadBoot() {
+  BOOT = await api('/api/bootstrap');
+  FORM = BOOT.form;
+  const saved = localStorage.getItem('ps_dept');
+  const active = BOOT.departments.filter(d => d.active);
+  DEPT = (active.find(d => d.id === saved) || active[0] || BOOT.departments[0] || {}).id;
+}
+if (!window.PRIOSIFT_DEMO) reloadBoot().then(route).catch(() => renderLanding());
+
+/* ==========================================================================
+   Demoläge – samma gränssnitt som serverversionen, men all data ligger i
+   webbläsaren (och i artefaktens delade lagring när den är tillgänglig).
+   Ingår ALDRIG i serverbygget.
+   ========================================================================== */
+
+const DEMO_USERS = [
+  { username:'fredrik', password:'Tallmyr-Vinter-Kajak-7412', name:'Fredrik Persson', role:'owner' },
+  { username:'anders',  password:'Fjallrav-Segel-Bryggan-2856', name:'Anders (vän)', role:'staff' },
+  { username:'johan',   password:'Havsvik-Lykta-Granris-9037', name:'Johan (vän)', role:'staff' }
+];
+
+let DB = null, SESSION = null;
+
+const freshDb = () => ({
+  departments: [
+    { id:'demo', name:'Demo akutmottagning', city:'Stockholm', tier:2, annual_volume:38000,
+      contact:'demo@priosift.com', active:1, created_at:new Date().toISOString() },
+    { id:'sahlgrenska', name:'Akuten Sahlgrenska', city:'Göteborg', tier:4, annual_volume:82000,
+      contact:'akuten@sahlgrenska.se', active:1, created_at:new Date().toISOString() }
+  ],
+  patients: [], overrides: {}, thresholds: null, tiers: null, counter: {}
+});
+
+async function demoLoad() {
+  // Demon sparar ENDAST i den egna webbläsaren. Sidan har medvetet inte rätt att
+  // publicera om sig själv – annars kan en gammal öppen flik skriva tillbaka en
+  // äldre version över den som ligger uppe.
+  let loaded = null;
+  try { loaded = JSON.parse(localStorage.getItem('priosift-demo') || 'null'); } catch (e) {}
+  DB = loaded || freshDb();
+  DB.thresholds ||= null; DB.tiers ||= null; DB.counter ||= {};
+  // poängmotorn i app.js läser FORM och BOOT – sätt dem innan något beräknas
+  FORM = DEMO_FORM;
+  BOOT = { user:null, form:DEMO_FORM, overrides:DB.overrides,
+           thresholds: DB.thresholds || DEMO_FORM.defaultThresholds,
+           tiers: DB.tiers || DEMO_FORM.tiers, departments: DB.departments };
+}
+async function demoSave() {
+  try { localStorage.setItem('priosift-demo', JSON.stringify(DB)); } catch (e) {}
+}
+
+const uid = () => Math.random().toString(36).slice(2, 10);
+function demoNumber(deptId) {
+  const day = new Date().toISOString().slice(0, 10);
+  const key = deptId + day;
+  DB.counter[key] = (DB.counter[key] || 0) + 1;
+  const letters = 'ABCDEFGHJKLMNPQRSTUVXYZ';
+  return `${letters[(new Date().getDate() - 1) % letters.length]}-${100 + DB.counter[key]}`;
+}
+const err = (status, message) => { throw Object.assign(new Error(message), { status }); };
+
+/* --- ruttning som speglar serverns API --- */
+async function demoApi(path, opts = {}) {
+  const [route, query] = path.split('?');
+  const q = new URLSearchParams(query || '');
+  const body = opts.body || {};
+  const method = opts.method || 'GET';
+  const parts = route.split('/').filter(Boolean);      // ['api','patients','id']
+
+  if (route === '/api/login') {
+    const u = DEMO_USERS.find(x => x.username === String(body.username || '').toLowerCase().trim()
+                                && x.password === body.password);
+    if (!u) err(401, 'Fel användarnamn eller lösenord');
+    SESSION = { username:u.username, name:u.name, role:u.role };
+    sessionStorage.setItem('priosift-demo-user', u.username);
+    return { user: SESSION };
+  }
+  if (route === '/api/logout') { SESSION = null; sessionStorage.removeItem('priosift-demo-user'); return { ok:true }; }
+  if (!SESSION) err(401, 'Ej inloggad');
+  const owner = SESSION.role === 'owner';
+  const needOwner = () => { if (!owner) err(403, 'Endast administratör kan ändra detta'); };
+
+  if (route === '/api/me') return { user: SESSION };
+
+  if (route === '/api/bootstrap') return {
+    user: SESSION, form: DEMO_FORM,
+    overrides: DB.overrides, thresholds: DB.thresholds || DEMO_FORM.defaultThresholds,
+    tiers: DB.tiers || DEMO_FORM.tiers,
+    maxFormScore: maxFormScore(), maxLabScore: maxLabScore(),
+    departments: DB.departments
+  };
+
+  /* --- avdelningar --- */
+  if (route === '/api/departments' && method === 'GET') return { departments: DB.departments };
+  if (route === '/api/departments' && method === 'POST') {
+    needOwner();
+    const id = (body.name || '').toLowerCase().replace(/[^a-z0-9åäö]+/g, '-').replace(/(^-|-$)/g, '').slice(0, 40);
+    if (!id) err(400, 'Namn krävs');
+    if (DB.departments.some(d => d.id === id)) err(409, 'Det finns redan en avdelning med det namnet');
+    const dep = { id, name:body.name, city:body.city || '', tier:Number(body.tier) || 1,
+      annual_volume:Number(body.annualVolume) || 0, contact:body.contact || '',
+      active: body.active === false ? 0 : 1, created_at:new Date().toISOString() };
+    DB.departments.push(dep); await demoSave();
+    return { department: dep };
+  }
+  if (parts[1] === 'departments' && parts[2]) {
+    needOwner();
+    const dep = DB.departments.find(d => d.id === decodeURIComponent(parts[2]));
+    if (!dep) err(404, 'Avdelningen finns inte');
+    if (method === 'PATCH') {
+      Object.assign(dep, { name:body.name ?? dep.name, city:body.city ?? dep.city,
+        tier:Number(body.tier ?? dep.tier), annual_volume:Number(body.annualVolume ?? dep.annual_volume),
+        contact:body.contact ?? dep.contact, active: body.active === undefined ? dep.active : (body.active ? 1 : 0) });
+      await demoSave(); return { department: dep };
+    }
+    if (method === 'DELETE') {
+      DB.patients = DB.patients.filter(p => p.deptId !== dep.id);
+      DB.departments = DB.departments.filter(d => d.id !== dep.id);
+      await demoSave(); return { ok:true };
+    }
+  }
+
+  /* --- patienter --- */
+  if (route === '/api/patients' && method === 'GET') {
+    const dept = q.get('dept') || 'demo';
+    return { patients: DB.patients.filter(p => p.deptId === dept)
+      .sort((a, b) => a.level - b.level || new Date(a.createdAt) - new Date(b.createdAt)) };
+  }
+  if (route === '/api/patients' && method === 'POST') {
+    const dept = body.deptId || 'demo';
+    const ev = evaluate(body.answers || {}, {});
+    const desk = suggestDesk(body.answers || {});
+    const p = { id:uid(), deptId:dept, number:demoNumber(dept), createdAt:new Date().toISOString(),
+      namn:body.namn || '', pnr:body.pnr || '', answers:body.answers || {}, labs:{},
+      formScore:ev.formScore, labScore:ev.labScore, score:ev.score, maxScore:ev.maxScore,
+      level:ev.level, autoLevel:ev.level, redFlags:ev.redFlags,
+      breakdown:ev.breakdown, labBreakdown:ev.labBreakdown,
+      desk, autoDesk:desk, status:'vantar', decision:'', handledBy:'', staffNote:'',
+      labsBy:'', labsAt:'', triagedAt:'', closedAt:'' };
+    DB.patients.push(p); await demoSave();
+    return { id:p.id, number:p.number, level:p.level,
+      levelInfo: DEMO_FORM.levels.find(l => l.id === p.level), desk,
+      deskName: DEMO_FORM.desks.find(d => d.id === desk).name };
+  }
+  if (parts[1] === 'patients' && parts[2]) {
+    const p = DB.patients.find(x => x.id === decodeURIComponent(parts[2]));
+    if (!p) err(404, 'Patienten finns inte');
+    if (method === 'GET') return p;
+    if (method === 'PATCH') {
+      if (body.labs !== undefined) {
+        p.labs = body.labs;
+        const ev = evaluate(p.answers, p.labs);
+        Object.assign(p, { formScore:ev.formScore, labScore:ev.labScore, score:ev.score, maxScore:ev.maxScore,
+          level:ev.level, autoLevel:ev.level, redFlags:ev.redFlags,
+          breakdown:ev.breakdown, labBreakdown:ev.labBreakdown,
+          labsBy: body.labsBy ?? p.labsBy, labsAt:new Date().toISOString() });
+      }
+      for (const k of ['level','desk','decision','handledBy','staffNote']) if (body[k] !== undefined) p[k] = body[k];
+      if (body.status !== undefined) {
+        p.status = body.status;
+        if (body.status === 'triagerad' && !p.triagedAt) p.triagedAt = new Date().toISOString();
+        if (body.status === 'klar') p.closedAt = new Date().toISOString();
+      }
+      await demoSave(); return p;
+    }
+    if (method === 'DELETE') {
+      DB.patients = DB.patients.filter(x => x.id !== p.id);
+      await demoSave(); return { ok:true };
+    }
+  }
+
+  /* --- väntrum --- */
+  if (route === '/api/waiting') {
+    const dept = q.get('dept') || 'demo';
+    const rows = DB.patients.filter(p => p.deptId === dept && p.status !== 'klar')
+      .sort((a, b) => a.level - b.level || new Date(a.createdAt) - new Date(b.createdAt));
+    return { updatedAt:new Date().toISOString(), queue: rows.map((p, i) => ({
+      number:p.number, level:p.level, desk:p.desk, place:i + 1,
+      waitedMinutes: Math.floor((Date.now() - new Date(p.createdAt)) / 60000), status:p.status })) };
+  }
+
+  /* --- inställningar --- */
+  if (route === '/api/config' && method === 'PUT') {
+    needOwner();
+    if (body.overrides) DB.overrides = body.overrides;
+    if (body.thresholds) DB.thresholds = body.thresholds;
+    if (body.tiers) DB.tiers = body.tiers;
+    BOOT.overrides = DB.overrides;
+    BOOT.thresholds = DB.thresholds || DEMO_FORM.defaultThresholds;
+    if (body.recalculate) for (const p of DB.patients) {
+      const ev = evaluate(p.answers, p.labs);
+      Object.assign(p, { formScore:ev.formScore, labScore:ev.labScore, score:ev.score, maxScore:ev.maxScore,
+        level:ev.level, autoLevel:ev.level, redFlags:ev.redFlags,
+        breakdown:ev.breakdown, labBreakdown:ev.labBreakdown });
+    }
+    await demoSave();
+    return { ok:true, overrides:DB.overrides, thresholds:DB.thresholds || DEMO_FORM.defaultThresholds,
+      tiers:DB.tiers || DEMO_FORM.tiers, maxFormScore:maxFormScore(), maxLabScore:maxLabScore() };
+  }
+  if (route === '/api/password') return { ok:true };   // demoläge: lösenord kan inte bytas
+
+  /* --- statistik --- */
+  if (route === '/api/stats') {
+    needOwner();
+    const tiers = DB.tiers || DEMO_FORM.tiers;
+    const since = d => Date.now() - d * 864e5;
+    const out = DB.departments.map(dep => {
+      const ps = DB.patients.filter(p => p.deptId === dep.id);
+      const n = d => ps.filter(p => new Date(p.createdAt) > since(d)).length;
+      const tier = tiers.find(t => t.id === dep.tier) || tiers[0];
+      const projected = Math.round(n(30) * 12.17) || dep.annual_volume;
+      const correct = tiers.find(t => t.maxVolume === null || projected < t.maxVolume) || tiers[tiers.length - 1];
+      const triaged = ps.filter(p => p.triagedAt);
+      const levels = {}, desks = {};
+      for (const p of ps) { levels[p.level] = (levels[p.level] || 0) + 1; desks[p.desk] = (desks[p.desk] || 0) + 1; }
+      return { id:dep.id, name:dep.name, city:dep.city, active:!!dep.active, tier:dep.tier,
+        tierName:tier.name, priceMonth:tier.priceMonth, annualVolume:dep.annual_volume,
+        total:ps.length, d1:n(1), d7:n(7), d30:n(30), projectedAnnual:projected,
+        suggestedTier:correct.id, tierMismatch: correct.id !== dep.tier, levels, desks,
+        avgTriageMinutes: triaged.length
+          ? Math.round(triaged.reduce((a, p) => a + (new Date(p.triagedAt) - new Date(p.createdAt)) / 60000, 0) / triaged.length)
+          : null };
+    });
+    const monthly = out.filter(d => d.active).reduce((a, d) => a + d.priceMonth, 0);
+    return { departments:out, tiers, totals:{ monthlyRevenue:monthly, annualRevenue:monthly * 12,
+      patients: out.reduce((a, d) => a + d.total, 0), active: out.filter(d => d.active).length } };
+  }
+
+  err(404, 'Okänd endpoint i demoläget');
+}
+
+/* --- landing/inloggningsskärm (demo + server) --- */
+function renderLanding(message) {
+  document.getElementById('root').innerHTML = `
+    <main style="min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;background:var(--night);padding:24px">
+      <div style="background:var(--surface);border-radius:20px;padding:40px 36px;width:100%;max-width:380px;box-shadow:0 8px 40px rgba(0,0,0,.35)">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px">
+          <div style="width:42px;height:42px;border-radius:10px;background:var(--brand);display:flex;align-items:center;justify-content:center">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 3a8 8 0 100 16A8 8 0 0011 3zm1 3.5v4.8l3 1.7-.75 1.3L10.5 12V6.5H12z" fill="#fff"/></svg>
+          </div>
+          <span style="font-size:22px;font-weight:700;letter-spacing:-.03em;color:var(--ink)">PrioSift</span>
+        </div>
+        <div class="login-error" id="err">${message || ''}</div>
+        <label for="u" style="display:block;font-size:13px;font-weight:600;color:var(--ink-2);margin-bottom:6px">Användarnamn</label>
+        <input id="u" autocapitalize="off" spellcheck="false" autocomplete="username" required
+          style="display:block;width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;font-size:15px;margin-bottom:16px;background:var(--surface-2)">
+        <label for="p" style="display:block;font-size:13px;font-weight:600;color:var(--ink-2);margin-bottom:6px">Lösenord</label>
+        <input id="p" type="password" autocomplete="current-password" required
+          style="display:block;width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;font-size:15px;margin-bottom:24px;background:var(--surface-2)">
+        <button class="btn wide" type="submit" id="loginBtn" style="width:100%">Logga in</button>
+        <p style="font-size:12px;color:var(--ink-3);margin-top:20px;text-align:center;line-height:1.5">PrioSift är ett beslutsstöd och ersätter inte klinisk bedömning.</p>
+      </div>
+    </main>`;
+
+  document.getElementById('loginBtn').addEventListener('click', async () => {
+    const btn = document.getElementById('loginBtn');
+    const errEl = document.getElementById('err');
+    btn.disabled = true; btn.textContent = 'Loggar in…';
+    errEl.textContent = '';
+    try {
+      await api('/api/login', { method:'POST', body: JSON.stringify({ username: document.getElementById('u').value, password: document.getElementById('p').value }) });
+      await reloadBoot(); route();
+    } catch(e2) {
+      btn.disabled = false; btn.textContent = 'Logga in';
+      errEl.textContent = e2.message;
+    }
+  });
+  document.getElementById('u').addEventListener('keydown', e => e.key === 'Enter' && document.getElementById('loginBtn').click());
+  document.getElementById('p').addEventListener('keydown', e => e.key === 'Enter' && document.getElementById('loginBtn').click());
+}
+/* ==========================================================================
+   COSMIC PREVIEW
+   ========================================================================== */
+async function viewCosmicPreview(patientId) {
+  if (!patientId) {
+    // show picker from the current dept
+    const r = await api('/api/patients?dept=' + DEPT);
+    const patients = r.filter(p => p.status !== 'avslutad');
+    shell(`<div class="cosmic-preview-wrap">
+      <h2>Cosmic-förhandsvisning</h2>
+      <p class="muted">Välj en patient för att se hur datan ser ut inför överföring till Cosmic.</p>
+      <div style="margin-top:24px;display:flex;flex-direction:column;gap:10px">
+        ${patients.map(p => `<button class="btn ghost" style="text-align:left;padding:14px 18px;border-radius:12px;border:1px solid var(--line)" data-id="${p.id}">
+          <strong>${esc(p.number)}</strong> ${p.namn ? '– ' + esc(p.namn) : ''}
+          <span class="muted" style="font-size:13px;margin-left:8px">Nivå ${p.level} · ${esc(p.desk)}</span>
+        </button>`).join('')}
+        ${!patients.length ? '<p class="muted">Inga aktiva patienter att visa.</p>' : ''}
+      </div>
+    </div>`, { title:'Cosmic Preview', icon:'patient' });
+    document.querySelectorAll('[data-id]').forEach(btn =>
+      btn.onclick = () => go('/cosmic-preview/' + btn.dataset.id));
+    return;
+  }
+
+  // Show preview for specific patient
+  try {
+    const data = await api('/api/cosmic/preview/' + patientId);
+    shell(`<div class="cosmic-preview-wrap">
+      <button class="btn ghost small" onclick="go('/cosmic-preview')" style="margin-bottom:20px">← Välj annan patient</button>
+      <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:6px">
+        <h2 style="margin:0">Patient ${esc(data.number)}</h2>
+        ${data.namn ? `<span class="muted">${esc(data.namn)}</span>` : ''}
+        ${data.pnrMasked ? `<span class="muted" style="font-size:13px;font-family:monospace">PNR: ${esc(data.pnrMasked)}</span>` : ''}
+        ${data.patientId ? `<span class="muted" style="font-size:13px;font-family:monospace">ID: ${esc(data.patientId)}</span>` : ''}
+      </div>
+      <p class="muted" style="margin-bottom:20px;font-size:14px">
+        Cosmic-integration: ${data.cosmicEnabled ? '<span style="color:var(--lvl4)">● Aktiv</span>' : '<span style="color:var(--ink-3)">● Ej aktiverad (testläge)</span>'}
+      </p>
+
+      <h3 style="margin:0 0 10px;font-size:16px">Journaltext (narrativ)</h3>
+      <div class="narrative-box">${esc(data.narrativeText)}</div>
+
+      <h3 style="margin:20px 0 10px;font-size:16px">FHIR Bundle (Cambio COS – Transaction Bundle med QuestionnaireResponse + Observations)</h3>
+      <div class="fhir-box">${esc(JSON.stringify(data.fhirBundle, null, 2))}</div>
+      <p class="muted" style="font-size:13px;margin-top:8px">Bundlen innehåller ${data.vitalCount} vitalobservation${data.vitalCount !== 1 ? 'er' : ''} med Cambio COS-profiler.</p>
+
+      ${data.cosmicEnabled ? `
+      <button class="btn" id="pushBtn" style="margin-top:24px">Skicka till Cosmic</button>
+      <div id="pushMsg" style="margin-top:12px"></div>` : `
+      <p class="muted" style="margin-top:20px;font-size:14px;padding:14px;background:var(--surface-2);border-radius:10px">
+        Sätt <code>COSMIC_ENABLED=true</code> och Cosmic API-nycklar i miljövariabler för att aktivera Cosmic-push.
+      </p>`}
+    </div>`, { title:'Cosmic Preview', icon:'patient' });
+
+    if (data.cosmicEnabled) {
+      document.getElementById('pushBtn').onclick = async () => {
+        document.getElementById('pushBtn').disabled = true;
+        document.getElementById('pushMsg').textContent = 'Skickar...';
+        try {
+          const r = await api('/api/cosmic/push/' + patientId, { method:'POST' });
+          document.getElementById('pushMsg').innerHTML = '<span style="color:var(--lvl4)">✓ Skickat till Cambio Cosmic (Bundle-ID: ' + esc(r.bundleId || r.questionnaireId || '–') + ', ' + (r.entriesSent||0) + ' resurser)</span>';
+        } catch(e) {
+          document.getElementById('pushMsg').innerHTML = '<span style="color:var(--lvl1)">Fel: ' + esc(e.message) + '</span>';
+          document.getElementById('pushBtn').disabled = false;
+        }
+      };
+    }
+  } catch(e) {
+    shell('<div class="cosmic-preview-wrap"><p style="color:var(--lvl1)">Fel: ' + esc(e.message) + '</p></div>', { title:'Cosmic Preview', icon:'patient' });
+  }
+}
+
+/* ==========================================================================
+   PRESENTATION (produktdemo)
+   ========================================================================== */
+function viewPresentation() {
+  const SLIDES = [
+    {
+      eyebrow: '01 · Problemet',
+      title: 'Triage tar tid. Patienter väntar.',
+      body: 'På svenska akutmottagningar fastnar patienter i kö redan i väntrummet. Sjuksköterskor gör triagering manuellt – ett arbete som kan automatiseras och standardiseras med modern teknik.'
+    },
+    {
+      eyebrow: '02 · Lösningen',
+      title: 'PrioSift — anamnes i väntrummet.',
+      body: 'Patienten svarar på ett strukturerat formulär på en iPad medan hen väntar. PrioSift samlar in svar på 2–3 minuter och beräknar triageprioritering automatiskt.'
+    },
+    {
+      eyebrow: '03 · Hur det fungerar',
+      title: 'Evidensbaserad poängmodell.',
+      body: 'Varje symptom, varaktighet och vitalparameter ger poäng baserat på klinisk evidens. Systemet beräknar prioritetsnivå (1–4), fördelar till rätt desk (Medicin, Kirurgi, Ortopedi) och flaggar röda flaggor automatiskt.'
+    },
+    {
+      eyebrow: '04 · Integration',
+      title: 'Direkt till Cosmic – inga dubbeldokumentationer.',
+      body: 'Patientdata exporteras som strukturerad FHIR-data till Cambio COSMIC via Cambio Open Services (COS). QuestionnaireResponse och typade Observations skickas i en FHIR Transaction Bundle. Journaltexten skrivs automatiskt på klinisk svenska – inga dubbeldokumentationer.'
+    },
+    {
+      eyebrow: '05 · Intelligens',
+      title: 'Systemet lär sig av er avdelning.',
+      body: 'PrioSift anpassar sig efter era triageresultat. Poängvikter och trösklar kan konfigureras per mottagning. Statistik och utfall används för att kontinuerligt förbättra prioriteringsmodellen.'
+    },
+    {
+      eyebrow: '06 · Säkerhet',
+      title: 'GDPR-säker pseudonymisering.',
+      body: 'Personnummer krypteras med AES-256-GCM och lagras aldrig i klartext. Varje patient får ett pseudonymt patient-ID via HMAC-SHA256. Patientdatalagen och GDPR följs i alla delar.'
+    },
+    {
+      eyebrow: '07 · Partnerprogram',
+      title: 'PrioSift i Cosmics applikationsgalleri.',
+      body: 'Cambio erbjuder ett certifierat partnerprogram för tredjepartsappar i COSMIC. PrioSift kan ansöka om att bli en certifierad integrationspartner och distribueras direkt i COSMIC:s appgalleri – tillgänglig för alla sjukhus och kliniker som kör COSMIC.'
+    },
+    {
+      eyebrow: '08 · Kom igång',
+      title: 'Demo, onboarding och support ingår.',
+      body: 'Vi erbjuder en fullt fungerande demo för er avdelning. Onboarding och utbildning ingår. Kontakta oss för en kostnadsfri genomgång – ni är igång på en dag.'
+    }
+  ];
+
+  let current = 0;
+
+  function render() {
+    const s = SLIDES[current];
+    const dotHtml = SLIDES.map((_, i) =>
+      `<span class="pres-dot ${i === current ? 'active' : ''}" data-i="${i}"></span>`).join('');
+    root().querySelector('#presContent').innerHTML = `
+      <div class="pres-slide">
+        <div class="pres-eyebrow">${esc(s.eyebrow)}</div>
+        <h2 class="pres-title">${esc(s.title)}</h2>
+        <p class="pres-body">${esc(s.body)}</p>
+        <div class="pres-nav">
+          <button class="btn ghost small" id="prevBtn" ${current === 0 ? 'disabled' : ''}>← Föregående</button>
+          <button class="btn small" id="nextBtn" ${current === SLIDES.length - 1 ? 'disabled' : ''}>Nästa →</button>
+          ${dotHtml}
+          <span class="pres-counter">${current + 1} / ${SLIDES.length}</span>
+        </div>
+      </div>`;
+    document.getElementById('prevBtn').onclick = () => { current = Math.max(0, current - 1); render(); };
+    document.getElementById('nextBtn').onclick = () => { current = Math.min(SLIDES.length - 1, current + 1); render(); };
+    document.querySelectorAll('.pres-dot').forEach(d => d.onclick = () => { current = +d.dataset.i; render(); });
+  }
+
+  shell(`<div class="pres-wrap">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px">
+      <h1 style="margin:0;font-size:22px">PrioSift – Produktpresentation</h1>
+    </div>
+    <div id="presContent"></div>
+  </div>`, { title:'Presentation', icon:'installningar' });
+
+  render();
+}
+
+
+
+/* --- start --- */
+if (window.PRIOSIFT_DEMO) {
+(async () => {
+  await demoLoad();
+  const saved = sessionStorage.getItem('priosift-demo-user');
+  const u = DEMO_USERS.find(x => x.username === saved);
+  if (u) { SESSION = { username:u.username, name:u.name, role:u.role }; await reloadBoot(); route(); }
+  else renderLanding();
+})();
+}
+
+</script>
+
+</body></html>

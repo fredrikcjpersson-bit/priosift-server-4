@@ -1,0 +1,1116 @@
+{
+  "version": 4,
+  "painSymptoms": [
+    "brostsmarta",
+    "buksmarta",
+    "ryggsmarta",
+    "huvudvark"
+  ],
+  "steps": [
+    {
+      "id": "huvudbesvar",
+      "nr": 1,
+      "type": "multi",
+      "scored": true,
+      "minChoices": 1,
+      "title": "Vad söker du för idag?",
+      "hint": "Välj allt som stämmer – du kan välja flera.",
+      "options": [
+        {
+          "id": "brostsmarta",
+          "emoji": "❤️",
+          "label": "Bröstsmärta",
+          "points": 8,
+          "desk": "medicin"
+        },
+        {
+          "id": "buksmarta",
+          "emoji": "🤢",
+          "label": "Buk- eller flanksmärta",
+          "points": 6,
+          "desk": "kirurgi"
+        },
+        {
+          "id": "ryggsmarta",
+          "emoji": "🦴",
+          "label": "Ryggsmärta",
+          "points": 5,
+          "desk": "ortoped"
+        },
+        {
+          "id": "skada_arm_ben",
+          "emoji": "🩹",
+          "label": "Skada på arm eller ben",
+          "points": 5,
+          "desk": "ortoped",
+          "trauma": true
+        },
+        {
+          "id": "andning",
+          "emoji": "💨",
+          "label": "Andningsbesvär",
+          "points": 8,
+          "desk": "medicin"
+        },
+        {
+          "id": "huvudvark",
+          "emoji": "🧠",
+          "label": "Huvudvärk",
+          "points": 5,
+          "desk": "medicin"
+        },
+        {
+          "id": "yrsel",
+          "emoji": "🔄",
+          "label": "Yrsel, svimning eller hjärtklappning",
+          "points": 6,
+          "desk": "medicin"
+        },
+        {
+          "id": "neurologi",
+          "emoji": "⚡",
+          "label": "Svaghet, domning eller talproblem",
+          "points": 9,
+          "redFlag": true,
+          "desk": "medicin"
+        },
+        {
+          "id": "feber",
+          "emoji": "🌡️",
+          "label": "Feber eller sjukdomskänsla",
+          "points": 4,
+          "desk": "medicin"
+        },
+        {
+          "id": "medvetande",
+          "emoji": "😵",
+          "label": "Kramper, förvirring eller medvetslöshet",
+          "points": 9,
+          "redFlag": true,
+          "desk": "medicin"
+        },
+        {
+          "id": "urin",
+          "emoji": "💧",
+          "label": "Urinbesvär, blod i urin eller urinstopp",
+          "points": 3,
+          "desk": "kirurgi"
+        },
+        {
+          "id": "underliv",
+          "emoji": "⚠️",
+          "label": "Pungbesvär eller besvär i underlivet",
+          "points": 5,
+          "desk": "kirurgi"
+        },
+        {
+          "id": "blodning",
+          "emoji": "🩸",
+          "label": "Blödning från mage/tarm eller blodkräkning",
+          "points": 8,
+          "redFlag": true,
+          "desk": "kirurgi"
+        },
+        {
+          "id": "forgiftning",
+          "emoji": "💊",
+          "label": "Förgiftning eller överdos",
+          "points": 8,
+          "redFlag": true,
+          "desk": "medicin"
+        },
+        {
+          "id": "syn",
+          "emoji": "👁️",
+          "label": "Synpåverkan",
+          "points": 6,
+          "desk": "medicin"
+        },
+        {
+          "id": "annat",
+          "emoji": "❓",
+          "label": "Annat / vet inte",
+          "points": 3,
+          "desk": "medicin"
+        }
+      ]
+    },
+    {
+      "id": "smarta",
+      "nr": 2,
+      "type": "scale",
+      "scored": true,
+      "title": "Hur ont har du just nu?",
+      "titleAlt": "Hur besvärad är du just nu?",
+      "hint": "0 = inga besvär · 5 = måttligt · 7–8 = benbrott · 9–10 = outhärdligt",
+      "hintAlt": "0 = inga besvär · 5 = måttligt besvärad · 9–10 = värsta tänkbara",
+      "options": [
+        {
+          "id": "nrs0",
+          "label": "0",
+          "points": 0
+        },
+        {
+          "id": "nrs1",
+          "label": "1",
+          "points": 1
+        },
+        {
+          "id": "nrs2",
+          "label": "2",
+          "points": 1
+        },
+        {
+          "id": "nrs3",
+          "label": "3",
+          "points": 2
+        },
+        {
+          "id": "nrs4",
+          "label": "4",
+          "points": 3
+        },
+        {
+          "id": "nrs5",
+          "label": "5",
+          "points": 4
+        },
+        {
+          "id": "nrs6",
+          "label": "6",
+          "points": 5
+        },
+        {
+          "id": "nrs7",
+          "label": "7",
+          "points": 7
+        },
+        {
+          "id": "nrs8",
+          "label": "8",
+          "points": 8
+        },
+        {
+          "id": "nrs9",
+          "label": "9",
+          "points": 9
+        },
+        {
+          "id": "nrs10",
+          "label": "10",
+          "points": 10
+        }
+      ]
+    },
+    {
+      "id": "varaktighet",
+      "nr": 3,
+      "type": "single",
+      "scored": true,
+      "title": "Hur länge har du haft besvären?",
+      "options": [
+        {
+          "id": "under1h",
+          "emoji": "⚡",
+          "label": "Mindre än 1 timme",
+          "points": 6
+        },
+        {
+          "id": "1_6h",
+          "label": "1–6 timmar",
+          "points": 5
+        },
+        {
+          "id": "6_24h",
+          "label": "6–24 timmar",
+          "points": 4
+        },
+        {
+          "id": "1_3d",
+          "label": "1–3 dagar",
+          "points": 3
+        },
+        {
+          "id": "3_7d",
+          "label": "3–7 dagar",
+          "points": 2
+        },
+        {
+          "id": "over1v",
+          "label": "Mer än en vecka",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "id": "debut",
+      "nr": "4a",
+      "type": "single",
+      "scored": true,
+      "title": "Hur började besvären?",
+      "options": [
+        {
+          "id": "debut_plotsligt",
+          "emoji": "⚡",
+          "label": "Kom plötsligt – som ett slag",
+          "points": 8
+        },
+        {
+          "id": "debut_successivt",
+          "label": "Kom successivt, under några timmar",
+          "points": 4
+        },
+        {
+          "id": "debut_smygande",
+          "label": "Kom smygande, under dagar eller längre",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "id": "forlopp",
+      "nr": "4b",
+      "type": "single",
+      "scored": true,
+      "title": "Hur har besvären förändrats sedan de började?",
+      "options": [
+        {
+          "id": "snabbt_samre",
+          "emoji": "📈",
+          "label": "Har blivit snabbt sämre",
+          "points": 7
+        },
+        {
+          "id": "gradvis",
+          "label": "Tilltagit gradvis",
+          "points": 3
+        },
+        {
+          "id": "stabilt",
+          "label": "Ungefär likadant hela tiden",
+          "points": 2
+        },
+        {
+          "id": "vagor",
+          "label": "Kommer och går i vågor",
+          "points": 2
+        },
+        {
+          "id": "battre",
+          "label": "Blivit bättre sedan det började",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "id": "samtidiga",
+      "nr": 5,
+      "type": "multi",
+      "scored": true,
+      "noneOption": "sym_inga",
+      "columns": true,
+      "title": "Har du några andra symtom samtidigt?",
+      "hint": "Välj allt som stämmer.",
+      "options": [
+        {
+          "id": "sym_inga",
+          "label": "Inga andra symtom",
+          "points": 0
+        },
+        {
+          "id": "sym_illamaende",
+          "label": "Illamående",
+          "points": 2
+        },
+        {
+          "id": "sym_krakningar",
+          "label": "Kräkningar",
+          "points": 3
+        },
+        {
+          "id": "sym_kallsvett",
+          "label": "Kallsvettning",
+          "points": 5
+        },
+        {
+          "id": "sym_andnod",
+          "label": "Andnöd",
+          "points": 5
+        },
+        {
+          "id": "sym_feber",
+          "label": "Feber eller frossa",
+          "points": 3
+        },
+        {
+          "id": "sym_yrsel",
+          "label": "Yrsel",
+          "points": 3
+        },
+        {
+          "id": "sym_svimning",
+          "label": "Svimningskänsla",
+          "points": 4
+        },
+        {
+          "id": "sym_hjartklappning",
+          "label": "Hjärtklappning",
+          "points": 3
+        },
+        {
+          "id": "sym_utstralning",
+          "label": "Smärta som strålar ut i arm, hals eller käke",
+          "points": 6
+        },
+        {
+          "id": "sym_huvudvark",
+          "label": "Huvudvärk",
+          "points": 2
+        },
+        {
+          "id": "sym_nackstelhet",
+          "label": "Nackstelhet",
+          "points": 6,
+          "redFlag": true
+        },
+        {
+          "id": "sym_synrubbning",
+          "label": "Synrubbning",
+          "points": 4
+        },
+        {
+          "id": "sym_talsvarighet",
+          "label": "Svårt att prata eller hitta ord",
+          "points": 8,
+          "redFlag": true
+        },
+        {
+          "id": "sym_domningar",
+          "label": "Domningar eller svaghet i arm eller ben",
+          "points": 7,
+          "redFlag": true
+        },
+        {
+          "id": "sym_diarre",
+          "label": "Diarré",
+          "points": 2
+        },
+        {
+          "id": "sym_forstoppning",
+          "label": "Förstoppning",
+          "points": 1
+        },
+        {
+          "id": "sym_blod_avforing",
+          "label": "Blod i avföringen",
+          "points": 5
+        },
+        {
+          "id": "sym_blod_urin",
+          "label": "Blod i urinen eller urinträngningar",
+          "points": 3
+        },
+        {
+          "id": "sym_svullnad_ben",
+          "label": "Svullnad i ett ben",
+          "points": 5
+        },
+        {
+          "id": "sym_utslag",
+          "label": "Hudutslag",
+          "points": 2
+        },
+        {
+          "id": "sym_viktnedgang",
+          "label": "Ofrivillig viktnedgång",
+          "points": 2
+        },
+        {
+          "id": "sym_oro",
+          "label": "Oro eller ångest",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "id": "sjukdomar",
+      "nr": 6,
+      "type": "multi",
+      "scored": true,
+      "noneOption": "inga_sjukdomar",
+      "columns": true,
+      "title": "Har du något av detta sedan tidigare?",
+      "hint": "Välj allt som stämmer.",
+      "options": [
+        {
+          "id": "inga_sjukdomar",
+          "label": "Inga kända sjukdomar",
+          "points": 0
+        },
+        {
+          "id": "hjarta",
+          "label": "Hjärtsjukdom eller kärlkramp",
+          "points": 3
+        },
+        {
+          "id": "blodtryck",
+          "label": "Högt blodtryck",
+          "points": 1
+        },
+        {
+          "id": "diabetes",
+          "label": "Diabetes",
+          "points": 2
+        },
+        {
+          "id": "kol_astma",
+          "label": "KOL eller astma",
+          "points": 2
+        },
+        {
+          "id": "stroke",
+          "label": "Stroke eller TIA",
+          "points": 3
+        },
+        {
+          "id": "epilepsi",
+          "label": "Epilepsi",
+          "points": 2
+        },
+        {
+          "id": "cancer",
+          "label": "Cancer",
+          "points": 2
+        },
+        {
+          "id": "lever_njure",
+          "label": "Lever- eller njursjukdom",
+          "points": 2
+        },
+        {
+          "id": "psykisk",
+          "label": "Psykisk sjukdom",
+          "points": 1
+        },
+        {
+          "id": "blodpropp",
+          "label": "Blodpropp (DVT eller lungemboli)",
+          "points": 3
+        },
+        {
+          "id": "nyopererad",
+          "emoji": "⚠️",
+          "label": "Opererad de senaste 4 veckorna",
+          "points": 5,
+          "redFlag": true
+        },
+        {
+          "id": "sjukhusvardad",
+          "label": "Vårdad på sjukhus de senaste 4 veckorna",
+          "points": 3
+        }
+      ]
+    },
+    {
+      "id": "lakemedel",
+      "nr": "6b",
+      "type": "multi",
+      "scored": true,
+      "noneOption": "inga_lakemedel",
+      "columns": true,
+      "title": "Tar du något av dessa läkemedel?",
+      "hint": "Välj allt som stämmer. Utifrån dina svar visas troliga läkemedel först.",
+      "options": [
+        {
+          "id": "inga_lakemedel",
+          "label": "Inga fasta läkemedel",
+          "points": 0
+        },
+        {
+          "id": "blodfortunnande",
+          "emoji": "🩸",
+          "label": "Blodförtunnande (Waran, Xarelto, Pradaxa, Trombyl)",
+          "points": 3,
+          "for": [
+            "blodpropp",
+            "hjarta",
+            "stroke"
+          ]
+        },
+        {
+          "id": "diabetesmedicin",
+          "emoji": "💉",
+          "label": "Insulin eller tabletter mot diabetes",
+          "points": 2,
+          "for": [
+            "diabetes"
+          ]
+        },
+        {
+          "id": "kortison",
+          "label": "Kortison eller immunhämmande",
+          "points": 2,
+          "for": [
+            "kol_astma",
+            "cancer"
+          ]
+        },
+        {
+          "id": "epilepsimedicin",
+          "label": "Epilepsimedicin",
+          "points": 1,
+          "for": [
+            "epilepsi"
+          ]
+        },
+        {
+          "id": "psykofarmaka",
+          "label": "Psykofarmaka eller antidepressiva",
+          "points": 1,
+          "for": [
+            "psykisk"
+          ]
+        },
+        {
+          "id": "blodtrycksmedicin",
+          "label": "Blodtrycksmedicin eller betablockerare",
+          "points": 1,
+          "for": [
+            "blodtryck",
+            "hjarta"
+          ]
+        },
+        {
+          "id": "inhalator",
+          "label": "Inhalator mot astma eller KOL",
+          "points": 1,
+          "for": [
+            "kol_astma"
+          ]
+        },
+        {
+          "id": "vattendrivande",
+          "label": "Vattendrivande",
+          "points": 1,
+          "for": [
+            "hjarta",
+            "lever_njure"
+          ]
+        },
+        {
+          "id": "smartstillande",
+          "label": "Starkare smärtstillande (morfin, oxikodon)",
+          "points": 2,
+          "for": [
+            "cancer"
+          ]
+        },
+        {
+          "id": "cellgifter",
+          "label": "Cellgifter eller strålbehandling pågår",
+          "points": 4,
+          "for": [
+            "cancer"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "allergier",
+      "nr": 7,
+      "type": "multi",
+      "scored": true,
+      "noneOption": "inga_allergier",
+      "title": "Har du några läkemedelsallergier?",
+      "options": [
+        {
+          "id": "inga_allergier",
+          "label": "Inga kända läkemedelsallergier",
+          "points": 0
+        },
+        {
+          "id": "penicillin",
+          "label": "Penicillin",
+          "points": 0
+        },
+        {
+          "id": "nsaid",
+          "label": "Diklofenak eller ibuprofen (NSAID)",
+          "points": 0
+        },
+        {
+          "id": "kontrast",
+          "label": "Röntgenkontrastmedel",
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "slutfragor",
+      "nr": 8,
+      "type": "combo",
+      "scored": true,
+      "title": "Två sista frågor",
+      "questions": [
+        {
+          "id": "graviditet",
+          "title": "Kan du vara gravid?",
+          "options": [
+            {
+              "id": "grav_ja",
+              "emoji": "⚠️",
+              "label": "Ja",
+              "points": 4,
+              "redFlag": true
+            },
+            {
+              "id": "grav_nej",
+              "label": "Nej",
+              "points": 0
+            }
+          ]
+        },
+        {
+          "id": "rokning",
+          "title": "Röker du?",
+          "options": [
+            {
+              "id": "rok_ja",
+              "label": "Ja",
+              "points": 1
+            },
+            {
+              "id": "rok_tidigare",
+              "label": "Tidigare",
+              "points": 0
+            },
+            {
+              "id": "rok_nej",
+              "label": "Nej",
+              "points": 0
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "labs": [
+    {
+      "id": "bt",
+      "name": "Blodtryck",
+      "unit": "mmHg",
+      "type": "number2",
+      "scoreOn": "sys",
+      "fields": [
+        {
+          "key": "sys",
+          "label": "Systoliskt",
+          "placeholder": "120"
+        },
+        {
+          "key": "dia",
+          "label": "Diastoliskt",
+          "placeholder": "80"
+        }
+      ],
+      "bands": [
+        {
+          "id": "bt_lt90",
+          "label": "Under 90",
+          "lt": 90,
+          "points": 8,
+          "redFlag": true
+        },
+        {
+          "id": "bt_90",
+          "label": "90–99",
+          "lt": 100,
+          "points": 5
+        },
+        {
+          "id": "bt_100",
+          "label": "100–139 (normalt)",
+          "lt": 140,
+          "points": -2
+        },
+        {
+          "id": "bt_140",
+          "label": "140–179",
+          "lt": 180,
+          "points": 1
+        },
+        {
+          "id": "bt_180",
+          "label": "180 och över",
+          "lt": null,
+          "points": 5
+        }
+      ]
+    },
+    {
+      "id": "puls",
+      "name": "Puls",
+      "unit": "slag/min",
+      "type": "number",
+      "placeholder": "72",
+      "bands": [
+        {
+          "id": "puls_lt40",
+          "label": "Under 40",
+          "lt": 40,
+          "points": 8,
+          "redFlag": true
+        },
+        {
+          "id": "puls_40",
+          "label": "40–49",
+          "lt": 50,
+          "points": 3
+        },
+        {
+          "id": "puls_50",
+          "label": "50–99 (normalt)",
+          "lt": 100,
+          "points": -2
+        },
+        {
+          "id": "puls_100",
+          "label": "100–119",
+          "lt": 120,
+          "points": 2
+        },
+        {
+          "id": "puls_120",
+          "label": "120–139",
+          "lt": 140,
+          "points": 5
+        },
+        {
+          "id": "puls_140",
+          "label": "140 och över",
+          "lt": null,
+          "points": 8,
+          "redFlag": true
+        }
+      ]
+    },
+    {
+      "id": "temp",
+      "name": "Feber / temperatur",
+      "unit": "°C",
+      "type": "number",
+      "placeholder": "37,0",
+      "bands": [
+        {
+          "id": "temp_lt35",
+          "label": "Under 35,0",
+          "lt": 35,
+          "points": 6,
+          "redFlag": true
+        },
+        {
+          "id": "temp_35",
+          "label": "35,0–37,9 (normalt)",
+          "lt": 38,
+          "points": -2
+        },
+        {
+          "id": "temp_38",
+          "label": "38,0–38,9",
+          "lt": 39,
+          "points": 2
+        },
+        {
+          "id": "temp_39",
+          "label": "39,0–40,4",
+          "lt": 40.5,
+          "points": 4
+        },
+        {
+          "id": "temp_405",
+          "label": "40,5 och över",
+          "lt": null,
+          "points": 6
+        }
+      ]
+    },
+    {
+      "id": "spo2",
+      "name": "Syremättnad (SpO₂)",
+      "unit": "%",
+      "type": "number",
+      "placeholder": "98",
+      "bands": [
+        {
+          "id": "spo2_lt90",
+          "label": "Under 90",
+          "lt": 90,
+          "points": 8,
+          "redFlag": true
+        },
+        {
+          "id": "spo2_90",
+          "label": "90–93",
+          "lt": 94,
+          "points": 5
+        },
+        {
+          "id": "spo2_94",
+          "label": "94–95",
+          "lt": 96,
+          "points": 2
+        },
+        {
+          "id": "spo2_96",
+          "label": "96 och över (normalt)",
+          "lt": null,
+          "points": -2
+        }
+      ]
+    },
+    {
+      "id": "vas",
+      "name": "Smärtgrad (VAS/NRS)",
+      "unit": "0–10",
+      "type": "number",
+      "placeholder": "4",
+      "hint": "Uppmätt av personal – patientens egen skattning poängsätts separat.",
+      "bands": [
+        {
+          "id": "vas_0",
+          "label": "0–2",
+          "lt": 3,
+          "points": -2
+        },
+        {
+          "id": "vas_3",
+          "label": "3–4",
+          "lt": 5,
+          "points": 0
+        },
+        {
+          "id": "vas_5",
+          "label": "5–6",
+          "lt": 7,
+          "points": 2
+        },
+        {
+          "id": "vas_7",
+          "label": "7–8",
+          "lt": 9,
+          "points": 5
+        },
+        {
+          "id": "vas_9",
+          "label": "9–10",
+          "lt": null,
+          "points": 7
+        }
+      ]
+    },
+    {
+      "id": "urin",
+      "name": "Urinsticka",
+      "type": "multi",
+      "noneOption": "urin_normal",
+      "options": [
+        {
+          "id": "urin_normal",
+          "label": "Normal",
+          "points": -2
+        },
+        {
+          "id": "urin_infektion",
+          "label": "Nitrit och/eller leukocyter",
+          "points": 3
+        },
+        {
+          "id": "urin_blod",
+          "label": "Blod i urinen",
+          "points": 3
+        },
+        {
+          "id": "urin_ketoner",
+          "label": "Ketoner eller glukos",
+          "points": 4
+        },
+        {
+          "id": "urin_grav",
+          "label": "Positivt graviditetstest",
+          "points": 3,
+          "redFlag": true
+        }
+      ]
+    },
+    {
+      "id": "blod",
+      "name": "Blodprover",
+      "type": "multi",
+      "noneOption": "blod_normal",
+      "options": [
+        {
+          "id": "blod_normal",
+          "label": "Inga avvikelser",
+          "points": -3
+        },
+        {
+          "id": "blod_crp",
+          "label": "Förhöjt CRP",
+          "points": 3
+        },
+        {
+          "id": "blod_lpk",
+          "label": "Förhöjda vita blodkroppar",
+          "points": 2
+        },
+        {
+          "id": "blod_hb",
+          "label": "Lågt Hb (anemi)",
+          "points": 3
+        },
+        {
+          "id": "blod_krea",
+          "label": "Njurpåverkan (kreatinin)",
+          "points": 3
+        },
+        {
+          "id": "blod_troponin",
+          "label": "Förhöjt troponin",
+          "points": 8,
+          "redFlag": true
+        },
+        {
+          "id": "blod_laktat",
+          "label": "Laktat 2 eller högre",
+          "points": 6,
+          "redFlag": true
+        },
+        {
+          "id": "blod_glukos",
+          "label": "Avvikande blodsocker",
+          "points": 4
+        }
+      ]
+    },
+    {
+      "id": "ekg",
+      "name": "EKG",
+      "type": "single",
+      "options": [
+        {
+          "id": "ekg_normal",
+          "label": "Normalt",
+          "points": -3
+        },
+        {
+          "id": "ekg_sinustaky",
+          "label": "Sinustakykardi",
+          "points": 2
+        },
+        {
+          "id": "ekg_ff",
+          "label": "Förmaksflimmer eller -fladder",
+          "points": 3
+        },
+        {
+          "id": "ekg_st",
+          "label": "Nytillkomna ST-förändringar",
+          "points": 9,
+          "redFlag": true
+        },
+        {
+          "id": "ekg_annat",
+          "label": "Annan avvikelse",
+          "points": 3
+        }
+      ]
+    }
+  ],
+  "desks": [
+    {
+      "id": "medicin",
+      "name": "Medicin",
+      "color": "#2f7dc4"
+    },
+    {
+      "id": "kirurgi",
+      "name": "Kirurgi",
+      "color": "#8e5bc9"
+    },
+    {
+      "id": "ortoped",
+      "name": "Ortopedi",
+      "color": "#c98a2b"
+    }
+  ],
+  "deskPriority": [
+    "kirurgi",
+    "ortoped",
+    "medicin"
+  ],
+  "levels": [
+    {
+      "id": 1,
+      "name": "Omedelbar",
+      "color": "#c0392b",
+      "patientMessage": "Vi tar hand om dig nu. Gå direkt till receptionen och visa denna skärm.",
+      "staffNote": "Utlöser en notifikation till triagesjuksköterskan i realtid."
+    },
+    {
+      "id": 2,
+      "name": "Brådskande",
+      "color": "#e07b1f",
+      "patientMessage": "Stanna kvar – du kommer att träffa en sjuksköterska inom kort.",
+      "staffNote": "Prioriteras före lägre nivåer."
+    },
+    {
+      "id": 3,
+      "name": "Kan vänta",
+      "color": "#2f7dc4",
+      "patientMessage": "Stanna kvar – du kommer att bli bedömd av sjuksköterska och läkare. Väntetiden kan vara några timmar.",
+      "staffNote": "Ordinarie kö."
+    },
+    {
+      "id": 4,
+      "name": "Lägre prioritet",
+      "color": "#2b8a5a",
+      "patientMessage": "Du kommer att bli bedömd här. Om väntetiden känns lång kan du även vända dig till en närakut – men återvänd hit om besvären förändras.",
+      "staffNote": "Kan hänvisas till närakut vid behov."
+    }
+  ],
+  "defaultThresholds": {
+    "level1": 45,
+    "level2": 30,
+    "level3": 18
+  },
+  "tiers": [
+    {
+      "id": 1,
+      "name": "Nivå 1",
+      "volume": "Under 25 000 patienter/år",
+      "maxVolume": 25000,
+      "priceMonth": 9900
+    },
+    {
+      "id": 2,
+      "name": "Nivå 2",
+      "volume": "25 000–50 000 patienter/år",
+      "maxVolume": 50000,
+      "priceMonth": 16900
+    },
+    {
+      "id": 3,
+      "name": "Nivå 3",
+      "volume": "50 000–75 000 patienter/år",
+      "maxVolume": 75000,
+      "priceMonth": 24900
+    },
+    {
+      "id": 4,
+      "name": "Nivå 4",
+      "volume": "Över 75 000 patienter/år",
+      "maxVolume": null,
+      "priceMonth": 34900
+    }
+  ]
+}
