@@ -1236,8 +1236,31 @@ async function viewAdmin() {
         <input class="field" id="pwCur" type="password" placeholder="Nuvarande lösenord" style="max-width:220px">
         <input class="field" id="pwNew" type="password" placeholder="Nytt lösenord (minst 12 tecken)" style="max-width:260px">
         <button class="btn ghost" id="savePw">Byt lösenord</button></div>
+    </div>
+
+    <div class="panel" style="margin-top:16px;border-color:var(--lvl1)">
+      <h3 style="color:var(--lvl1)">Farlig zon</h3>
+      <div class="row" style="align-items:center;gap:20px;flex-wrap:wrap">
+        <div>
+          <strong style="font-size:15px">Rensa testdata</strong>
+          <p class="muted" style="margin:4px 0 0;font-size:13px">Tar bort alla patienter och nollställer dagsräknarna. Kan inte ångras.</p>
+        </div>
+        <button class="btn danger small" id="resetDataBtn" style="white-space:nowrap">Rensa all patientdata</button>
+      </div>
     </div>`,
     { title:'PrioSift Admin', icon:'admin', dept:false });
+
+  $('resetDataBtn').onclick = async () => {
+    const ok = await confirmDialog('Rensa all patientdata?',
+      'Detta tar bort <strong>alla patienter</strong> och nollställer dagsräknarna. Åtgärden kan inte ångras.',
+      'Rensa allt');
+    if (!ok) return;
+    try {
+      await api('/api/patients/reset', { method: 'DELETE' });
+      toast('All patientdata rensad');
+      viewAdmin();
+    } catch (e) { toast(e.message); }
+  };
 
   $('addDep').onclick = () => depForm(null);
   document.querySelectorAll('[data-edit]').forEach(b => b.onclick = () =>
