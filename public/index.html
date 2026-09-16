@@ -577,9 +577,11 @@ function viewHome() {
    PATIENT
    ========================================================================== */
 let pStage = 'bankid', pIdx = 0, pAnswers = {}, pIdent = null, pIdle = null;
+let pAutoAdvance = null, pSubmitting = false;
 
 function viewPatient() {
   pStage = 'bankid'; pIdx = 0; pAnswers = {}; pIdent = null;
+  clearTimeout(pAutoAdvance); pAutoAdvance = null; pSubmitting = false;
   paintBankid();
 }
 
@@ -701,7 +703,8 @@ function paintForm() {
     } else {
       pAnswers[st.id] = id;
       paintForm();
-      setTimeout(nextStep, 170);
+      clearTimeout(pAutoAdvance);
+      pAutoAdvance = setTimeout(nextStep, 170);
     }
   });
   const back = $('back'); if (back) back.onclick = () => { pIdx--; paintForm(); };
@@ -711,6 +714,7 @@ function paintForm() {
 }
 
 function nextStep() {
+  clearTimeout(pAutoAdvance); pAutoAdvance = null;
   const st = FORM.steps[pIdx];
   if (st.type === 'multi' && !(pAnswers[st.id] || []).length) return toast('Välj minst ett alternativ.');
   if ((st.type === 'single' || st.type === 'scale') && !pAnswers[st.id]) return toast('Välj ett alternativ.');
@@ -722,7 +726,9 @@ function nextStep() {
 }
 
 async function submitForm() {
-  const btn = $('next'); btn.disabled = true; btn.textContent = 'Skickar …';
+  if (pSubmitting) return;
+  pSubmitting = true;
+  const btn = $('next'); if (btn) { btn.disabled = true; btn.textContent = 'Skickar …'; }
   try {
     const r = await api('/api/patients', { method:'POST',
       body: { deptId: DEPT, namn: pIdent.namn, pnr: pIdent.pnr, answers: pAnswers } });
@@ -745,8 +751,9 @@ async function submitForm() {
     $('restart').onclick = viewPatient;
     clearTimeout(pIdle); pIdle = setTimeout(viewPatient, 3 * 60 * 1000);
   } catch (e) {
+    pSubmitting = false;
     toast(e.message || 'Kunde inte skicka in svaren');
-    btn.disabled = false; btn.textContent = 'Skicka in mina svar';
+    if (btn) { btn.disabled = false; btn.textContent = 'Skicka in mina svar'; }
   }
 }
 
