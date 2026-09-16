@@ -20,7 +20,7 @@ const rowToDept = d => ({
 router.get('/departments', async (req, res) => {
   try {
     const r = await q('SELECT * FROM departments ORDER BY name');
-    res.json(r.rows.map(rowToDept));
+   res.json({ departments: r.rows.map(rowToDept) });
   } catch (e) {
     console.error(e.message);
     res.status(500).json({ error: 'Serverfel' });
