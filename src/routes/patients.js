@@ -17,7 +17,7 @@ router.get('/patients', async (req, res) => {
     if (dept) { sql += ' WHERE dept_id=$1'; vals.push(dept); }
     sql += ' ORDER BY level ASC, created_at ASC';
     const r = await q(sql, vals);
-res.json({ patients: r.rows.map(rowToPatient) });
+    res.json({ patients: r.rows.map(rowToPatient) });
   } catch (e) {
     console.error(e.message);
     res.status(500).json({ error: 'Serverfel' });
@@ -66,6 +66,18 @@ router.post('/patients', async (req, res) => {
       ]
     );
     res.status(201).json(rowToPatient(r.rows[0]));
+  } catch (e) {
+    console.error(e.message);
+    res.status(500).json({ error: 'Serverfel' });
+  }
+});
+
+/* DELETE /api/patients/reset  — rensar all patientdata och dagsräknare */
+router.delete('/patients/reset', async (req, res) => {
+  try {
+    await q('DELETE FROM patients');
+    await q('DELETE FROM day_counters');
+    res.json({ ok: true });
   } catch (e) {
     console.error(e.message);
     res.status(500).json({ error: 'Serverfel' });
