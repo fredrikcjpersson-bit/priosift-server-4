@@ -730,8 +730,10 @@ async function submitForm() {
   pSubmitting = true;
   const btn = $('next'); if (btn) { btn.disabled = true; btn.textContent = 'Skickar …'; }
   try {
+    const deptId = DEPT || (BOOT?.departments?.find(d => d.active) || BOOT?.departments?.[0])?.id;
+    if (!deptId) { pSubmitting = false; if (btn) { btn.disabled = false; btn.textContent = 'Skicka in mina svar'; } return toast('Ingen avdelning hittades — ladda om sidan.'); }
     const r = await api('/api/patients', { method:'POST',
-      body: { deptId: DEPT, namn: pIdent.namn, pnr: pIdent.pnr, answers: pAnswers } });
+      body: { deptId, namn: pIdent.namn, pnr: pIdent.pnr, answers: pAnswers } });
     const l = levelOf(r.level);
     const deskLabel = deskOf(r.desk)?.name || r.desk || '';
     shell(`
