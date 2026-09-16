@@ -546,7 +546,7 @@ function viewHome() {
     { k:'databas',       href:'/databas',       name:'Patientdatabas', sub:'Sök, analysera och radera' },
     { k:'installningar', href:'/presentation',  name:'Presentation',   sub:'Produktdemo och funktionsöversikt' }
   ];
-  if (isOwner()) tiles.push({ k:'admin', href:'/admin', name:'Admin', sub:'Akutmottagningar och abonnemang' });
+  tiles.push({ k:'admin', href:'/admin', name:'Admin', sub:'Akutmottagningar och abonnemang' });
 
   root().innerHTML = `
     <div class="topbar"><div class="topbar-inner">
@@ -768,7 +768,7 @@ async function viewStaff() {
       ${FORM.desks.map(d => `<button class="tab ${sDesk === d.id ? 'active' : ''}" data-desk="${d.id}">
         ${esc(d.name)} <span class="n">${waiting.filter(p => p.desk === d.id).length}</span></button>`).join('')}
       <span class="spacer"></span>
-      ${isOwner() ? '<button class="tab" id="cfgBtn">Poäng &amp; nivåer</button>' : ''}
+      <button class="tab" id="cfgBtn">Poäng &amp; nivåer</button>
     </div>
     <div class="stats">${FORM.levels.map(l => `
       <div class="stat" style="border-left:6px solid ${l.color}">
@@ -1099,7 +1099,7 @@ async function viewDatabase() {
           <td>${esc({ inlaggning:'Inläggning', 'inväntar_prov':'Inväntar prov', lakare:'Till läkare', hemgang:'Hemgång' }[p.decision] || '–')}</td>
           <td>${p.redFlags.length ? `<span class="chip flag">${p.redFlags.length}</span>` : '–'}</td>
           <td><button class="btn ghost small" data-open="${p.id}">Öppna</button>
-              ${isOwner() ? `<button class="btn danger small" data-del="${p.id}">Radera</button>` : ''}</td>
+              <button class="btn danger small" data-del="${p.id}">Radera</button></td>
         </tr>`;
       }).join('') : '<tr><td colspan="9" class="empty">Inga patienter matchar filtret.</td></tr>'}</tbody>
     </table></div>
@@ -1150,7 +1150,6 @@ async function viewDatabase() {
    ADMIN
    ========================================================================== */
 async function viewAdmin() {
-  if (!isOwner()) return go('/');
   const stats = await api('/api/stats');
   const t = stats.totals;
 
@@ -1306,7 +1305,6 @@ function depForm(dep) {
 let cfgDirty = { overrides:{}, thresholds:null };
 
 function viewSettings() {
-  if (!isOwner()) return go('/');
   const t = { ...BOOT.thresholds, ...(cfgDirty.thresholds || {}) };
   const maxF = maxFormScore(), maxL = maxLabScore(), max = maxF + maxL;
   const val = (o, key) => cfgDirty.overrides[o.id]?.[key] ?? optCfg(o)[key];
@@ -1413,7 +1411,14 @@ async function reloadBoot() {
   const active = BOOT.departments.filter(d => d.active);
   DEPT = (active.find(d => d.id === saved) || active[0] || BOOT.departments[0] || {}).id;
 }
-if (!window.PRIOSIFT_DEMO) reloadBoot().then(route).catch(() => renderLanding());
+if (!window.PRIOSIFT_DEMO) {
+  if (sessionStorage.getItem('ps_gate')) {
+    // Gate redan passerad — kolla om server-session lever
+    reloadBoot().then(route).catch(() => renderLanding());
+  } else {
+    renderGate();
+  }
+}
 
 /* ==========================================================================
    Demoläge – samma gränssnitt som serverversionen, men all data ligger i
@@ -1638,7 +1643,52 @@ async function demoApi(path, opts = {}) {
 }
 
 /* --- landing/inloggningsskärm (demo + server) --- */
-function renderLanding(message) {
+/* renderGate — minimal inloggningsskärm (visas för ej inloggade) */
+function renderGate(message) {
+  document.getElementById('root').innerHTML = `
+    <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--night);padding:24px">
+      <div style="background:var(--surface);border-radius:20px;padding:48px 40px;width:100%;max-width:360px;box-shadow:0 24px 64px rgba(0,0,0,.3)">
+        <div style="display:flex;align-items:center;gap:12px;justify-content:center;margin-bottom:32px">
+          <img src="${icon('patient')}" alt="PrioSift" style="width:44px;height:44px;border-radius:11px">
+          <b style="font-size:22px;letter-spacing:-.03em;color:var(--ink)">PrioSift</b>
+        </div>
+        <h2 style="font-size:21px;text-align:center;margin:0 0 6px;color:var(--ink)">Logga in</h2>
+        <div id="gateErr" style="color:var(--lvl1);font-size:14px;font-weight:600;min-height:22px;text-align:center;margin-bottom:14px">${message || ''}</div>
+        <label style="display:block;font-size:13px;font-weight:600;color:var(--ink-2);margin-bottom:6px">Användarnamn</label>
+        <input id="gu" autocapitalize="off" spellcheck="false" autocomplete="username"
+          style="display:block;width:100%;padding:11px 14px;border:1.5px solid var(--line);border-radius:10px;font-size:15px;margin-bottom:14px;background:var(--surface-2)">
+        <label style="display:block;font-size:13px;font-weight:600;color:var(--ink-2);margin-bottom:6px">Lösenord</label>
+        <input id="gp" type="password" autocomplete="current-password"
+          style="display:block;width:100%;padding:11px 14px;border:1.5px solid var(--line);border-radius:10px;font-size:15px;margin-bottom:20px">
+        <button class="btn wide" id="gateBtn">Logga in</button>
+      </div>
+    </div>`;
+
+  const doLogin = async () => {
+    const btn = document.getElementById('gateBtn');
+    const err = document.getElementById('gateErr');
+    btn.disabled = true; btn.textContent = 'Loggar in…'; err.textContent = '';
+    try {
+      await api('/api/login', { method:'POST', body: { username: document.getElementById('gu').value, password: document.getElementById('gp').value } });
+      await reloadBoot();
+      sessionStorage.setItem('ps_gate', '1');
+      renderLanding();
+    } catch(e) {
+      btn.disabled = false; btn.textContent = 'Logga in';
+      err.textContent = e.message || 'Felaktigt användarnamn eller lösenord';
+    }
+  };
+  document.getElementById('gateBtn').addEventListener('click', doLogin);
+  document.getElementById('gu').addEventListener('keydown', e => e.key === 'Enter' && document.getElementById('gateBtn').click());
+  document.getElementById('gp').addEventListener('keydown', e => e.key === 'Enter' && document.getElementById('gateBtn').click());
+}
+
+/* renderLanding — startsida för inloggade (marknadsföring + navigation) */
+function renderLanding() {
+  // Demo-läge: visa inloggningsformulär om SESSION saknas
+  if (window.PRIOSIFT_DEMO && !SESSION) { renderGate(); return; }
+
+  const userName = BOOT?.user?.name || '';
   document.getElementById('root').innerHTML = `
     <div class="site" style="--hero-image:url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1400&q=80')">
       <div class="site-hero">
@@ -1677,16 +1727,18 @@ function renderLanding(message) {
       </div>
       <div class="site-login">
         <div style="width:100%;max-width:380px;padding-top:40px">
-          <p class="login-contact">Kontakta oss för en demonstration av tjänsten.</p>
-          <h2 style="font-size:26px;margin-bottom:6px">Logga in</h2>
-          <div class="login-error" id="err" style="margin-bottom:${message ? '16px' : '0'}">${message || ''}</div>
-          <label for="u" style="display:block;font-size:13px;font-weight:600;color:var(--ink-2);margin:22px 0 6px">Användarnamn</label>
-          <input id="u" autocapitalize="off" spellcheck="false" autocomplete="username" required
-            style="display:block;width:100%;padding:11px 14px;border:1.5px solid var(--line);border-radius:10px;font-size:15px;background:var(--surface-2)">
-          <label for="p" style="display:block;font-size:13px;font-weight:600;color:var(--ink-2);margin:16px 0 6px">Lösenord</label>
-          <input id="p" type="password" autocomplete="current-password" required
-            style="display:block;width:100%;padding:11px 14px;border:1.5px solid var(--line);border-radius:10px;font-size:15px">
-          <button class="btn wide" id="loginBtn" style="width:100%;margin-top:22px;padding:14px">Logga in</button>
+          <h2 style="font-size:24px;margin:0 0 8px;color:var(--ink)">Logga in i systemet</h2>
+          <p class="login-contact">PrioSift används idag av akutmottagningar runt om i Sverige. Kontakta oss på <a href="mailto:info@priosift.com">info@priosift.com</a> för att komma igång.</p>
+          <div id="landingErr" class="login-error"></div>
+          <label class="login-card" style="display:block;font-weight:650;font-size:14.5px;margin:0 0 6px">Användarnamn</label>
+          <input id="lu" autocapitalize="off" spellcheck="false" autocomplete="username" class="login-card"
+            style="display:block;width:100%;border:2px solid var(--line);border-radius:12px;padding:13px 14px;font-size:16.5px;background:#fff;margin-bottom:12px">
+          <label style="display:block;font-weight:650;font-size:14.5px;margin:0 0 6px">Lösenord</label>
+          <input id="lp" type="password" autocomplete="current-password"
+            style="display:block;width:100%;border:2px solid var(--line);border-radius:12px;padding:13px 14px;font-size:16.5px;background:#fff;margin-bottom:16px">
+          <button class="btn wide" id="landingBtn">Gå in i systemet</button>
+          <hr style="border:none;border-top:1px solid var(--line);margin:28px 0 20px">
+          <p style="font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);margin:0 0 14px">Bakom tjänsten</p>
           <div class="doctor-cards">
             <div class="doctor-card">
               <div class="doctor-avatar">
@@ -1714,21 +1766,22 @@ function renderLanding(message) {
       </div>
     </div>`;
 
-  document.getElementById('loginBtn').addEventListener('click', async () => {
-    const btn = document.getElementById('loginBtn');
-    const errEl = document.getElementById('err');
-    btn.disabled = true; btn.textContent = 'Loggar in…';
-    errEl.textContent = '';
+  const doLandingLogin = async () => {
+    const btn = document.getElementById('landingBtn');
+    const err = document.getElementById('landingErr');
+    btn.disabled = true; btn.textContent = 'Loggar in…'; err.textContent = '';
     try {
-      await api('/api/login', { method:'POST', body: { username: document.getElementById('u').value, password: document.getElementById('p').value } });
-      await reloadBoot(); route();
-    } catch(e2) {
-      btn.disabled = false; btn.textContent = 'Logga in';
-      errEl.textContent = e2.message;
+      await api('/api/login', { method:'POST', body: { username: document.getElementById('lu').value, password: document.getElementById('lp').value } });
+      await reloadBoot();
+      route();
+    } catch(e) {
+      btn.disabled = false; btn.textContent = 'Gå in i systemet';
+      err.textContent = e.message || 'Felaktigt användarnamn eller lösenord';
     }
-  });
-  document.getElementById('u').addEventListener('keydown', e => e.key === 'Enter' && document.getElementById('loginBtn').click());
-  document.getElementById('p').addEventListener('keydown', e => e.key === 'Enter' && document.getElementById('loginBtn').click());
+  };
+  document.getElementById('landingBtn').addEventListener('click', doLandingLogin);
+  document.getElementById('lu').addEventListener('keydown', e => e.key === 'Enter' && document.getElementById('landingBtn').click());
+  document.getElementById('lp').addEventListener('keydown', e => e.key === 'Enter' && document.getElementById('landingBtn').click());
 }
 /* ==========================================================================
    COSMIC PREVIEW
