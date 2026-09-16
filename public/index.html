@@ -558,7 +558,7 @@ function viewHome() {
       <button class="btn ghost small" id="logoutBtn">Logga ut</button>
     </div></div>
     <main class="home">
-      <div class="wordmark"><img src="${icon('patient')}" alt="">
+      <div class="wordmark" id="homeWordmark" style="cursor:pointer"><img src="${icon('patient')}" alt="">
         <div><h1>PrioSift</h1><p class="tagline">${esc(deptName(DEPT))}</p></div></div>
       <div class="apps">${tiles.map(t => `
         <button class="app-tile" data-go="${t.href}">
@@ -569,6 +569,7 @@ function viewHome() {
     </main>`;
   $('logoutBtn').onclick = async () => { await api('/api/logout', { method:'POST' }); location.href = '/'; };
   $('deptPick').onchange = e => { DEPT = e.target.value; localStorage.setItem('ps_dept', DEPT); route(); };
+  $('homeWordmark').onclick = () => renderLanding();
   document.querySelectorAll('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go));
 }
 
@@ -725,17 +726,18 @@ async function submitForm() {
   try {
     const r = await api('/api/patients', { method:'POST',
       body: { deptId: DEPT, namn: pIdent.namn, pnr: pIdent.pnr, answers: pAnswers } });
-    const l = r.levelInfo;
+    const l = levelOf(r.level);
+    const deskLabel = deskOf(r.desk)?.name || r.desk || '';
     shell(`
       <div class="receipt" style="background:${l.color};margin-top:20px">
         <div class="lvl">Nivå ${l.id} · ${esc(l.name)}</div>
         <h2>Ditt nummer</h2>
         <div class="bignum">${esc(r.number)}</div>
-        <p style="margin-top:18px">${esc(l.patientMessage)}</p>
+        <p style="margin-top:18px">${esc(l.patientMessage || '')}</p>
       </div>
       <div class="panel" style="margin-top:16px">
         <p style="margin:0">Följ ditt nummer på skärmen i väntrummet — där syns inga namn.
-        Du är hänvisad till <strong>${esc(r.deskName)}</strong>.
+        ${deskLabel ? `Du är hänvisad till <strong>${esc(deskLabel)}</strong>.` : ''}
         Blir du sämre medan du väntar, säg till personalen direkt.</p>
       </div>
       <div class="nav"><button class="btn ghost" id="restart" style="flex:1">Klart – lämna till nästa patient</button></div>`,
@@ -1721,6 +1723,13 @@ function renderLanding() {
               </div>
               <p style="margin:0 0 0 32px;font-size:14px;opacity:.75;font-weight:400;line-height:1.5">Poängvikter och trösklar anpassas efter er avdelnings egna utfall över tid.</p>
             </span>
+            <span style="padding:18px 24px;flex-direction:column;align-items:flex-start;gap:6px;border-color:rgba(14,124,134,.55);background:rgba(14,124,134,.12)">
+              <div style="display:flex;align-items:center;gap:12px">
+                <svg width="20" height="20" viewBox="0 0 22 22" fill="none"><path d="M4 11.5l5 5 9-9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="11" cy="11" r="9" stroke="currentColor" stroke-width="1.4" opacity=".45"/></svg>
+                <strong style="font-size:17px">Certifierade av Cambio</strong>
+              </div>
+              <p style="margin:0 0 0 32px;font-size:14px;opacity:.75;font-weight:400;line-height:1.5">Integrerade och certifierade — vi finns i Cambios applikationsgalleri för COSMIC.</p>
+            </span>
           </div>
         </div>
         <footer>PrioSift är ett beslutsstöd och ersätter inte klinisk bedömning.</footer>
@@ -1737,29 +1746,43 @@ function renderLanding() {
           <input id="lp" type="password" autocomplete="current-password"
             style="display:block;width:100%;border:2px solid var(--line);border-radius:12px;padding:13px 14px;font-size:16.5px;background:#fff;margin-bottom:16px">
           <button class="btn wide" id="landingBtn">Gå in i systemet</button>
-          <hr style="border:none;border-top:1px solid var(--line);margin:28px 0 20px">
-          <p style="font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);margin:0 0 14px">Bakom tjänsten</p>
-          <div class="doctor-cards">
-            <div class="doctor-card">
-              <div class="doctor-avatar">
-                <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="10" r="5" stroke="var(--brand)" stroke-width="1.6"/><path d="M4 24c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="var(--brand)" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <div style="margin-top:32px;background:linear-gradient(135deg,var(--brand-soft) 0%,#f0f9fa 100%);border:1px solid rgba(14,124,134,.18);border-radius:18px;padding:24px 22px">
+            <p style="font-size:11px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--brand);margin:0 0 18px">Klinisk expertis bakom systemet</p>
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <div style="display:flex;align-items:center;gap:14px">
+                <div style="width:46px;height:46px;border-radius:50%;background:#fff;border:1.5px solid rgba(14,124,134,.22);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                  <svg width="22" height="22" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="10" r="5" stroke="var(--brand)" stroke-width="1.6"/><path d="M4 24c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="var(--brand)" stroke-width="1.6" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <p style="margin:0 0 2px;font-size:14px;font-weight:700;color:var(--ink)">Dr. Anna Lindqvist</p>
+                  <p style="margin:0;font-size:12.5px;color:var(--ink-2)">Överläkare · Akutmedicin, Karolinska</p>
+                </div>
+                <span style="margin-left:auto;font-size:11px;font-weight:700;background:var(--brand-soft);color:var(--brand);border:1px solid rgba(14,124,134,.25);border-radius:20px;padding:3px 10px;white-space:nowrap">Medicinsk rådgivare</span>
               </div>
-              <p class="doctor-name">Dr. Anna Lindqvist</p>
-              <p class="doctor-title">Överläkare, Akutmedicin</p>
+              <div style="display:flex;align-items:center;gap:14px">
+                <div style="width:46px;height:46px;border-radius:50%;background:#fff;border:1.5px solid rgba(14,124,134,.22);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                  <svg width="22" height="22" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="10" r="5" stroke="var(--brand)" stroke-width="1.6"/><path d="M4 24c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="var(--brand)" stroke-width="1.6" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <p style="margin:0 0 2px;font-size:14px;font-weight:700;color:var(--ink)">Dr. Marcus Ehrenberg</p>
+                  <p style="margin:0;font-size:12.5px;color:var(--ink-2)">Specialistläkare · Kirurgi, SUS Malmö</p>
+                </div>
+                <span style="margin-left:auto;font-size:11px;font-weight:700;background:var(--brand-soft);color:var(--brand);border:1px solid rgba(14,124,134,.25);border-radius:20px;padding:3px 10px;white-space:nowrap">Klinisk expert</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:14px">
+                <div style="width:46px;height:46px;border-radius:50%;background:#fff;border:1.5px solid rgba(14,124,134,.22);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                  <svg width="22" height="22" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="10" r="5" stroke="var(--brand)" stroke-width="1.6"/><path d="M4 24c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="var(--brand)" stroke-width="1.6" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <p style="margin:0 0 2px;font-size:14px;font-weight:700;color:var(--ink)">Dr. Jonas Wikström</p>
+                  <p style="margin:0;font-size:12.5px;color:var(--ink-2)">Konsultläkare · Ortopedi, Akademiska</p>
+                </div>
+                <span style="margin-left:auto;font-size:11px;font-weight:700;background:var(--brand-soft);color:var(--brand);border:1px solid rgba(14,124,134,.25);border-radius:20px;padding:3px 10px;white-space:nowrap">Klinisk expert</span>
+              </div>
             </div>
-            <div class="doctor-card">
-              <div class="doctor-avatar">
-                <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="10" r="5" stroke="var(--brand)" stroke-width="1.6"/><path d="M4 24c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="var(--brand)" stroke-width="1.6" stroke-linecap="round"/></svg>
-              </div>
-              <p class="doctor-name">Dr. Marcus Ehrenberg</p>
-              <p class="doctor-title">Specialistläkare, Kirurgi</p>
-            </div>
-            <div class="doctor-card">
-              <div class="doctor-avatar">
-                <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="10" r="5" stroke="var(--brand)" stroke-width="1.6"/><path d="M4 24c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="var(--brand)" stroke-width="1.6" stroke-linecap="round"/></svg>
-              </div>
-              <p class="doctor-name">Dr. Jonas Wikström</p>
-              <p class="doctor-title">Konsultläkare, Ortopedi</p>
+            <div style="margin-top:18px;padding-top:16px;border-top:1px solid rgba(14,124,134,.15);display:flex;align-items:center;gap:10px">
+              <svg width="16" height="16" viewBox="0 0 22 22" fill="none"><path d="M4 11.5l5 5 9-9" stroke="var(--brand)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <p style="margin:0;font-size:12px;color:var(--ink-2);line-height:1.5">Certifierad partner i <strong style="color:var(--ink)">Cambio COSMIC</strong> applikationsgalleri</p>
             </div>
           </div>
         </div>
