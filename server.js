@@ -8,6 +8,8 @@ const { pool, initDb } = require('./src/db');
 const app  = express();
 const PORT = process.env.PORT || 3000;
 const PROD = process.env.NODE_ENV === 'production';
+/* ── Trust Railway's reverse proxy (needed for secure cookies) ──────── */
+   if (PROD) app.set('trust proxy', 1);
 
 /* ── Middleware ─────────────────────────────────────────────────────── */
 app.use(express.json());
