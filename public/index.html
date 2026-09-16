@@ -1640,25 +1640,70 @@ async function demoApi(path, opts = {}) {
 /* --- landing/inloggningsskärm (demo + server) --- */
 function renderLanding(message) {
   document.getElementById('root').innerHTML = `
-    <main style="min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;background:var(--night);padding:24px">
-      <div style="background:var(--surface);border-radius:20px;padding:40px 36px;width:100%;max-width:380px;box-shadow:0 8px 40px rgba(0,0,0,.35)">
-        <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px">
-          <div style="width:42px;height:42px;border-radius:10px;background:var(--brand);display:flex;align-items:center;justify-content:center">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 3a8 8 0 100 16A8 8 0 0011 3zm1 3.5v4.8l3 1.7-.75 1.3L10.5 12V6.5H12z" fill="#fff"/></svg>
-          </div>
-          <span style="font-size:22px;font-weight:700;letter-spacing:-.03em;color:var(--ink)">PrioSift</span>
+    <div class="site" style="--hero-image:url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1400&q=80')">
+      <div class="site-hero">
+        <div class="brandline">
+          <img src="${icon('patient')}" alt="PrioSift">
+          <b>PrioSift</b>
         </div>
-        <div class="login-error" id="err">${message || ''}</div>
-        <label for="u" style="display:block;font-size:13px;font-weight:600;color:var(--ink-2);margin-bottom:6px">Användarnamn</label>
-        <input id="u" autocapitalize="off" spellcheck="false" autocomplete="username" required
-          style="display:block;width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;font-size:15px;margin-bottom:16px;background:var(--surface-2)">
-        <label for="p" style="display:block;font-size:13px;font-weight:600;color:var(--ink-2);margin-bottom:6px">Lösenord</label>
-        <input id="p" type="password" autocomplete="current-password" required
-          style="display:block;width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;font-size:15px;margin-bottom:24px;background:var(--surface-2)">
-        <button class="btn wide" type="submit" id="loginBtn" style="width:100%">Logga in</button>
-        <p style="font-size:12px;color:var(--ink-3);margin-top:20px;text-align:center;line-height:1.5">PrioSift är ett beslutsstöd och ersätter inte klinisk bedömning.</p>
+        <div>
+          <h1>Rätt patient först —<br>redan i väntrummet.</h1>
+          <p class="lead">Patienten svarar på ett kort anamnesformulär på en iPad. Svaren poängsätts, vitalparametrar och provsvar räknas in, och personalen möts av en kö som redan är sorterad och fördelad på rätt disk.</p>
+          <div class="hero-points" style="flex-direction:column;gap:12px;margin-top:28px">
+            <span style="padding:18px 24px;font-size:17px">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M11 6.5v5l3 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              <span><strong>Snabb prioritering</strong><br><span style="font-size:14px;opacity:.8;font-weight:400">Anamnes på 2–3 minuter — automatisk nivå 1–4 direkt i väntrummet.</span></span>
+            </span>
+            <span style="padding:18px 24px;font-size:17px">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 11h14M14 7l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span><strong>Automatisk informationsöverföring</strong><br><span style="font-size:14px;opacity:.8;font-weight:400">Strukturerad FHIR-data och journaltext skickas direkt till Cambio COSMIC.</span></span>
+            </span>
+            <span style="padding:18px 24px;font-size:17px">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 3l2.5 5.5H19l-4.5 4 1.5 6L11 15.5 6 18.5l1.5-6L3 8.5h5.5L11 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+              <span><strong>Självlärande system</strong><br><span style="font-size:14px;opacity:.8;font-weight:400">Poängvikter och trösklar anpassas efter er avdelnings egna utfall över tid.</span></span>
+            </span>
+          </div>
+        </div>
+        <footer>PrioSift är ett beslutsstöd och ersätter inte klinisk bedömning.</footer>
       </div>
-    </main>`;
+      <div class="site-login">
+        <div style="width:100%;max-width:380px;padding-top:40px">
+          <p class="login-contact">Kontakta oss för en demonstration av tjänsten.</p>
+          <h2 style="font-size:26px;margin-bottom:6px">Logga in</h2>
+          <div class="login-error" id="err" style="margin-bottom:${message ? '16px' : '0'}">${message || ''}</div>
+          <label for="u" style="display:block;font-size:13px;font-weight:600;color:var(--ink-2);margin:22px 0 6px">Användarnamn</label>
+          <input id="u" autocapitalize="off" spellcheck="false" autocomplete="username" required
+            style="display:block;width:100%;padding:11px 14px;border:1.5px solid var(--line);border-radius:10px;font-size:15px;background:var(--surface-2)">
+          <label for="p" style="display:block;font-size:13px;font-weight:600;color:var(--ink-2);margin:16px 0 6px">Lösenord</label>
+          <input id="p" type="password" autocomplete="current-password" required
+            style="display:block;width:100%;padding:11px 14px;border:1.5px solid var(--line);border-radius:10px;font-size:15px">
+          <button class="btn wide" id="loginBtn" style="width:100%;margin-top:22px;padding:14px">Logga in</button>
+          <div class="doctor-cards">
+            <div class="doctor-card">
+              <div class="doctor-avatar">
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="10" r="5" stroke="var(--brand)" stroke-width="1.6"/><path d="M4 24c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="var(--brand)" stroke-width="1.6" stroke-linecap="round"/></svg>
+              </div>
+              <p class="doctor-name">Dr. Anna Lindqvist</p>
+              <p class="doctor-title">Överläkare, Akutmedicin</p>
+            </div>
+            <div class="doctor-card">
+              <div class="doctor-avatar">
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="10" r="5" stroke="var(--brand)" stroke-width="1.6"/><path d="M4 24c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="var(--brand)" stroke-width="1.6" stroke-linecap="round"/></svg>
+              </div>
+              <p class="doctor-name">Dr. Marcus Ehrenberg</p>
+              <p class="doctor-title">Specialistläkare, Kirurgi</p>
+            </div>
+            <div class="doctor-card">
+              <div class="doctor-avatar">
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="10" r="5" stroke="var(--brand)" stroke-width="1.6"/><path d="M4 24c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="var(--brand)" stroke-width="1.6" stroke-linecap="round"/></svg>
+              </div>
+              <p class="doctor-name">Dr. Jonas Wikström</p>
+              <p class="doctor-title">Konsultläkare, Ortopedi</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`;
 
   document.getElementById('loginBtn').addEventListener('click', async () => {
     const btn = document.getElementById('loginBtn');
