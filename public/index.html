@@ -1666,7 +1666,7 @@ function renderLanding(message) {
     btn.disabled = true; btn.textContent = 'Loggar in…';
     errEl.textContent = '';
     try {
-      await api('/api/login', { method:'POST', body: JSON.stringify({ username: document.getElementById('u').value, password: document.getElementById('p').value }) });
+      await api('/api/login', { method:'POST', body: { username: document.getElementById('u').value, password: document.getElementById('p').value } });
       await reloadBoot(); route();
     } catch(e2) {
       btn.disabled = false; btn.textContent = 'Logga in';
