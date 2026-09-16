@@ -5,52 +5,68 @@ const form    = require('../form.json');
 
 const router = express.Router();
 
-/* GET /api/stats  (owner only — requireOwner applied in server.js)
-   Returns per-department stats, tier analysis and revenue summary. */
+/* GET /api/stats */
 router.get('/stats', async (req, res) => {
   try {
-    // Aggregate per department
-    const [depts, patients, tiers] = await Promise.all([
+    const [depts, patients, desksRaw, tiers] = await Promise.all([
       q('SELECT * FROM departments ORDER BY name'),
       q(`SELECT dept_id,
-                COUNT(*)                                           AS total,
-                COUNT(*) FILTER (WHERE status NOT IN ('avslutad','skickad')) AS open,
-                COUNT(*) FILTER (WHERE level=1)                  AS lvl1,
-                COUNT(*) FILTER (WHERE level=2)                  AS lvl2,
-                COUNT(*) FILTER (WHERE level=3)                  AS lvl3,
-                COUNT(*) FILTER (WHERE level=4)                  AS lvl4,
-                AVG(score)::numeric(6,1)                         AS avg_score,
-                COUNT(DISTINCT created_at::date)                 AS days_active
+                COUNT(*)                                                                AS total,
+                COUNT(*) FILTER (WHERE status NOT IN ('avslutad','skickad'))            AS open,
+                COUNT(*) FILTER (WHERE level=1)                                        AS lvl1,
+                COUNT(*) FILTER (WHERE level=2)                                        AS lvl2,
+                COUNT(*) FILTER (WHERE level=3)                                        AS lvl3,
+                COUNT(*) FILTER (WHERE level=4)                                        AS lvl4,
+                COUNT(*) FILTER (WHERE created_at >= NOW() - INTERVAL '1 day')         AS d1,
+                COUNT(*) FILTER (WHERE created_at >= NOW() - INTERVAL '7 days')        AS d7,
+                COUNT(*) FILTER (WHERE created_at >= NOW() - INTERVAL '30 days')       AS d30,
+                AVG(score)::numeric(6,1)                                               AS avg_score,
+                COUNT(DISTINCT created_at::date)                                       AS days_active,
+                AVG(EXTRACT(EPOCH FROM (triaged_at - created_at))/60)
+                    FILTER (WHERE triaged_at IS NOT NULL)::numeric(6,1)                AS avg_triage_min
          FROM patients
          GROUP BY dept_id`),
+      q('SELECT dept_id, desk, COUNT(*) AS n FROM patients GROUP BY dept_id, desk'),
       getConfig('tiers', form.tiers),
     ]);
 
     const statsMap = {};
     for (const r of patients.rows) statsMap[r.dept_id] = r;
 
+    const desksMap = {};
+    for (const r of desksRaw.rows) {
+      if (!desksMap[r.dept_id]) desksMap[r.dept_id] = {};
+      desksMap[r.dept_id][r.desk] = parseInt(r.n || 0);
+    }
+
     const departments = depts.rows.map(d => {
       const s      = statsMap[d.id] || {};
       const tier   = tiers.find(t => t.id === d.tier) || tiers[0];
 
-      // Tier mismatch: if annual volume suggests a different tier
       const correctTier = tiers.slice().reverse().find(t => d.annual_volume >= (t.minVolume || 0)) || tiers[0];
       const tierMismatch = correctTier.id !== d.tier;
 
-      const total = parseInt(s.total || 0);
+      const total      = parseInt(s.total || 0);
+      const daysActive = parseInt(s.days_active || 1) || 1;
       return {
-        id:           d.id,
-        name:         d.name,
-        city:         d.city,
-        tier:         d.tier,
-        tierName:     tier.name,
-        annualVolume: d.annual_volume,
-        contact:      d.contact,
-        active:       d.active,
-        priceMonth:   tier.monthlyPrice || 0,
+        id:               d.id,
+        name:             d.name,
+        city:             d.city,
+        tier:             d.tier,
+        tierName:         tier.name,
+        annualVolume:     d.annual_volume,
+        contact:          d.contact,
+        active:           d.active,
+        priceMonth:       tier.monthlyPrice || 0,
         tierMismatch,
-        suggestedTier: tierMismatch ? correctTier.id : null,
+        suggestedTier:    tierMismatch ? correctTier.id : null,
         total,
+        d1:               parseInt(s.d1  || 0),
+        d7:               parseInt(s.d7  || 0),
+        d30:              parseInt(s.d30 || 0),
+        projectedAnnual:  Math.round(total / daysActive * 365),
+        avgTriageMinutes: s.avg_triage_min != null ? Math.round(parseFloat(s.avg_triage_min)) : null,
+        desks:            desksMap[d.id] || {},
         levels: {
           1: parseInt(s.lvl1 || 0),
           2: parseInt(s.lvl2 || 0),
