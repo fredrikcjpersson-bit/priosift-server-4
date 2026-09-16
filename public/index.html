@@ -1650,17 +1650,26 @@ function renderLanding(message) {
           <h1>Rätt patient först —<br>redan i väntrummet.</h1>
           <p class="lead">Patienten svarar på ett kort anamnesformulär på en iPad. Svaren poängsätts, vitalparametrar och provsvar räknas in, och personalen möts av en kö som redan är sorterad och fördelad på rätt disk.</p>
           <div class="hero-points" style="flex-direction:column;gap:12px;margin-top:28px">
-            <span style="padding:18px 24px;font-size:17px">
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M11 6.5v5l3 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-              <span><strong>Snabb prioritering</strong><br><span style="font-size:14px;opacity:.8;font-weight:400">Anamnes på 2–3 minuter — automatisk nivå 1–4 direkt i väntrummet.</span></span>
+            <span style="padding:18px 24px;flex-direction:column;align-items:flex-start;gap:6px">
+              <div style="display:flex;align-items:center;gap:12px">
+                <svg width="20" height="20" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M11 6.5v5l3 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                <strong style="font-size:17px">Snabb prioritering</strong>
+              </div>
+              <p style="margin:0 0 0 32px;font-size:14px;opacity:.75;font-weight:400;line-height:1.5">Anamnes på 2–3 minuter — automatisk nivå 1–4 direkt i väntrummet.</p>
             </span>
-            <span style="padding:18px 24px;font-size:17px">
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 11h14M14 7l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <span><strong>Automatisk informationsöverföring</strong><br><span style="font-size:14px;opacity:.8;font-weight:400">Strukturerad FHIR-data och journaltext skickas direkt till Cambio COSMIC.</span></span>
+            <span style="padding:18px 24px;flex-direction:column;align-items:flex-start;gap:6px">
+              <div style="display:flex;align-items:center;gap:12px">
+                <svg width="20" height="20" viewBox="0 0 22 22" fill="none"><path d="M4 11h14M14 7l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <strong style="font-size:17px">Automatisk informationsöverföring</strong>
+              </div>
+              <p style="margin:0 0 0 32px;font-size:14px;opacity:.75;font-weight:400;line-height:1.5">Strukturerad FHIR-data och journaltext skickas direkt till Cambio COSMIC.</p>
             </span>
-            <span style="padding:18px 24px;font-size:17px">
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 3l2.5 5.5H19l-4.5 4 1.5 6L11 15.5 6 18.5l1.5-6L3 8.5h5.5L11 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
-              <span><strong>Självlärande system</strong><br><span style="font-size:14px;opacity:.8;font-weight:400">Poängvikter och trösklar anpassas efter er avdelnings egna utfall över tid.</span></span>
+            <span style="padding:18px 24px;flex-direction:column;align-items:flex-start;gap:6px">
+              <div style="display:flex;align-items:center;gap:12px">
+                <svg width="20" height="20" viewBox="0 0 22 22" fill="none"><path d="M11 3l2.5 5.5H19l-4.5 4 1.5 6L11 15.5 6 18.5l1.5-6L3 8.5h5.5L11 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                <strong style="font-size:17px">Självlärande system</strong>
+              </div>
+              <p style="margin:0 0 0 32px;font-size:14px;opacity:.75;font-weight:400;line-height:1.5">Poängvikter och trösklar anpassas efter er avdelnings egna utfall över tid.</p>
             </span>
           </div>
         </div>
