@@ -17,7 +17,7 @@ router.get('/patients', async (req, res) => {
     if (dept) { sql += ' WHERE dept_id=$1'; vals.push(dept); }
     sql += ' ORDER BY level ASC, created_at ASC';
     const r = await q(sql, vals);
-    res.json(r.rows.map(rowToPatient));
+res.json({ patients: r.rows.map(rowToPatient) });
   } catch (e) {
     console.error(e.message);
     res.status(500).json({ error: 'Serverfel' });
