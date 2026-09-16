@@ -27,7 +27,7 @@ router.get('/waiting', async (req, res) => {
       status:       p.status,
     }));
 
-    res.json(rows);
+    res.json({ queue: rows });
   } catch (e) {
     console.error(e.message);
     res.status(500).json({ error: 'Serverfel' });
